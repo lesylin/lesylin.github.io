@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://lesylin.com/about/index.html</loc>
+    
+    <lastmod>2019-12-27T14:19:57.285Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://lesylin.com/2019/12/26/%E8%92%B2%E5%85%AC%E8%8B%B1%E7%9A%84%E7%BA%A6%E5%AE%9A/</loc>
     
     <lastmod>2019-12-26T07:53:50.775Z</lastmod>
@@ -47,13 +54,6 @@
     <loc>https://lesylin.com/tags/index.html</loc>
     
     <lastmod>2019-12-19T06:11:33.126Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>https://lesylin.com/about/index.html</loc>
-    
-    <lastmod>2019-12-19T06:03:34.026Z</lastmod>
     
   </url>
   
