@@ -39,14 +39,22 @@
 </li>
 <li><p>返回点击解析设置界面，点击添加记录。我的输入如下：</p>
 <ul>
-<li><pre><code>主机记录   记录类型   解析路线    记录值             TTL
-www         A        默认       IP             10分钟
-@         CNAME      默认    github.io的域名    10分钟
-<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">- 打开你的github的域名，点击Settings，在自定义域输入你购买的域名，点击保存</span><br><span class="line"></span><br><span class="line">- 在仓库界面，点击Create new file，命名为CNAME，内容为你购买的域名，注意：不要包含https:&#x2F;&#x2F;和www</span><br><span class="line"></span><br><span class="line">- 在本地站点source文件夹下新建一个无后缀名的CNAME文件，内容为你购买的域名，注意：不要包含https:&#x2F;&#x2F;和www，然后hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br><span class="line"></span><br><span class="line">- 在浏览器输入你购买的域名即可访问</span><br><span class="line"></span><br><span class="line">## 5.其他功能</span><br><span class="line"></span><br><span class="line">​	这里推荐几个插件，让你的博客功能更加完善。这里我简单说一下我使用的功能。</span><br><span class="line"></span><br><span class="line">### 5.1评论功能</span><br><span class="line"></span><br><span class="line">​	我的评论功能使用的是valine。以Butterfly主题为例，在主题配置文件butterfly.yml，打开valine。如下：</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;yaml</span><br><span class="line">valine:</span><br><span class="line">  enable: true </span><br><span class="line">  appId: </span><br><span class="line">  appKey: </span><br><span class="line">  notify: false </span><br><span class="line">  verify: false # valine verify code (true&#x2F;false)</span><br><span class="line">  pageSize: 10 # comment list page size</span><br><span class="line">  avatar: monsterid # gravatar style https:&#x2F;&#x2F;valine.js.org&#x2F;#&#x2F;avatar</span><br><span class="line">  lang: zh-cn # i18n: zh-cn&#x2F;en</span><br><span class="line">  placeholder: 请多指教 # valine comment input placeholder</span><br><span class="line">  guest_info: nick,mail,link #valine comment header info</span><br><span class="line">  bg: &#x2F;img&#x2F;comment_bg.png # valine background</span><br></pre></td></tr></table></figure>
-</code></pre></li>
+<li>主机记录   记录类型   解析路线         记录值                             TTL<br>www              A                 默认              IP                                10分钟<br>@               CNAME           默认           github.io的域名           10分钟</li>
 </ul>
 </li>
+<li><p>打开你的github的域名，点击Settings，在自定义域输入你购买的域名，点击保存</p>
+</li>
+<li><p>在仓库界面，点击Create new file，命名为CNAME，内容为你购买的域名，注意：不要包含https://和www</p>
+</li>
+<li><p>在本地站点source文件夹下新建一个无后缀名的CNAME文件，内容为你购买的域名，注意：不要包含https://和www，然后hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</p>
+</li>
+<li><p>在浏览器输入你购买的域名即可访问</p>
+</li>
 </ul>
+<h2 id="5-其他功能"><a href="#5-其他功能" class="headerlink" title="5.其他功能"></a>5.其他功能</h2><p>​    这里推荐几个插件，让你的博客功能更加完善。这里我简单说一下我使用的功能。</p>
+<h3 id="5-1评论功能"><a href="#5-1评论功能" class="headerlink" title="5.1评论功能"></a>5.1评论功能</h3><p>​    我的评论功能使用的是valine。以Butterfly主题为例，在主题配置文件butterfly.yml，打开valine。如下：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">valine:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span> </span><br><span class="line">  <span class="attr">appId:</span> </span><br><span class="line">  <span class="attr">appKey:</span> </span><br><span class="line">  <span class="attr">notify:</span> <span class="literal">false</span> </span><br><span class="line">  <span class="attr">verify:</span> <span class="literal">false</span> <span class="comment"># valine verify code (true/false)</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># comment list page size</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">monsterid</span> <span class="comment"># gravatar style https://valine.js.org/#/avatar</span></span><br><span class="line">  <span class="attr">lang:</span> <span class="string">zh-cn</span> <span class="comment"># i18n: zh-cn/en</span></span><br><span class="line">  <span class="attr">placeholder:</span> <span class="string">请多指教</span> <span class="comment"># valine comment input placeholder</span></span><br><span class="line">  <span class="attr">guest_info:</span> <span class="string">nick,mail,link</span> <span class="comment">#valine comment header info</span></span><br><span class="line">  <span class="attr">bg:</span> <span class="string">/img/comment_bg.png</span> <span class="comment"># valine background</span></span><br></pre></td></tr></table></figure>
+
 <p>​    代码里的<code>appId</code>和<code>appKey</code>需要去Leancloud上注册，链接：<a href="https://www.leancloud.cn/。" target="_blank" rel="noopener">https://www.leancloud.cn/。</a></p>
 <ul>
 <li>注册账号</li>
