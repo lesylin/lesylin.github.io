@@ -1,6 +1,142 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>hexo建站</title>
+    <url>/2019/12/29/hexo%E5%BB%BA%E7%AB%99/</url>
+    <content><![CDATA[<h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h2><p>​    一直很怕麻烦的我，对于搭博客这件事是很抗拒的，身边的好朋友也和我说过好几次，建议我搭一个，然后放上自己的学习笔记和简历，在未来找工作的时候，有人看到就是赚到，没人看到，自己也可以回顾之前学过的东西。</p>
+<p>​    有什么事情是不麻烦的呢？自己感兴趣的永远都不麻烦。</p>
+<p>​    怎么才能只做自己感兴趣的事情呢？征服一切麻烦，把它变成你擅长的事，这样可能你就能收获成就感，收获兴趣。</p>
+<p>​    所以，先迈出第一步，搭一个自己的博客吧。说不定，你会像我一样，突然想学习，想写很多的笔记填满它。</p>
+<h2 id="2-准备工作"><a href="#2-准备工作" class="headerlink" title="2.准备工作"></a>2.准备工作</h2><p>​    首先，找一个hexo搭建的博客的教程，我参考的教程是mac系统的教程，另外我也找了一个windows系统的教程。链接如下：</p>
+<p><a href="https://www.jianshu.com/p/77db3862595c（mac系统下搭建hexo个人博客）" target="_blank" rel="noopener">https://www.jianshu.com/p/77db3862595c（mac系统下搭建hexo个人博客）</a></p>
+<p><a href="https://blog.csdn.net/qq_31880107/article/details/86688467（windows下Hexo博客搭建过程）" target="_blank" rel="noopener">https://blog.csdn.net/qq_31880107/article/details/86688467（windows下Hexo博客搭建过程）</a></p>
+<p>​    然后，根据链接完成环境配置、博客关联到Github的操作。到这里，我们已经有了一个自己的博客，可以开始发表文章了。</p>
+<p>​    如果你不满足hexo原始主题的样式，想打造一个更美观、更能体现自己style的博客，那么就可以继续第三部分啦~</p>
+<h2 id="3-美化博客"><a href="#3-美化博客" class="headerlink" title="3.美化博客"></a>3.美化博客</h2><p>​    首先，打开hexo主题链接：<a href="https://hexo.io/themes/，选择一个你喜欢的主题。" target="_blank" rel="noopener">https://hexo.io/themes/，选择一个你喜欢的主题。</a></p>
+<p>​    在选择主题的时候，我简单的Google了一下hexo推荐的主题有哪些，发现极简风格的Next主题是最多人使用的，网上也有很多相应的修改教程。但是，我最后选择了Butterfly主题。</p>
+<p>​    如果你很满意你选择的主题，不想做其他任何的修改，那么你只需要在站点目录下的_config.yml文件，修改theme为你选择的主题名，如<code>theme: Butterfly</code>。然后，去挑选一个你喜欢的域名绑定即可。</p>
+<p>​    注意：修改的时候，冒号后面一定要有空格，不然就会报错。</p>
+<p>​    如果你想让你的博客与众不同，你可以参考网上的修改教程，如果你恰好选择的是Next或者Butterfly，你可以参考如下链接：</p>
+<ul>
+<li>Next主题的修改可以参考第2部分mac系统下搭建hexo个人博客的链接。</li>
+<li>Butterfly主题的修改可以直接参考官方文档：<a href="https://jerryc.me/posts/21cfbf15/" target="_blank" rel="noopener">https://jerryc.me/posts/21cfbf15/</a></li>
+</ul>
+<h2 id="4-域名绑定"><a href="#4-域名绑定" class="headerlink" title="4.域名绑定"></a>4.域名绑定</h2><p>​    我是在阿里云上购买的域名，链接：<a href="https://www.aliyun.com/" target="_blank" rel="noopener">https://www.aliyun.com/</a></p>
+<ul>
+<li><p>注册</p>
+</li>
+<li><p>在查域名里输入你想要购买的域名，查询是否被购买，我购买的后缀是.com</p>
+</li>
+<li><p>如果你喜欢的域名没有被购买，就加入购买清单，去结算</p>
+</li>
+<li><p>进入确定订单界面，选择购买年限，域名持有者</p>
+</li>
+<li><p>创建新的信息模板，填写必填的信息，完成购买</p>
+</li>
+<li><p>打开控制台，点击云解析DNS，点击解析设置，会出现几个需要填写的值：记录类型、主机记录、解析路线、记录值</p>
+</li>
+<li><p>打开命令行，ping你的github.io的域名，如lesylin.github.io，得到一个IP</p>
+</li>
+<li><p>返回点击解析设置界面，点击添加记录。我的输入如下：</p>
+<ul>
+<li><pre><code>主机记录   记录类型   解析路线    记录值             TTL
+www         A        默认       IP             10分钟
+@         CNAME      默认    github.io的域名    10分钟
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">- 打开你的github的域名，点击Settings，在自定义域输入你购买的域名，点击保存</span><br><span class="line"></span><br><span class="line">- 在仓库界面，点击Create new file，命名为CNAME，内容为你购买的域名，注意：不要包含https:&#x2F;&#x2F;和www</span><br><span class="line"></span><br><span class="line">- 在本地站点source文件夹下新建一个无后缀名的CNAME文件，内容为你购买的域名，注意：不要包含https:&#x2F;&#x2F;和www，然后hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</span><br><span class="line"></span><br><span class="line">- 在浏览器输入你购买的域名即可访问</span><br><span class="line"></span><br><span class="line">## 5.其他功能</span><br><span class="line"></span><br><span class="line">​	这里推荐几个插件，让你的博客功能更加完善。这里我简单说一下我使用的功能。</span><br><span class="line"></span><br><span class="line">### 5.1评论功能</span><br><span class="line"></span><br><span class="line">​	我的评论功能使用的是valine。以Butterfly主题为例，在主题配置文件butterfly.yml，打开valine。如下：</span><br><span class="line"></span><br><span class="line">&#96;&#96;&#96;yaml</span><br><span class="line">valine:</span><br><span class="line">  enable: true </span><br><span class="line">  appId: </span><br><span class="line">  appKey: </span><br><span class="line">  notify: false </span><br><span class="line">  verify: false # valine verify code (true&#x2F;false)</span><br><span class="line">  pageSize: 10 # comment list page size</span><br><span class="line">  avatar: monsterid # gravatar style https:&#x2F;&#x2F;valine.js.org&#x2F;#&#x2F;avatar</span><br><span class="line">  lang: zh-cn # i18n: zh-cn&#x2F;en</span><br><span class="line">  placeholder: 请多指教 # valine comment input placeholder</span><br><span class="line">  guest_info: nick,mail,link #valine comment header info</span><br><span class="line">  bg: &#x2F;img&#x2F;comment_bg.png # valine background</span><br></pre></td></tr></table></figure>
+</code></pre></li>
+</ul>
+</li>
+</ul>
+<p>​    代码里的<code>appId</code>和<code>appKey</code>需要去Leancloud上注册，链接：<a href="https://www.leancloud.cn/。" target="_blank" rel="noopener">https://www.leancloud.cn/。</a></p>
+<ul>
+<li>注册账号</li>
+<li>创建一个应用，名字随便起，选择开发版，点击创建</li>
+<li>进入创建好的应用，点击设定，点击安全中心，在web安全域名输入你的域名</li>
+<li>进入创建好的应用，点击设定，点击应用键，就可以看到<code>appId</code>和<code>appKey</code></li>
+<li>复制<code>appID</code>和<code>appKey</code>到代码指定位置，保存即可</li>
+</ul>
+<h3 id="5-2本地搜索"><a href="#5-2本地搜索" class="headerlink" title="5.2本地搜索"></a>5.2本地搜索</h3><p>​    搜索系统有两种，一种是本地搜索，一种是Algolia。我选择的是本地搜索。以Butterfly主题为例，在主题配置文件butterfly.yml，打开local_search。如下：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">local_search:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">labels:</span></span><br><span class="line">    <span class="attr">input_placeholder:</span> <span class="string">Search</span> <span class="string">for</span> <span class="string">Posts</span></span><br><span class="line">    <span class="attr">hits_empty:</span> <span class="string">"We didn't find any results for the search: $&#123;query&#125;"</span> <span class="comment"># if there are no result</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p>打开命令行，输入<code>$ npm install hexo-generator-search --save</code></p>
+</li>
+<li><p>打开站点下的配置文件_config.yml，添加如下代码：</p>
+<ul>
+<li><p></p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">search:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">search.xml</span></span><br><span class="line">  <span class="attr">field:</span> <span class="string">post</span></span><br><span class="line">  <span class="attr">content:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>保存重新部署即可</p>
+</li>
+<li><p>参考链接：<a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener">https://github.com/wzpan/hexo-generator-search</a></p>
+</li>
+<li><p>btw：另一种搜索的使用，等我下次更换了再来更新，其实本地搜索感觉就够用了，添加方式也简单</p>
+</li>
+</ul>
+<h3 id="5-3网站验证"><a href="#5-3网站验证" class="headerlink" title="5.3网站验证"></a>5.3网站验证</h3><p>​    网站验证功能就是让搜索引擎收录你的博客。这里主要介绍百度和谷歌的收录步骤。</p>
+<ul>
+<li>在百度或者谷歌搜索，输入：<code>site:你的域名</code>，可以确定你的博客是否相应的搜索引擎收录</li>
+<li>百度和谷歌的收录步骤参考链接：<a href="https://www.jianshu.com/p/8c0707ce5da4" target="_blank" rel="noopener">https://www.jianshu.com/p/8c0707ce5da4</a></li>
+<li>btw：百度收录的速度很慢，对于新建站不满6个月的会让提交备案，加快收录速度，加快收录的方法可自行搜索；相比而言，谷歌收录的速度比较快，我提交sitemap后，一天就收录了</li>
+</ul>
+<h3 id="5-4分析统计"><a href="#5-4分析统计" class="headerlink" title="5.4分析统计"></a>5.4分析统计</h3><p>​    网站分析统计就是统计博客的访问情况，比如博客的历史访问量、搜索关键字、访问来源、访问地域等统计数据。添加分析统计，以Butterfly主题为例：</p>
+<ul>
+<li><p>打开百度统计，注册账号，链接：<a href="https://tongji.baidu.com/web/welcome/login?castk=LTE%3D" target="_blank" rel="noopener">https://tongji.baidu.com/web/welcome/login?castk=LTE%3D</a></p>
+</li>
+<li><p>管理界面，点击新增网站，输入网站域名和网站首页，点击确定</p>
+</li>
+<li><p>获取统计代码</p>
+<ul>
+<li><pre><code class="javascript">&lt;script&gt;
+<span class="keyword">var</span> _hmt = _hmt || [];
+(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>{
+  <span class="keyword">var</span> hm = <span class="built_in">document</span>.createElement(<span class="string">"script"</span>);
+  hm.src = <span class="string">"https://hm.baidu.com/hm.js?————————————-"</span>;
+  <span class="keyword">var</span> s = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"script"</span>)[<span class="number">0</span>]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+&lt;<span class="regexp">/script&gt;</span>
+<span class="regexp"><figure class="highlight plain"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line">  - 把代码js？后面的部分复制到主题配置文件butterfly.yml的&#96;baidu_analytics:&#96;</span><br><span class="line"></span><br><span class="line">  - 保存重新部署之后，进行代码安装检查，如果显示代码安装正确，就表示添加成功了</span><br><span class="line"></span><br><span class="line">- 打开谷歌统计，注册账号，链接：https:&#x2F;&#x2F;analytics.google.com&#x2F;analytics&#x2F;web&#x2F;</span><br><span class="line"></span><br><span class="line">- 打开控制台，点击左下角的管理，点击创建媒体资源，点击跟踪信息，点击跟踪代码</span><br><span class="line"></span><br><span class="line">- 将跟踪ID：&#96;UA-xxxx&#96;，复制到主题配置文件butterfly.yml的&#96;google_analytics:&#96;</span><br><span class="line"></span><br><span class="line">- 保存重新部署之后，等20分钟左右再次进去谷歌统计即可查看到统计的数据</span><br><span class="line"></span><br><span class="line">### 5.5不蒜子访问统计</span><br><span class="line"></span><br><span class="line">​	不蒜子可以通过两行代码实现访问量统计。链接https:&#x2F;&#x2F;busuanzi.ibruce.info&#x2F;，以Butterfly主题为例。</span><br><span class="line"></span><br><span class="line">- 打开footer.pug文件，我的这个文件在&#96;&#x2F;Users&#x2F;lesy&#x2F;blog&#x2F;themes&#x2F;Butterfly&#x2F;layout&#x2F;includes&#96;</span><br><span class="line"></span><br><span class="line">- 在末尾添加如下代码：</span><br><span class="line"></span><br><span class="line">  - &#96;&#96;&#96;yaml</span><br><span class="line">    script(async&#x3D;&#39;&#39;, src&#x3D;&#39;&#x2F;&#x2F;busuanzi.ibruce.info&#x2F;busuanzi&#x2F;2.3&#x2F;busuanzi.pure.mini.js&#39;)</span><br><span class="line">      span#busuanzi_container_site_pv</span><br><span class="line">      | 本站总访问量</span><br><span class="line">      span#busuanzi_value_site_pv</span><br><span class="line">      | 次</span><br></pre></td></tr></table></figure></span></code></pre>
+</li>
+</ul>
+</li>
+<li><p>保存重新部署后，就可以在footer看到总访问量统计，如果想要美化显示，可以修改文字和增加图标，也可以统计访客数，把<code>site_pv</code>改成<code>site_uv</code>即可</p>
+</li>
+</ul>
+<h3 id="5-6字数统计"><a href="#5-6字数统计" class="headerlink" title="5.6字数统计"></a>5.6字数统计</h3><p>​    可以实现对文章字数的统计，并可以根据字数多少估计阅读时间。以Butterfly主题为例：</p>
+<ul>
+<li><p>打开命令行，在站点目录下输入：<code>npm install hexo-wordcount --save</code></p>
+</li>
+<li><p>打开主题配置文件butterfly.yml，修改wordcount，如下：</p>
+<ul>
+<li><pre><code class="yaml"><span class="attr">wordcount:</span>
+  <span class="attr">enable:</span> <span class="literal">true</span></code></pre>
+</li>
+</ul>
+</li>
+<li><p>保存重新部署即可</p>
+</li>
+</ul>
+<h3 id="5-7文章置顶"><a href="#5-7文章置顶" class="headerlink" title="5.7文章置顶"></a>5.7文章置顶</h3><ul>
+<li>打开命令行，在站点目录下输入：<code>npm uninstall hexo-generator-index --save</code></li>
+<li>然后，输入<code>npm install hexo-generator-index-pin-top --save</code></li>
+<li>在需要置顶的文章开头，加上<code>top: true</code>即可</li>
+</ul>
+<h3 id="5-8live2D卡通插件"><a href="#5-8live2D卡通插件" class="headerlink" title="5.8live2D卡通插件"></a>5.8live2D卡通插件</h3><p>​    详情参考:<a href="https://github.com/EYHN/hexo-helper-live2d" target="_blank" rel="noopener">https://github.com/EYHN/hexo-helper-live2d</a></p>
+<h2 id="6-小结"><a href="#6-小结" class="headerlink" title="6.小结"></a>6.小结</h2><p>​    上述是我搭博客的流程，期间也踩坑无数，好在都一一解决了。后续如果对博客有什么新的改进，会继续更新这篇文章。</p>
+<p>​    很开心迈出第一步搭好了博客，也很开心又迈出一步回头重新整理好了建站流程。</p>
+<p>​    我很喜欢在做完一件事之后，总结一下自己的感悟，给自己灌灌鸡汤：如果还在犹豫是否要去尝试一件事情，如果你恰好还可以挤出一些时间，那么就不要犹豫，去尝试就好了，麻烦的事情，麻烦了之后就少一个麻烦了。</p>
+]]></content>
+      <categories>
+        <category>-hexo</category>
+      </categories>
+      <tags>
+        <tag>-hexo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hello World</title>
     <url>/2019/12/19/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
