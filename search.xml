@@ -3,16 +3,18 @@
   <entry>
     <title>hexo建站</title>
     <url>/2019/12/29/hexo%E5%BB%BA%E7%AB%99/</url>
-    <content><![CDATA[<h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h2><p>​    一直很怕麻烦的我，对于搭博客这件事是很抗拒的，身边的好朋友也和我说过好几次，建议我搭一个，然后放上自己的学习笔记和简历，在未来找工作的时候，有人看到就是赚到，没人看到，自己也可以回顾之前学过的东西。</p>
-<p>​    有什么事情是不麻烦的呢？自己感兴趣的永远都不麻烦。</p>
-<p>​    怎么才能只做自己感兴趣的事情呢？征服一切麻烦，把它变成你擅长的事，这样可能你就能收获成就感，收获兴趣。</p>
-<p>​    所以，先迈出第一步，搭一个自己的博客吧。说不定，你会像我一样，突然想学习，想写很多的笔记填满它。</p>
-<h2 id="2-准备工作"><a href="#2-准备工作" class="headerlink" title="2.准备工作"></a>2.准备工作</h2><p>​    首先，找一个hexo搭建的博客的教程，我参考的教程是mac系统的教程，另外我也找了一个windows系统的教程。链接如下：</p>
-<p><a href="https://www.jianshu.com/p/77db3862595c（mac系统下搭建hexo个人博客）" target="_blank" rel="noopener">https://www.jianshu.com/p/77db3862595c（mac系统下搭建hexo个人博客）</a></p>
-<p><a href="https://blog.csdn.net/qq_31880107/article/details/86688467（windows下Hexo博客搭建过程）" target="_blank" rel="noopener">https://blog.csdn.net/qq_31880107/article/details/86688467（windows下Hexo博客搭建过程）</a></p>
-<p>​    然后，根据链接完成环境配置、博客关联到Github的操作。到这里，我们已经有了一个自己的博客，可以开始发表文章了。</p>
-<p>​    如果你不满足hexo原始主题的样式，想打造一个更美观、更能体现自己style的博客，那么就可以继续第三部分啦~</p>
-<h2 id="3-美化博客"><a href="#3-美化博客" class="headerlink" title="3.美化博客"></a>3.美化博客</h2><p>​    首先，打开hexo主题链接：<a href="https://hexo.io/themes/，选择一个你喜欢的主题。" target="_blank" rel="noopener">https://hexo.io/themes/，选择一个你喜欢的主题。</a></p>
+    <content><![CDATA[<h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h2><p>​        一直很怕麻烦的我，对于搭博客这件事是很抗拒的，身边的好朋友也和我说过好几次，建议我搭一个，然后放上自己的学习笔记和简历，在未来找工作的时候，有人看到就是赚到，没人看到，自己也可以回顾之前学过的东西。</p>
+<p>​        有什么事情是不麻烦的呢？自己感兴趣的永远都不麻烦。</p>
+<p>​        怎么才能只做自己感兴趣的事情呢？征服一切麻烦，把它变成你擅长的事，这样可能你就能收获成就感，收获兴趣。</p>
+<p>​        所以，先迈出第一步，搭一个自己的博客吧。说不定，你会像我一样，突然想学习，想写很多的笔记填满它。</p>
+<h2 id="2-准备工作"><a href="#2-准备工作" class="headerlink" title="2.准备工作"></a>2.准备工作</h2><p>​        首先，找一个hexo搭建的博客的教程，我参考的教程是mac系统的教程，另外我也找了一个windows系统的教程。链接如下：</p>
+<ul>
+<li>mac系统下搭建hexo个人博客：<a href="https://www.jianshu.com/p/77db3862595c" target="_blank" rel="noopener">https://www.jianshu.com/p/77db3862595c</a>                            </li>
+<li>windows下Hexo博客搭建过程：<a href="https://blog.csdn.net/qq_31880107/article/details/86688467" target="_blank" rel="noopener">https://blog.csdn.net/qq_31880107/article/details/86688467</a>   </li>
+</ul>
+<p>​        然后，根据链接完成环境配置、博客关联到Github的操作。到这里，我们已经有了一个自己的博客，可以开始发表文章了。</p>
+<p>​        如果你不满足hexo原始主题的样式，想打造一个更美观、更能体现自己style的博客，那么就可以继续第三部分啦~</p>
+<h2 id="3-美化博客"><a href="#3-美化博客" class="headerlink" title="3.美化博客"></a>3.美化博客</h2><p>​    首先，打开hexo主题链接：<a href="https://hexo.io/themes/" target="_blank" rel="noopener">https://hexo.io/themes/</a> ，选择一个你喜欢的主题。</p>
 <p>​    在选择主题的时候，我简单的Google了一下hexo推荐的主题有哪些，发现极简风格的Next主题是最多人使用的，网上也有很多相应的修改教程。但是，我最后选择了Butterfly主题。</p>
 <p>​    如果你很满意你选择的主题，不想做其他任何的修改，那么你只需要在站点目录下的_config.yml文件，修改theme为你选择的主题名，如<code>theme: Butterfly</code>。然后，去挑选一个你喜欢的域名绑定即可。</p>
 <p>​    注意：修改的时候，冒号后面一定要有空格，不然就会报错。</p>
