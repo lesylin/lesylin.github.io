@@ -3,19 +3,26 @@
   <entry>
     <title>《统计学习方法》- 第一章</title>
     <url>/2020/01/08/%E3%80%8A%E7%BB%9F%E8%AE%A1%E5%AD%A6%E4%B9%A0%E6%96%B9%E6%B3%95%E3%80%8B-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/</url>
-    <content><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>&emsp;李航先生的《统计学习方法》分为第一版和第二版。两个版本的区别在于，第二版在第一版的基础上增加了无监督学习的内容。</p>
-<p>&emsp;以下内容是我学习第2版《统计学习方法》的<strong>第一章的总结</strong>，今后每学习完一章就会总结一次。</p>
-<h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>&emsp;首先，简单的了解一下什么是统计学习；然后，重点介绍监督学习的几个重要概念；最后，简单了解一下什么是无监督学习、强化学习、半监督学习和主动学习。</p>
-<h2 id="统计学习"><a href="#统计学习" class="headerlink" title="统计学习"></a>统计学习</h2><ul>
+    <content><![CDATA[<h1 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h1>
+<p> 李航先生的《统计学习方法》分为第一版和第二版。两个版本的区别在于，第二版在第一版的基础上增加了无监督学习的内容。</p>
+<p> 以下内容是我学习第2版《统计学习方法》的<strong>第一章的总结</strong>，今后每学习完一章就会总结一次。</p>
+<h1 id="概述"><a class="markdownIt-Anchor" href="#概述"></a> 概述</h1>
+<p> 首先，简单的了解一下什么是统计学习；然后，重点介绍监督学习的几个重要概念；最后，简单了解一下什么是无监督学习、强化学习、半监督学习和主动学习。</p>
+<h2 id="统计学习"><a class="markdownIt-Anchor" href="#统计学习"></a> 统计学习</h2>
+<ul>
 <li>定义：统计学习就是计算机系统通过运用数据及统计方法提高系统性能的机器学习。</li>
 <li>基本分类：监督学习、无监督学习、强化学习。有时还包括半监督学习、主动学习。</li>
-<li>按模型分类：概率模型/非概率模型、线性模型/非线性模型、参数化模型/非参数化模型。<ul>
+<li>按模型分类：概率模型/非概率模型、线性模型/非线性模型、参数化模型/非参数化模型。
+<ul>
 <li>如感知机是非概率模型，也是非线性模型，也是非参数化模型。</li>
 </ul>
 </li>
-<li>按算法分类：在线学习和批量学习。<ul>
-<li>在线学习：每次接受一个样本，进行预测，之后学习模型，不断重复该操作的机器学习。<ul>
-<li>实际应用：（举例）<ol>
+<li>按算法分类：在线学习和批量学习。
+<ul>
+<li>在线学习：每次接受一个样本，进行预测，之后学习模型，不断重复该操作的机器学习。
+<ul>
+<li>实际应用：（举例）
+<ol>
 <li>数据依次达到无法存储，系统需要及时做出处理；</li>
 <li>数据规模很大，不能一次处理所有数据；</li>
 <li>数据的模型随时间动态变化，需要算法快速适应新的模式（不满足独立同分布假设）</li>
@@ -26,12 +33,14 @@
 <li>批量学习：一次接受所有数据，学习模型，之后进行预测。</li>
 </ul>
 </li>
-<li>按技巧分类：贝叶斯学习和核方法。<ul>
+<li>按技巧分类：贝叶斯学习和核方法。
+<ul>
 <li>如朴素贝叶斯属于贝叶斯学习，核函数支持向量属于核方法。</li>
 </ul>
 </li>
 <li>三要素：模型、策略、算法。</li>
-<li>实现步骤：<ul>
+<li>实现步骤：
+<ul>
 <li>得到一个有限的训练数据集合；</li>
 <li>确定包含所有可能的模型的假设空间，即学习模型的集合；</li>
 <li>确定模型选择的准则，即学习的策略；</li>
@@ -41,137 +50,215 @@
 </ul>
 </li>
 </ul>
-<h3 id="监督学习"><a href="#监督学习" class="headerlink" title="监督学习"></a>监督学习</h3><ul>
-<li><strong>定义</strong>：监督学习是指从标注数据中学习预测模型的机器学习问题。<ul>
+<h3 id="监督学习"><a class="markdownIt-Anchor" href="#监督学习"></a> 监督学习</h3>
+<ul>
+<li><strong>定义</strong>：监督学习是指从标注数据中学习预测模型的机器学习问题。
+<ul>
 <li>标注数据：表示输入输出的对应关系。</li>
 <li>预测模型：对给定的输入产生相应 的输出。</li>
 </ul>
 </li>
 <li><strong>本质</strong>：学习输入到输出的映射的统计规律。</li>
-<li>基本假设：输入与输出的随机变量X和Y联合概率分布$P(X,Y)$。</li>
+<li>基本假设：输入与输出的随机变量X和Y联合概率分布<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo separator="true">,</mo><mi>Y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(X,Y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mclose">)</span></span></span></span>。</li>
 <li>假设空间：模型属于由输入空间到输出空间的映射的<strong>集合</strong>，这个集合就是假设空间，可以确定学习的范围。</li>
-<li>方法：监督学习方法又可以分为生成方法和判别方法。<ul>
-<li>生成方法：给定输入$X$产生输出$Y$的生成关系。<ul>
+<li>方法：监督学习方法又可以分为生成方法和判别方法。
+<ul>
+<li>生成方法：给定输入<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span></span></span></span>产生输出<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span></span></span></span>的生成关系。
+<ul>
 <li>如朴素贝叶斯</li>
-<li>特点：可以还原出联合概率分布$P(X,Y)$，收敛速度更快，当样本容量增加的时候，学到的模型可以更快收敛于真实模型，当存在隐变量时，也可以用。</li>
+<li>特点：可以还原出联合概率分布<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>X</mi><mo separator="true">,</mo><mi>Y</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(X,Y)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mclose">)</span></span></span></span>，收敛速度更快，当样本容量增加的时候，学到的模型可以更快收敛于真实模型，当存在隐变量时，也可以用。</li>
 </ul>
 </li>
-<li>判别方法：对给定的输入$X$，应该预测什么样的输出$Y$。<ul>
+<li>判别方法：对给定的输入<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span></span></span></span>，应该预测什么样的输出<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span></span></span></span>。
+<ul>
 <li>如K近邻、感知机</li>
-<li>特点：直接学习的是条件概率$P(Y|X)$或决策函数$f(X)$，直接面对预测，往往学习的准确率更高，可以对数据进行各种程度上的抽象、定义特征并使用特征。</li>
+<li>特点：直接学习的是条件概率<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>P</mi><mo stretchy="false">(</mo><mi>Y</mi><mi mathvariant="normal">∣</mi><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">P(Y|X)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mclose">)</span></span></span></span>或决策函数<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(X)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mclose">)</span></span></span></span>，直接面对预测，往往学习的准确率更高，可以对数据进行各种程度上的抽象、定义特征并使用特征。</li>
 </ul>
 </li>
 </ul>
 </li>
 <li>总结：监督学习就是从给定有限的训练数据出发，假设数据是独立同分布的，而且假设模型属于某个假设空间，应用某一评价准则，从假设空间中选取一个最优的模型，使它对已给训练数据及未知测试数据在给定评价标准意义下有最准确的预测。</li>
 </ul>
-<h4 id="三要素"><a href="#三要素" class="headerlink" title="三要素"></a>三要素</h4><p>&emsp;在统计学习部分介绍了三要素是模型、策略、方法。监督学习、无监督学习和强化学习都拥有这三要素。下面重点看监督学习中的三要素。</p>
-<h5 id="模型"><a href="#模型" class="headerlink" title="模型"></a>模型</h5><p>&emsp;根据任务，选取某一类模型进行学习。在监督学习过程中，模型就是所要学习的条件概率分布（概率模型）或决策函数（非概率模型）。</p>
-<h5 id="策略"><a href="#策略" class="headerlink" title="策略"></a>策略</h5><p>&emsp;根据某一准则学习或选择最优的模型。</p>
-<p>&emsp;监督学习问题是在假设空间$\Gamma$中选取模型$f$作为决策函数（<strong>选取模型学习</strong>），对于给定的输入$X$，由$f(X)$给出相应的输出$Y$，这个输出的预测值$f(X)$与真实值$Y$可能一致也可能不一致，因此，<strong>选择一个损失函数</strong>来度量预测错误的程度。损失函数是$f(X)$和Y的非负实值函数，记作$L(Y,f(X))$。</p>
-<p>&emsp;因此，<strong>第一步先选择一个损失函数。</strong>这里，引入以下几个概念。</p>
+<h4 id="三要素"><a class="markdownIt-Anchor" href="#三要素"></a> 三要素</h4>
+<p> 在统计学习部分介绍了三要素是模型、策略、方法。监督学习、无监督学习和强化学习都拥有这三要素。下面重点看监督学习中的三要素。</p>
+<h5 id="模型"><a class="markdownIt-Anchor" href="#模型"></a> 模型</h5>
+<p> 根据任务，选取某一类模型进行学习。在监督学习过程中，模型就是所要学习的条件概率分布（概率模型）或决策函数（非概率模型）。</p>
+<h5 id="策略"><a class="markdownIt-Anchor" href="#策略"></a> 策略</h5>
+<p> 根据某一准则学习或选择最优的模型。</p>
+<p> 监督学习问题是在假设空间<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">Γ</mi></mrow><annotation encoding="application/x-tex">\Gamma</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord">Γ</span></span></span></span>中选取模型<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span>作为决策函数（<strong>选取模型学习</strong>），对于给定的输入<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>X</mi></mrow><annotation encoding="application/x-tex">X</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span></span></span></span>，由<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(X)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mclose">)</span></span></span></span>给出相应的输出<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span></span></span></span>，这个输出的预测值<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(X)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mclose">)</span></span></span></span>与真实值<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>Y</mi></mrow><annotation encoding="application/x-tex">Y</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span></span></span></span>可能一致也可能不一致，因此，<strong>选择一个损失函数</strong>来度量预测错误的程度。损失函数是<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(X)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mclose">)</span></span></span></span>和Y的非负实值函数，记作<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi><mo stretchy="false">(</mo><mi>Y</mi><mo separator="true">,</mo><mi>f</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">L(Y,f(X))</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">L</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mclose">)</span><span class="mclose">)</span></span></span></span>。</p>
+<p> 因此，**第一步先选择一个损失函数。**这里，引入以下几个概念。</p>
 <ul>
-<li><p><strong>损失函数</strong>：度量模型一次预测的好坏。</p>
+<li>
+<p><strong>损失函数</strong>：度量模型一次预测的好坏。</p>
 </li>
-<li><p><strong>风险函数</strong>：度量平均意义下模型预测的好坏，是损失函数的期望。</p>
+<li>
+<p><strong>风险函数</strong>：度量平均意义下模型预测的好坏，是损失函数的期望。</p>
 </li>
-<li><p><strong>常用的损失函数</strong>：</p>
+<li>
+<p><strong>常用的损失函数</strong>：</p>
 <ul>
-<li><p>0-1损失函数：<br>$$<br>L(Y,f(X))=\begin{cases}<br>1，Y\not=f(X) \<br>0，Y=f(X)<br>\end{cases}<br>$$</p>
+<li>
+<p>0-1损失函数：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi><mo stretchy="false">(</mo><mi>Y</mi><mo separator="true">,</mo><mi>f</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mrow><mo fence="true">{</mo><mtable rowspacing="0.3599999999999999em" columnalign="left left" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>1</mn><mi mathvariant="normal">，</mi><mi>Y</mi><mo>≠</mo><mi>f</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>0</mn><mi mathvariant="normal">，</mi><mi>Y</mi><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow></mstyle></mtd></mtr></mtable></mrow></mrow><annotation encoding="application/x-tex">L(Y,f(X))=\begin{cases}
+1，Y\not=f(X) \\
+0，Y=f(X)
+\end{cases}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">L</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.0000299999999998em;vertical-align:-1.25003em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size4">{</span></span><span class="mord"><span class="mtable"><span class="col-align-l"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.69em;"><span style="top:-3.69em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">1</span><span class="mord cjk_fallback">，</span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="rlap"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="inner"><span class="mrel"></span></span><span class="fix"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mclose">)</span></span></span><span style="top:-2.25em;"><span class="pstrut" style="height:3.008em;"></span><span class="mord"><span class="mord">0</span><span class="mord cjk_fallback">，</span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mclose">)</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.19em;"><span></span></span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
 </li>
-<li><p>平方损失函数：<br>$$<br>L(Y,f(X))=(Y-f(X))^2<br>$$</p>
+<li>
+<p>平方损失函数：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi><mo stretchy="false">(</mo><mi>Y</mi><mo separator="true">,</mo><mi>f</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mi>Y</mi><mo>−</mo><mi>f</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow><annotation encoding="application/x-tex">L(Y,f(X))=(Y-f(X))^2
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">L</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.1141079999999999em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mclose">)</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span></span></span></span></p>
 </li>
-<li><p>绝对损失函数：<br>$$<br>L(Y,f(X))=\left|Y-f(X)\right|<br>$$</p>
+<li>
+<p>绝对损失函数：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi><mo stretchy="false">(</mo><mi>Y</mi><mo separator="true">,</mo><mi>f</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mrow><mo fence="true">∣</mo><mi>Y</mi><mo>−</mo><mi>f</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo fence="true">∣</mo></mrow></mrow><annotation encoding="application/x-tex">L(Y,f(X))=\left|Y-f(X)\right|
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">L</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;">∣</span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mclose">)</span><span class="mclose delimcenter" style="top:0em;">∣</span></span></span></span></span></span></p>
 </li>
-<li><p>对数损失函数（对数似然损失函数）：<br>$$<br>L(Y,P(Y|X))=-logP(Y|X)<br>$$</p>
+<li>
+<p>对数损失函数（对数似然损失函数）：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi><mo stretchy="false">(</mo><mi>Y</mi><mo separator="true">,</mo><mi>P</mi><mo stretchy="false">(</mo><mi>Y</mi><mi mathvariant="normal">∣</mi><mi>X</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>=</mo><mo>−</mo><mi>l</mi><mi>o</mi><mi>g</mi><mi>P</mi><mo stretchy="false">(</mo><mi>Y</mi><mi mathvariant="normal">∣</mi><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">L(Y,P(Y|X))=-logP(Y|X)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">L</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">−</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mclose">)</span></span></span></span></span></p>
 </li>
 </ul>
 </li>
-<li><p>风险函数（期望损失/风险）：<br>$$<br>R_{exp}(f)=E_P[L(Y,f(X))] =\int_{\chi{*\gamma}}{L(y,f(x))P(x,y)dxdy}<br>$$</p>
+<li>
+<p>风险函数（期望损失/风险）：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>R</mi><mrow><mi>e</mi><mi>x</mi><mi>p</mi></mrow></msub><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>=</mo><msub><mi>E</mi><mi>P</mi></msub><mo stretchy="false">[</mo><mi>L</mi><mo stretchy="false">(</mo><mi>Y</mi><mo separator="true">,</mo><mi>f</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo stretchy="false">]</mo><mo>=</mo><msub><mo>∫</mo><mrow><mi>χ</mi><mrow><mo>∗</mo><mi>γ</mi></mrow></mrow></msub><mrow><mi>L</mi><mo stretchy="false">(</mo><mi>y</mi><mo separator="true">,</mo><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mi>P</mi><mo stretchy="false">(</mo><mi>x</mi><mo separator="true">,</mo><mi>y</mi><mo stretchy="false">)</mo><mi>d</mi><mi>x</mi><mi>d</mi><mi>y</mi></mrow></mrow><annotation encoding="application/x-tex">R_{exp}(f)=E_P[L(Y,f(X))] =\int_{\chi{*\gamma}}{L(y,f(x))P(x,y)dxdy}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">p</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.05764em;">E</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.05764em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">P</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">[</span><span class="mord mathdefault">L</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.22222em;">Y</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mclose">)</span><span class="mclose">)</span><span class="mclose">]</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.408058em;vertical-align:-1.048058em;"></span><span class="mop"><span class="mop op-symbol large-op" style="margin-right:0.44445em;position:relative;top:-0.0011249999999999316em;">∫</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:-0.5862539999999999em;"><span style="top:-1.7880500000000001em;margin-left:-0.44445em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">χ</span><span class="mord mtight"><span class="mord mtight">∗</span><span class="mord mathdefault mtight" style="margin-right:0.05556em;">γ</span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.048058em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">L</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span><span class="mclose">)</span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="mclose">)</span><span class="mord mathdefault">d</span><span class="mord mathdefault">x</span><span class="mord mathdefault">d</span><span class="mord mathdefault" style="margin-right:0.03588em;">y</span></span></span></span></span></span></p>
 </li>
-<li><p>经验风险（经验损失）：模型$f(X)$关于训练数据集的平均损失。<br>$$<br>R_{emp}(f)=\frac{1}{N}\sum_{i=1}^{N}L(y_{i},f(x_i))<br>$$</p>
+<li>
+<p>经验风险（经验损失）：模型<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(X)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.07847em;">X</span><span class="mclose">)</span></span></span></span>关于训练数据集的平均损失。</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>R</mi><mrow><mi>e</mi><mi>m</mi><mi>p</mi></mrow></msub><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mi>L</mi><mo stretchy="false">(</mo><msub><mi>y</mi><mi>i</mi></msub><mo separator="true">,</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">R_{emp}(f)=\frac{1}{N}\sum_{i=1}^{N}L(y_{i},f(x_i))
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">p</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.106005em;vertical-align:-1.277669em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8283360000000002em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">L</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mclose">)</span></span></span></span></span></p>
 </li>
 </ul>
-<p>&emsp;根据大数定律，当样本容量N趋于无穷大，经验风险$R_{emp}(f)$趋于期望风险$R_{exp}(f)$，即可以经验风险$R_{emp}(f)$估计期望风险$R_{exp}(f)$。但是，实际中样本数量通常是有限的，所以用经验风险估计期望风险是不准确的，因此需要对经验风险进行一定的矫正，这就关系到<strong>监督学习的两个基本策略：经验风险最小化和结构风险最小化</strong>。</p>
-<p>&emsp;如何选择使用这两个基本策略？这是<strong>第二步</strong>要思考的问题。<strong>结论如下</strong>：（在假设空间、损失函数和训练集确定的情况下）</p>
+<p> 根据大数定律，当样本容量N趋于无穷大，经验风险<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>R</mi><mrow><mi>e</mi><mi>m</mi><mi>p</mi></mrow></msub><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">R_{emp}(f)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">p</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mclose">)</span></span></span></span>趋于期望风险<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>R</mi><mrow><mi>e</mi><mi>x</mi><mi>p</mi></mrow></msub><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">R_{exp}(f)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">p</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mclose">)</span></span></span></span>，即可以经验风险<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>R</mi><mrow><mi>e</mi><mi>m</mi><mi>p</mi></mrow></msub><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">R_{emp}(f)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">p</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mclose">)</span></span></span></span>估计期望风险<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>R</mi><mrow><mi>e</mi><mi>x</mi><mi>p</mi></mrow></msub><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">R_{exp}(f)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">x</span><span class="mord mathdefault mtight">p</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mclose">)</span></span></span></span>。但是，实际中样本数量通常是有限的，所以用经验风险估计期望风险是不准确的，因此需要对经验风险进行一定的矫正，这就关系到<strong>监督学习的两个基本策略：经验风险最小化和结构风险最小化</strong>。</p>
+<p> 如何选择使用这两个基本策略？这是<strong>第二步</strong>要思考的问题。<strong>结论如下</strong>：（在假设空间、损失函数和训练集确定的情况下）</p>
 <ul>
-<li><p>当样本容量N足够大时，选择经验风险最小化。</p>
+<li>
+<p>当样本容量N足够大时，选择经验风险最小化。</p>
 <ul>
 <li>当模型是条件概率分布、损失函数是对数损失函数时，等价于极大似然估计。</li>
 </ul>
 </li>
-<li><p>当样本容量N很小时，为了防止”过拟合“现象，选择结构风险最小化。</p>
+<li>
+<p>当样本容量N很小时，为了防止”过拟合“现象，选择结构风险最小化。</p>
 <ul>
-<li><p>等价正则化</p>
+<li>
+<p>等价正则化</p>
 </li>
-<li><p>结构风险小的模型往往对训练数据以及未知的测试数据都有较好的预测。</p>
+<li>
+<p>结构风险小的模型往往对训练数据以及未知的测试数据都有较好的预测。</p>
 </li>
-<li><p>结构风险：<br>$$<br>R_{srm}(f)=\frac{1}{N}\sum_{i=1}^{N}L(y_i,f(x_i))+\lambda{J(f)} \<br>其中\lambda{J(f)}是正则化项，J(f)是模型复杂度，\lambda\geq0<br>$$</p>
+<li>
+<p>结构风险：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>R</mi><mrow><mi>s</mi><mi>r</mi><mi>m</mi></mrow></msub><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mi>L</mi><mo stretchy="false">(</mo><msub><mi>y</mi><mi>i</mi></msub><mo separator="true">,</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>+</mo><mi>λ</mi><mrow><mi>J</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><mspace linebreak="newline"></mspace><mi mathvariant="normal">其</mi><mi mathvariant="normal">中</mi><mi>λ</mi><mrow><mi>J</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><mi mathvariant="normal">是</mi><mi mathvariant="normal">正</mi><mi mathvariant="normal">则</mi><mi mathvariant="normal">化</mi><mi mathvariant="normal">项</mi><mi mathvariant="normal">，</mi><mi>J</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mi mathvariant="normal">是</mi><mi mathvariant="normal">模</mi><mi mathvariant="normal">型</mi><mi mathvariant="normal">复</mi><mi mathvariant="normal">杂</mi><mi mathvariant="normal">度</mi><mi mathvariant="normal">，</mi><mi>λ</mi><mo>≥</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">R_{srm}(f)=\frac{1}{N}\sum_{i=1}^{N}L(y_i,f(x_i))+\lambda{J(f)} \\
+其中\lambda{J(f)}是正则化项，J(f)是模型复杂度，\lambda\geq0
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.151392em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">s</span><span class="mord mathdefault mtight" style="margin-right:0.02778em;">r</span><span class="mord mathdefault mtight">m</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.106005em;vertical-align:-1.277669em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8283360000000002em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">L</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">λ</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.09618em;">J</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mclose">)</span></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord cjk_fallback">其</span><span class="mord cjk_fallback">中</span><span class="mord mathdefault">λ</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.09618em;">J</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mclose">)</span></span><span class="mord cjk_fallback">是</span><span class="mord cjk_fallback">正</span><span class="mord cjk_fallback">则</span><span class="mord cjk_fallback">化</span><span class="mord cjk_fallback">项</span><span class="mord cjk_fallback">，</span><span class="mord mathdefault" style="margin-right:0.09618em;">J</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mclose">)</span><span class="mord cjk_fallback">是</span><span class="mord cjk_fallback">模</span><span class="mord cjk_fallback">型</span><span class="mord cjk_fallback">复</span><span class="mord cjk_fallback">杂</span><span class="mord cjk_fallback">度</span><span class="mord cjk_fallback">，</span><span class="mord mathdefault">λ</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span></span></p>
 </li>
 </ul>
 </li>
 </ul>
-<h5 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h5><p>&emsp;在选择策略时，我们已经把问题转化为最优化问题，因此，这里的算法，指的就是求解最优化问题的方法。</p>
-<h4 id="模型评估"><a href="#模型评估" class="headerlink" title="模型评估"></a>模型评估</h4><p>&emsp;这部分主要介绍了几个监督学习的重要概念。</p>
-<h5 id="训练误差"><a href="#训练误差" class="headerlink" title="训练误差"></a>训练误差</h5><p>&emsp;训练误差就是模型关于训练集的平均损失。对判断给定的问题是不是一个容易学习的问题是有意义的，<strong>本质不重要</strong>。<br>$$<br>R_{emp}(f)=\frac{1}{N}\sum_{i=1}^{N}L(y_{i},f(x_i)) \<br>其中N是训练样本<br>$$</p>
-<h5 id="测试误差"><a href="#测试误差" class="headerlink" title="测试误差"></a>测试误差</h5><p>&emsp;测试误差就是模型关于测试集的平均损失。<strong>反映了学习方法对未知的测试集的预测能力</strong>，是学习重要概念。这种预测能力也称<strong>泛化能力</strong>。<br>$$<br>R_{emp}(f)=\frac{1}{N^{‘}}\sum_{i=1}^{N^{‘}}L(y_{i},f(x_i)) \<br>其中N^{‘}是测试样本<br>$$<br>&emsp;在模型评估时，训练和测试所选的损失函数最好是一致的，效果会比较好。</p>
-<h4 id="模型选择"><a href="#模型选择" class="headerlink" title="模型选择"></a>模型选择</h4><h5 id="过拟合"><a href="#过拟合" class="headerlink" title="过拟合"></a>过拟合</h5><p>&emsp;<strong>过拟合</strong>：如果一味追求提高对训练数据的预测能力，所选模型的复杂度则往往会比真模型更高，即学习时选择的模型所包含的参数过多，以至出现这一模型对已知数据预测能力很好，但对未知数据预测很差的现象。</p>
-<p>&emsp;<strong>结论</strong>：当模型复杂度增加时，训练误差会逐渐减小并趋向于0；测试误差会先减小到最小值，然后又增大。因此，模型选择时，为了避免过拟合，应该选择复杂度适当的模型，以达到测试误差最小。</p>
-<h5 id="正则化"><a href="#正则化" class="headerlink" title="正则化"></a>正则化</h5><p>&emsp;<strong>正则化是结构风险最小化策略的实现，是在经验风险上加一个正则化项</strong>。正则化项一般是模型复杂度的单调递增函数，模型越复杂，正则化值就越大。比如，正则化项可以是模型参数向量的范数。</p>
+<h5 id="算法"><a class="markdownIt-Anchor" href="#算法"></a> 算法</h5>
+<p> 在选择策略时，我们已经把问题转化为最优化问题，因此，这里的算法，指的就是求解最优化问题的方法。</p>
+<h4 id="模型评估"><a class="markdownIt-Anchor" href="#模型评估"></a> 模型评估</h4>
+<p> 这部分主要介绍了几个监督学习的重要概念。</p>
+<h5 id="训练误差"><a class="markdownIt-Anchor" href="#训练误差"></a> 训练误差</h5>
+<p> 训练误差就是模型关于训练集的平均损失。对判断给定的问题是不是一个容易学习的问题是有意义的，<strong>本质不重要</strong>。</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>R</mi><mrow><mi>e</mi><mi>m</mi><mi>p</mi></mrow></msub><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mi>L</mi><mo stretchy="false">(</mo><msub><mi>y</mi><mi>i</mi></msub><mo separator="true">,</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mspace linebreak="newline"></mspace><mi mathvariant="normal">其</mi><mi mathvariant="normal">中</mi><mi>N</mi><mi mathvariant="normal">是</mi><mi mathvariant="normal">训</mi><mi mathvariant="normal">练</mi><mi mathvariant="normal">样</mi><mi mathvariant="normal">本</mi></mrow><annotation encoding="application/x-tex">R_{emp}(f)=\frac{1}{N}\sum_{i=1}^{N}L(y_{i},f(x_i)) \\
+其中N是训练样本
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">p</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.106005em;vertical-align:-1.277669em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8283360000000002em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">L</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mclose">)</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord cjk_fallback">其</span><span class="mord cjk_fallback">中</span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="mord cjk_fallback">是</span><span class="mord cjk_fallback">训</span><span class="mord cjk_fallback">练</span><span class="mord cjk_fallback">样</span><span class="mord cjk_fallback">本</span></span></span></span></span></p>
+<h5 id="测试误差"><a class="markdownIt-Anchor" href="#测试误差"></a> 测试误差</h5>
+<p> 测试误差就是模型关于测试集的平均损失。<strong>反映了学习方法对未知的测试集的预测能力</strong>，是学习重要概念。这种预测能力也称<strong>泛化能力</strong>。</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>R</mi><mrow><mi>e</mi><mi>m</mi><mi>p</mi></mrow></msub><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mn>1</mn><msup><mi>N</mi><msup><mrow></mrow><mo mathvariant="normal">′</mo></msup></msup></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><msup><mi>N</mi><msup><mrow></mrow><mo mathvariant="normal">′</mo></msup></msup></munderover><mi>L</mi><mo stretchy="false">(</mo><msub><mi>y</mi><mi>i</mi></msub><mo separator="true">,</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mspace linebreak="newline"></mspace><mi mathvariant="normal">其</mi><mi mathvariant="normal">中</mi><msup><mi>N</mi><msup><mrow></mrow><mo mathvariant="normal">′</mo></msup></msup><mi mathvariant="normal">是</mi><mi mathvariant="normal">测</mi><mi mathvariant="normal">试</mi><mi mathvariant="normal">样</mi><mi mathvariant="normal">本</mi></mrow><annotation encoding="application/x-tex">R_{emp}(f)=\frac{1}{N^{&#x27;}}\sum_{i=1}^{N^{&#x27;}}L(y_{i},f(x_i)) \\
+其中N^{&#x27;}是测试样本
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.036108em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.00773em;">R</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.15139200000000003em;"><span style="top:-2.5500000000000003em;margin-left:-0.00773em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">e</span><span class="mord mathdefault mtight">m</span><span class="mord mathdefault mtight">p</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.409154em;vertical-align:-1.277669em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.76698em;"><span style="top:-2.789em;margin-right:0.05em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6828285714285715em;"><span style="top:-2.786em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.131485em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:1.1164em;"><span style="top:-3.1164em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.6854em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.9595600000000001em;"><span style="top:-2.9595599999999997em;margin-right:0.1em;"><span class="pstrut" style="height:2.55556em;"></span><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">L</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mclose">)</span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.99248em;vertical-align:0em;"></span><span class="mord cjk_fallback">其</span><span class="mord cjk_fallback">中</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.99248em;"><span style="top:-2.99248em;margin-right:0.05em;"><span class="pstrut" style="height:2.57948em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8278285714285715em;"><span style="top:-2.931em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span></span><span class="mord cjk_fallback">是</span><span class="mord cjk_fallback">测</span><span class="mord cjk_fallback">试</span><span class="mord cjk_fallback">样</span><span class="mord cjk_fallback">本</span></span></span></span></span></p>
+<p> 在模型评估时，训练和测试所选的损失函数最好是一致的，效果会比较好。</p>
+<h4 id="模型选择"><a class="markdownIt-Anchor" href="#模型选择"></a> 模型选择</h4>
+<h5 id="过拟合"><a class="markdownIt-Anchor" href="#过拟合"></a> 过拟合</h5>
+<p> <strong>过拟合</strong>：如果一味追求提高对训练数据的预测能力，所选模型的复杂度则往往会比真模型更高，即学习时选择的模型所包含的参数过多，以至出现这一模型对已知数据预测能力很好，但对未知数据预测很差的现象。</p>
+<p> <strong>结论</strong>：当模型复杂度增加时，训练误差会逐渐减小并趋向于0；测试误差会先减小到最小值，然后又增大。因此，模型选择时，为了避免过拟合，应该选择复杂度适当的模型，以达到测试误差最小。</p>
+<h5 id="正则化"><a class="markdownIt-Anchor" href="#正则化"></a> 正则化</h5>
+<p> <strong>正则化是结构风险最小化策略的实现，是在经验风险上加一个正则化项</strong>。正则化项一般是模型复杂度的单调递增函数，模型越复杂，正则化值就越大。比如，正则化项可以是模型参数向量的范数。</p>
 <ul>
-<li><p>正则化一般形式：<br>$$<br>\min_{f\in{\Gamma}}\frac{1}{N}\sum_{i=1}^{N}L(y_i,f(x_i))+\lambda{J(f)} \<br>其中，第1项是经验风险，第2项是正则化项，\lambda\geq0为调整两者之间关系的系数<br>$$</p>
+<li>
+<p>正则化一般形式：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><munder><mo><mi>min</mi><mo>⁡</mo></mo><mrow><mi>f</mi><mo>∈</mo><mi mathvariant="normal">Γ</mi></mrow></munder><mfrac><mn>1</mn><mi>N</mi></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mi>L</mi><mo stretchy="false">(</mo><msub><mi>y</mi><mi>i</mi></msub><mo separator="true">,</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mo stretchy="false">)</mo><mo>+</mo><mi>λ</mi><mrow><mi>J</mi><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">)</mo></mrow><mspace linebreak="newline"></mspace><mi mathvariant="normal">其</mi><mi mathvariant="normal">中</mi><mi mathvariant="normal">，</mi><mi mathvariant="normal">第</mi><mn>1</mn><mi mathvariant="normal">项</mi><mi mathvariant="normal">是</mi><mi mathvariant="normal">经</mi><mi mathvariant="normal">验</mi><mi mathvariant="normal">风</mi><mi mathvariant="normal">险</mi><mi mathvariant="normal">，</mi><mi mathvariant="normal">第</mi><mn>2</mn><mi mathvariant="normal">项</mi><mi mathvariant="normal">是</mi><mi mathvariant="normal">正</mi><mi mathvariant="normal">则</mi><mi mathvariant="normal">化</mi><mi mathvariant="normal">项</mi><mi mathvariant="normal">，</mi><mi>λ</mi><mo>≥</mo><mn>0</mn><mi mathvariant="normal">为</mi><mi mathvariant="normal">调</mi><mi mathvariant="normal">整</mi><mi mathvariant="normal">两</mi><mi mathvariant="normal">者</mi><mi mathvariant="normal">之</mi><mi mathvariant="normal">间</mi><mi mathvariant="normal">关</mi><mi mathvariant="normal">系</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">系</mi><mi mathvariant="normal">数</mi></mrow><annotation encoding="application/x-tex">\min_{f\in{\Gamma}}\frac{1}{N}\sum_{i=1}^{N}L(y_i,f(x_i))+\lambda{J(f)} \\
+其中，第1项是经验风险，第2项是正则化项，\lambda\geq0为调整两者之间关系的系数
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:3.106005em;vertical-align:-1.277669em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.66786em;"><span style="top:-2.0478920000000005em;margin-left:0em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.10764em;">f</span><span class="mrel mtight">∈</span><span class="mord mtight"><span class="mord mtight">Γ</span></span></span></span></span><span style="top:-2.7em;"><span class="pstrut" style="height:2.7em;"></span><span><span class="mop">min</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8882159999999999em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8283360000000002em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">L</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">λ</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.09618em;">J</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mclose">)</span></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:0.83041em;vertical-align:-0.13597em;"></span><span class="mord cjk_fallback">其</span><span class="mord cjk_fallback">中</span><span class="mord cjk_fallback">，</span><span class="mord cjk_fallback">第</span><span class="mord">1</span><span class="mord cjk_fallback">项</span><span class="mord cjk_fallback">是</span><span class="mord cjk_fallback">经</span><span class="mord cjk_fallback">验</span><span class="mord cjk_fallback">风</span><span class="mord cjk_fallback">险</span><span class="mord cjk_fallback">，</span><span class="mord cjk_fallback">第</span><span class="mord">2</span><span class="mord cjk_fallback">项</span><span class="mord cjk_fallback">是</span><span class="mord cjk_fallback">正</span><span class="mord cjk_fallback">则</span><span class="mord cjk_fallback">化</span><span class="mord cjk_fallback">项</span><span class="mord cjk_fallback">，</span><span class="mord mathdefault">λ</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≥</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord cjk_fallback">为</span><span class="mord cjk_fallback">调</span><span class="mord cjk_fallback">整</span><span class="mord cjk_fallback">两</span><span class="mord cjk_fallback">者</span><span class="mord cjk_fallback">之</span><span class="mord cjk_fallback">间</span><span class="mord cjk_fallback">关</span><span class="mord cjk_fallback">系</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">系</span><span class="mord cjk_fallback">数</span></span></span></span></span></p>
 </li>
-<li><p>$L_2$范数形式:</p>
+<li>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>L</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">L_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>范数形式:</p>
 <ul>
-<li><p>如回归问题中，损失函数是平方损失，正则化项可以是参数向量的$L_2$范数。</p>
+<li>
+<p>如回归问题中，损失函数是平方损失，正则化项可以是参数向量的<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>L</mi><mn>2</mn></msub></mrow><annotation encoding="application/x-tex">L_2</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>范数。</p>
 </li>
-<li><p>$$<br>L（w）=\frac{1}{N}\sum_{i=1}^{N}(f(x_i;w)-y_i)^2+\frac{\lambda}{2}||w||^2\<br>其中，||w||表示参数向量w的L_2范数<br>$$</p>
+<li>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi><mi mathvariant="normal">（</mi><mi>w</mi><mi mathvariant="normal">）</mi><mo>=</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo separator="true">;</mo><mi>w</mi><mo stretchy="false">)</mo><mo>−</mo><msub><mi>y</mi><mi>i</mi></msub><msup><mo stretchy="false">)</mo><mn>2</mn></msup><mo>+</mo><mfrac><mi>λ</mi><mn>2</mn></mfrac><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><mi>w</mi><mi mathvariant="normal">∣</mi><msup><mi mathvariant="normal">∣</mi><mn>2</mn></msup><mspace linebreak="newline"></mspace><mi mathvariant="normal">其</mi><mi mathvariant="normal">中</mi><mi mathvariant="normal">，</mi><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><mi>w</mi><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><mi mathvariant="normal">表</mi><mi mathvariant="normal">示</mi><mi mathvariant="normal">参</mi><mi mathvariant="normal">数</mi><mi mathvariant="normal">向</mi><mi mathvariant="normal">量</mi><mi>w</mi><mi mathvariant="normal">的</mi><msub><mi>L</mi><mn>2</mn></msub><mi mathvariant="normal">范</mi><mi mathvariant="normal">数</mi></mrow><annotation encoding="application/x-tex">L（w）=\frac{1}{N}\sum_{i=1}^{N}(f(x_i;w)-y_i)^2+\frac{\lambda}{2}||w||^2\\
+其中，||w||表示参数向量w的L_2范数
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">L</span><span class="mord cjk_fallback">（</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord cjk_fallback">）</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.106005em;vertical-align:-1.277669em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8283360000000002em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.1141079999999999em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:2.05744em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.37144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault">λ</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mord">∣</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord">∣</span><span class="mord"><span class="mord">∣</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord cjk_fallback">其</span><span class="mord cjk_fallback">中</span><span class="mord cjk_fallback">，</span><span class="mord">∣</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord">∣</span><span class="mord">∣</span><span class="mord cjk_fallback">表</span><span class="mord cjk_fallback">示</span><span class="mord cjk_fallback">参</span><span class="mord cjk_fallback">数</span><span class="mord cjk_fallback">向</span><span class="mord cjk_fallback">量</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord cjk_fallback">的</span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord cjk_fallback">范</span><span class="mord cjk_fallback">数</span></span></span></span></span></p>
 </li>
 </ul>
 </li>
-<li><p>$L_1$范数形式：</p>
+<li>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>L</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">L_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>范数形式：</p>
 </li>
 </ul>
-<p>$$<br>L（w）=\frac{1}{N}\sum_{i=1}^{N}(f(x_i;w)-y_i)^2+\lambda||w||_1\<br>其中，||w||_1表示参数向量w的L_1范数<br>$$</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>L</mi><mi mathvariant="normal">（</mi><mi>w</mi><mi mathvariant="normal">）</mi><mo>=</mo><mfrac><mn>1</mn><mi>N</mi></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><mo stretchy="false">(</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo separator="true">;</mo><mi>w</mi><mo stretchy="false">)</mo><mo>−</mo><msub><mi>y</mi><mi>i</mi></msub><msup><mo stretchy="false">)</mo><mn>2</mn></msup><mo>+</mo><mi>λ</mi><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><mi>w</mi><mi mathvariant="normal">∣</mi><msub><mi mathvariant="normal">∣</mi><mn>1</mn></msub><mspace linebreak="newline"></mspace><mi mathvariant="normal">其</mi><mi mathvariant="normal">中</mi><mi mathvariant="normal">，</mi><mi mathvariant="normal">∣</mi><mi mathvariant="normal">∣</mi><mi>w</mi><mi mathvariant="normal">∣</mi><msub><mi mathvariant="normal">∣</mi><mn>1</mn></msub><mi mathvariant="normal">表</mi><mi mathvariant="normal">示</mi><mi mathvariant="normal">参</mi><mi mathvariant="normal">数</mi><mi mathvariant="normal">向</mi><mi mathvariant="normal">量</mi><mi>w</mi><mi mathvariant="normal">的</mi><msub><mi>L</mi><mn>1</mn></msub><mi mathvariant="normal">范</mi><mi mathvariant="normal">数</mi></mrow><annotation encoding="application/x-tex">L（w）=\frac{1}{N}\sum_{i=1}^{N}(f(x_i;w)-y_i)^2+\lambda||w||_1\\
+其中，||w||_1表示参数向量w的L_1范数
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">L</span><span class="mord cjk_fallback">（</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord cjk_fallback">）</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:3.106005em;vertical-align:-1.277669em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.32144em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mop op-limits"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.8283360000000002em;"><span style="top:-1.872331em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight">i</span><span class="mrel mtight">=</span><span class="mord mtight">1</span></span></span></span><span style="top:-3.050005em;"><span class="pstrut" style="height:3.05em;"></span><span><span class="mop op-symbol large-op">∑</span></span></span><span style="top:-4.3000050000000005em;margin-left:0em;"><span class="pstrut" style="height:3.05em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.10903em;">N</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.277669em;"><span></span></span></span></span></span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">x</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">;</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1.1141079999999999em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03588em;">y</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:-0.03588em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">λ</span><span class="mord">∣</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord">∣</span><span class="mord"><span class="mord">∣</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span><span class="mspace newline"></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord cjk_fallback">其</span><span class="mord cjk_fallback">中</span><span class="mord cjk_fallback">，</span><span class="mord">∣</span><span class="mord">∣</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord">∣</span><span class="mord"><span class="mord">∣</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord cjk_fallback">表</span><span class="mord cjk_fallback">示</span><span class="mord cjk_fallback">参</span><span class="mord cjk_fallback">数</span><span class="mord cjk_fallback">向</span><span class="mord cjk_fallback">量</span><span class="mord mathdefault" style="margin-right:0.02691em;">w</span><span class="mord cjk_fallback">的</span><span class="mord"><span class="mord mathdefault">L</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mord cjk_fallback">范</span><span class="mord cjk_fallback">数</span></span></span></span></span></p>
 <ul>
 <li><strong>作用</strong>：<strong>选择经验风险与模型复杂度同时较小的模型</strong>。</li>
 </ul>
-<h5 id="交叉验证"><a href="#交叉验证" class="headerlink" title="交叉验证"></a>交叉验证</h5><p>&emsp;<strong>基本思想</strong>：在数据不充足情况下，重复地使用数据。</p>
-<h6 id="简单交叉验证"><a href="#简单交叉验证" class="headerlink" title="简单交叉验证"></a>简单交叉验证</h6><p>&emsp;简单交叉验证的方法是：首先随机地将已给的数据分为<strong>两部分</strong>，一部分作为训练集，另一部分作为测试集（如70%的数据为训练集，30%的数据为测试集）；然后用训练集在各种条件下（如不同的参数个数）训练模型，从而得到不同的模型；在测试集上评价各个模型的测试误差，选出测试误差最小的模型。</p>
-<h6 id="S折交叉验证"><a href="#S折交叉验证" class="headerlink" title="S折交叉验证"></a>S折交叉验证</h6><p>&emsp;应用最多的是S折交叉验证，方法如下：首先随机地将已给的数据切分为<strong>S个互不相交、大小相同的子集</strong>；然后用S-1个子集的数据训练模型，用余下的子集测试模型；将这一过程对可能的S种选择重复进行；最后选出S次评测中平均测试误差最小的模型。</p>
-<h6 id="留一交叉验证"><a href="#留一交叉验证" class="headerlink" title="留一交叉验证"></a>留一交叉验证</h6><p>&emsp;S折交叉验证的特殊情形是S=N，称为留一交叉验证，往往在数据缺乏的情况下使用。这里，N是给定数据集的容量。</p>
-<h4 id="模型应用"><a href="#模型应用" class="headerlink" title="模型应用"></a>模型应用</h4><p>&emsp;监督学习的应用主要在三个方面：分类问题、标注问题和回归问题。</p>
+<h5 id="交叉验证"><a class="markdownIt-Anchor" href="#交叉验证"></a> 交叉验证</h5>
+<p> <strong>基本思想</strong>：在数据不充足情况下，重复地使用数据。</p>
+<h6 id="简单交叉验证"><a class="markdownIt-Anchor" href="#简单交叉验证"></a> 简单交叉验证</h6>
+<p> 简单交叉验证的方法是：首先随机地将已给的数据分为<strong>两部分</strong>，一部分作为训练集，另一部分作为测试集（如70%的数据为训练集，30%的数据为测试集）；然后用训练集在各种条件下（如不同的参数个数）训练模型，从而得到不同的模型；在测试集上评价各个模型的测试误差，选出测试误差最小的模型。</p>
+<h6 id="s折交叉验证"><a class="markdownIt-Anchor" href="#s折交叉验证"></a> S折交叉验证</h6>
+<p> 应用最多的是S折交叉验证，方法如下：首先随机地将已给的数据切分为<strong>S个互不相交、大小相同的子集</strong>；然后用S-1个子集的数据训练模型，用余下的子集测试模型；将这一过程对可能的S种选择重复进行；最后选出S次评测中平均测试误差最小的模型。</p>
+<h6 id="留一交叉验证"><a class="markdownIt-Anchor" href="#留一交叉验证"></a> 留一交叉验证</h6>
+<p> S折交叉验证的特殊情形是S=N，称为留一交叉验证，往往在数据缺乏的情况下使用。这里，N是给定数据集的容量。</p>
+<h4 id="模型应用"><a class="markdownIt-Anchor" href="#模型应用"></a> 模型应用</h4>
+<p> 监督学习的应用主要在三个方面：分类问题、标注问题和回归问题。</p>
 <ul>
-<li>回归问题：输入变量与输出变量均为<strong>连续</strong>变量的预测问题。<ul>
+<li>回归问题：输入变量与输出变量均为<strong>连续</strong>变量的预测问题。
+<ul>
 <li>最常用的损失函数是平方损失函数，在此情况下，回归问题可以用最小二乘法求解</li>
 </ul>
 </li>
-<li>分类问题：输出变量为有限个<strong>离散</strong>变量的预测问题。<ul>
+<li>分类问题：输出变量为有限个<strong>离散</strong>变量的预测问题。
+<ul>
 <li>如K近邻、感知机、支持向量机、神经网络等。</li>
 <li>评价分类器指标：分类准确率，即分类器正确分类的样本数与总样本数之比。</li>
 <li>二分类问题上，评价指标是精确率和召回率。</li>
 </ul>
 </li>
-<li>标注问题：输入变量与输出变量均为变量序列的预测问题，可以看作是分类问题的推广。<ul>
+<li>标注问题：输入变量与输出变量均为变量序列的预测问题，可以看作是分类问题的推广。
+<ul>
 <li>如隐马尔可夫模型、条件随机场。（在NLP广泛应用）。</li>
 </ul>
 </li>
 </ul>
-<h3 id="无监督学习"><a href="#无监督学习" class="headerlink" title="无监督学习"></a>无监督学习</h3><ul>
+<h3 id="无监督学习"><a class="markdownIt-Anchor" href="#无监督学习"></a> 无监督学习</h3>
+<ul>
 <li>定义：无监督学习是指从无标注数据（自然得到的数据）中学习预测模型（表示数据的类别、转换或概率）的机器学习问题。</li>
 <li><strong>本质</strong>：学习数据中的统计规律或潜在结构。</li>
 <li>用途：无监督的预测模型可以实现对数据的聚类、降维或概率估计。</li>
 </ul>
-<h3 id="强化学习"><a href="#强化学习" class="headerlink" title="强化学习"></a>强化学习</h3><ul>
+<h3 id="强化学习"><a class="markdownIt-Anchor" href="#强化学习"></a> 强化学习</h3>
+<ul>
 <li>定义：强化学习是指智能系统在与环境的连续互动中学习最优行为策略的机器学习问题。假设智能系统与环境的互动基于<strong>马尔可夫决策过程</strong>，智能系统能观测到的是与环境互动得到的数据序列。</li>
 <li><strong>本质</strong>：学习最优的<strong>序贯决策</strong>。</li>
 <li>目的：强化学习过程中，系统不断地试错，以达到学习最优策略的目的。</li>
 </ul>
-<h3 id="半监督学习"><a href="#半监督学习" class="headerlink" title="半监督学习"></a>半监督学习</h3><ul>
+<h3 id="半监督学习"><a class="markdownIt-Anchor" href="#半监督学习"></a> 半监督学习</h3>
+<ul>
 <li>定义：半监督学习是指利用标注数据和未标注数据学习预测模型的机器学习问题。通常有少量标注数据和大量未标注数据。</li>
 <li>目的：利用未标注数据中的信息，辅助标注数据，进行监督学习，以较低的成本达到较好的学习效果。</li>
 </ul>
-<h3 id="主动学习"><a href="#主动学习" class="headerlink" title="主动学习"></a>主动学习</h3><ul>
+<h3 id="主动学习"><a class="markdownIt-Anchor" href="#主动学习"></a> 主动学习</h3>
+<ul>
 <li>定义：主动学习是指机器不断主动给出实例让教师进行标注，然后利用标注数据学习预测模型的机器学习问题。通常的监督学习使用给定的标注数据，往往是随机得到的，可以看作是”被动学习“。</li>
 </ul>
 ]]></content>
@@ -186,39 +273,34 @@
     <title>回顾2019</title>
     <url>/2020/01/02/%E5%9B%9E%E9%A1%BE2019/</url>
     <content><![CDATA[<p><img alt="wish" data-src="/2020/01/02/%E5%9B%9E%E9%A1%BE2019/wish.jpeg" class="lazyload"></p>
-<p>&emsp;在2018.12.31的凌晨2点33分，我写下了上面这张卡片的内容，在2019.1.1的零点，我把它投递到了跨年活动的邮筒里，寄给未来不可思议的自己。转眼一年，我从雁栖湖校区搬到了中关村，从研一升到了研二，再一年，我就毕业了呢，心里有着期待，也有着紧张。</p>
-<p>&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;  &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;——题记                                                                                                </p>
+<p> 在2018.12.31的凌晨2点33分，我写下了上面这张卡片的内容，在2019.1.1的零点，我把它投递到了跨年活动的邮筒里，寄给未来不可思议的自己。转眼一年，我从雁栖湖校区搬到了中关村，从研一升到了研二，再一年，我就毕业了呢，心里有着期待，也有着紧张。</p>
+<p>                                            ——题记</p>
 <center>一.念旧的人最怕想起</center>
 &emsp;我是一个念旧的人，一直以来都是，这是我无论跨几个年都改变不了的事实。我很害怕夜深人静时刻，细枝末节的回忆倾涌袭来的酸楚感，念旧的人是最怕想起的。
-
-<p>&emsp;2018年有太多的东西需要放下了，最沉重的可能就是我和他近四年的时光，所以2018年的我希望2019年的我能够不要念旧不再想起，一往无前，迎接新的生活。</p>
-<p>&emsp;很庆幸，我做到了！</p>
+<p> 2018年有太多的东西需要放下了，最沉重的可能就是我和他近四年的时光，所以2018年的我希望2019年的我能够不要念旧不再想起，一往无前，迎接新的生活。</p>
+<p> 很庆幸，我做到了！</p>
 <center>二.收获挚友</center>
 &emsp;在雁栖湖的日子，应该会是我研究生三年最开心的回忆了。我认识了八个可爱美丽的仙女室友，从最初的陌生到如今的无话不谈，彼此关心。回想起来，我应该是宿舍里被照顾的最多的一个，睡到中午没有起床，染会给我发短信，问我起来没有？要不要给我带饭？生病的时候，苗就像个百宝箱，拿出各种药往我屋里送。发愁找工作，想找实习的时候，老大总是催促我得抓紧了，赶紧写简历，给我分享面经。想要落户上海，参加数学建模，我的SHE姐妹，媛和娜娜二话没说，直接应援，支持我落户。没吃饭饿了的时候，客厅如果有剩什么可以煮的，冰冰总会问我吃不吃？可以给我煮。宁在我分手那天，和我一前一后的班车回了雁栖湖，一路上都在倾听和安慰。那次突如其来的雾霾，让我嗓子又开始沙哑，虹给我送来了糖浆......当然，还有很多很多。所以在2019年的零点，我给她们八个每个人编辑了一段文字，表达我对她们的喜欢和祝福，也感谢她们对我的包容和照顾。
-
-<p>&emsp;除了她们，还有一些我很想感谢的人，给予了我很多帮助，比如体委、昊宇、兴旺和浩然。尽管有些人已渐行渐远，但是依旧想要将美好的祝福给予他们。</p>
+<p> 除了她们，还有一些我很想感谢的人，给予了我很多帮助，比如体委、昊宇、兴旺和浩然。尽管有些人已渐行渐远，但是依旧想要将美好的祝福给予他们。</p>
 <center>三.挥别、相逢</center>
 &emsp;挥别错的才能和对的相逢。和他分开之后，很庆幸，现在的我和他，都遇到了自己的ta。
-
-<p>&emsp;和chou的相识是巧合。千人抢课的情况下，我和他选了三门重复的课，其中英语课还被分到了一个小组。英语A是我们第一次相见，他给我的第一印象就是锅盖头、话多、积极。他总喜欢很大声的喊我，我很不喜欢，特别是一次现代DSP下课，他坐在我前面三四排，他回过身收书包，边大声跟我有一句没一句的说着，说实话，当时完全不想了理他，没想到最后，他竟然大声对我说，林苏颖，我们晚上见！语毕，只见坐在我旁边的陌生男同学，向我投来奇怪的眼光。于是，我就再很严肃的对他说，你以后别这么大声叫我了！</p>
-<p>&emsp;后来的后来，这个chou家伙，就天天粘着我，时间久了，我也习惯了。每天看着他傻呵呵地向我跑来，那锅盖头在风中起伏，真可爱，哈哈哈哈~</p>
-<p>&emsp;说起chou这个称呼的来由，也是蛮巧的。他说家里人小时候都喊他臭臭，周的罗马拼音是chou，而我是因为他丑，刚好都是chou。</p>
-<p>​    当然我们还有很多很多故事。有搞笑的，比如英语演讲-图书馆自习的故事；有悲伤的，比如我们连续一个月吵架两次，差点分手；有值得纪念的，比如18到19的跨年和19到20的跨年他都和我一起，不同的是，18到19，一群人里有他，19到20是只有我和他。</p>
+<p> 和chou的相识是巧合。千人抢课的情况下，我和他选了三门重复的课，其中英语课还被分到了一个小组。英语A是我们第一次相见，他给我的第一印象就是锅盖头、话多、积极。他总喜欢很大声的喊我，我很不喜欢，特别是一次现代DSP下课，他坐在我前面三四排，他回过身收书包，边大声跟我有一句没一句的说着，说实话，当时完全不想了理他，没想到最后，他竟然大声对我说，林苏颖，我们晚上见！语毕，只见坐在我旁边的陌生男同学，向我投来奇怪的眼光。于是，我就再很严肃的对他说，你以后别这么大声叫我了！</p>
+<p> 后来的后来，这个chou家伙，就天天粘着我，时间久了，我也习惯了。每天看着他傻呵呵地向我跑来，那锅盖头在风中起伏，真可爱，哈哈哈哈~</p>
+<p> 说起chou这个称呼的来由，也是蛮巧的。他说家里人小时候都喊他臭臭，周的罗马拼音是chou，而我是因为他丑，刚好都是chou。</p>
+<p>​	当然我们还有很多很多故事。有搞笑的，比如英语演讲-图书馆自习的故事；有悲伤的，比如我们连续一个月吵架两次，差点分手；有值得纪念的，比如18到19的跨年和19到20的跨年他都和我一起，不同的是，18到19，一群人里有他，19到20是只有我和他。</p>
 <center>四.收获</center>
 &emsp;科研上，在师兄师姐的帮助下，有了一些小成果。可惜，就在19年12月1日，由于一些原因，换了导师，研究方向也因此有了转变。虽然很不舍，但是还是告诉自己，就当扩展知识面吧。然后，在19年末，参加了天池的imagenet对抗样本比赛。还有就是SHE姐妹的建模也得奖了。
-
-<p>&emsp;生活上，爱玩的性子不变，王者荣耀和吃鸡还是占据了我很多时间，但是也因此有了一次不一样的体验，就是参加了顶秀美泉小镇的王者荣耀比赛。喜欢美食，每个月都在朋友圈更新自己“朴实无华”的美食生活。</p>
-<p>​    学习上，研究生的考试真的很水。</p>
-<p>​    工作上，当了一个小班委，感谢大家支持，也获得了小荣誉。</p>
+<p> 生活上，爱玩的性子不变，王者荣耀和吃鸡还是占据了我很多时间，但是也因此有了一次不一样的体验，就是参加了顶秀美泉小镇的王者荣耀比赛。喜欢美食，每个月都在朋友圈更新自己“朴实无华”的美食生活。</p>
+<p>​	学习上，研究生的考试真的很水。</p>
+<p>​	工作上，当了一个小班委，感谢大家支持，也获得了小荣誉。</p>
 <center>五.2020的愿望</center>
 1.家人身体健康
-
 <p>2.朋友幸福快乐</p>
 <p>3.做自己喜欢的事情，积极向上</p>
 <p>4.找到一份很满意工作</p>
 <p>5.chou也是1234</p>
-<p>​    </p>
-<p>&emsp;</p>
+<p>​</p>
+<p> </p>
 ]]></content>
       <categories>
         <category>杂记</category>
@@ -230,86 +312,81 @@
   <entry>
     <title>hexo建站</title>
     <url>/2019/12/29/hexo%E5%BB%BA%E7%AB%99/</url>
-    <content><![CDATA[<h2 id="1-前言"><a href="#1-前言" class="headerlink" title="1.前言"></a>1.前言</h2><p>​    一直很怕麻烦的我，对于搭博客这件事是很抗拒的，身边的好朋友也和我说过好几次，建议我搭一个，然后放上自己的学习笔记和简历，在未来找工作的时候，有人看到就是赚到，没人看到，自己也可以回顾之前学过的东西。</p>
-<p>​    有什么事情是不麻烦的呢？自己感兴趣的永远都不麻烦。</p>
-<p>​    怎么才能只做自己感兴趣的事情呢？征服一切麻烦，把它变成你擅长的事，这样可能你就能收获成就感，收获兴趣。</p>
-<p>​    所以，先迈出第一步，搭一个自己的博客吧。说不定，你会像我一样，突然想学习，想写很多的笔记填满它。</p>
-<h2 id="2-准备工作"><a href="#2-准备工作" class="headerlink" title="2.准备工作"></a>2.准备工作</h2><p>​    首先，找一个hexo搭建的博客的教程，我参考的教程是mac系统的教程，另外我也找了一个windows系统的教程。链接如下：</p>
+    <content><![CDATA[<h2 id="1前言"><a class="markdownIt-Anchor" href="#1前言"></a> 1.前言</h2>
+<p>​	一直很怕麻烦的我，对于搭博客这件事是很抗拒的，身边的好朋友也和我说过好几次，建议我搭一个，然后放上自己的学习笔记和简历，在未来找工作的时候，有人看到就是赚到，没人看到，自己也可以回顾之前学过的东西。</p>
+<p>​	有什么事情是不麻烦的呢？自己感兴趣的永远都不麻烦。</p>
+<p>​	怎么才能只做自己感兴趣的事情呢？征服一切麻烦，把它变成你擅长的事，这样可能你就能收获成就感，收获兴趣。</p>
+<p>​	所以，先迈出第一步，搭一个自己的博客吧。说不定，你会像我一样，突然想学习，想写很多的笔记填满它。</p>
+<h2 id="2准备工作"><a class="markdownIt-Anchor" href="#2准备工作"></a> 2.准备工作</h2>
+<p>​	首先，找一个hexo搭建的博客的教程，我参考的教程是mac系统的教程，另外我也找了一个windows系统的教程。链接如下：</p>
 <ul>
-<li>mac系统下搭建hexo个人博客：<a href="https://www.jianshu.com/p/77db3862595c" target="_blank" rel="noopener">https://www.jianshu.com/p/77db3862595c</a>                            </li>
-<li>windows下Hexo博客搭建过程：<a href="https://blog.csdn.net/qq_31880107/article/details/86688467" target="_blank" rel="noopener">https://blog.csdn.net/qq_31880107/article/details/86688467</a>   </li>
+<li>mac系统下搭建hexo个人博客：<a href="https://www.jianshu.com/p/77db3862595c" target="_blank" rel="noopener">https://www.jianshu.com/p/77db3862595c</a></li>
+<li>windows下Hexo博客搭建过程：<a href="https://blog.csdn.net/qq_31880107/article/details/86688467" target="_blank" rel="noopener">https://blog.csdn.net/qq_31880107/article/details/86688467</a></li>
 </ul>
-<p>​    然后，根据链接完成环境配置、博客关联到Github的操作。到这里，我们已经有了一个自己的博客，可以开始发表文章了。</p>
-<p>​        如果你不满足hexo原始主题的样式，想打造一个更美观、更能体现自己style的博客，那么就可以继续第三部分啦~</p>
-<h2 id="3-美化博客"><a href="#3-美化博客" class="headerlink" title="3.美化博客"></a>3.美化博客</h2><p>​    首先，打开hexo主题链接：<a href="https://hexo.io/themes/" target="_blank" rel="noopener">https://hexo.io/themes/</a> ，选择一个你喜欢的主题。</p>
-<p>​    在选择主题的时候，我简单的Google了一下hexo推荐的主题有哪些，发现极简风格的Next主题是最多人使用的，网上也有很多相应的修改教程。但是，我最后选择了Butterfly主题。</p>
-<p>​    如果你很满意你选择的主题，不想做其他任何的修改，那么你只需要在站点目录下的_config.yml文件，修改theme为你选择的主题名，如<code>theme: Butterfly</code>。然后，去挑选一个你喜欢的域名绑定即可。</p>
-<p>​    注意：修改的时候，冒号后面一定要有空格，不然就会报错。</p>
-<p>​    如果你想让你的博客与众不同，你可以参考网上的修改教程，如果你恰好选择的是Next或者Butterfly，你可以参考如下链接：</p>
+<p>​	然后，根据链接完成环境配置、博客关联到Github的操作。到这里，我们已经有了一个自己的博客，可以开始发表文章了。</p>
+<p>​		如果你不满足hexo原始主题的样式，想打造一个更美观、更能体现自己style的博客，那么就可以继续第三部分啦~</p>
+<h2 id="3美化博客"><a class="markdownIt-Anchor" href="#3美化博客"></a> 3.美化博客</h2>
+<p>​	首先，打开hexo主题链接：<a href="https://hexo.io/themes/" target="_blank" rel="noopener">https://hexo.io/themes/</a> ，选择一个你喜欢的主题。</p>
+<p>​	在选择主题的时候，我简单的Google了一下hexo推荐的主题有哪些，发现极简风格的Next主题是最多人使用的，网上也有很多相应的修改教程。但是，我最后选择了Butterfly主题。</p>
+<p>​	如果你很满意你选择的主题，不想做其他任何的修改，那么你只需要在站点目录下的_config.yml文件，修改theme为你选择的主题名，如<code>theme: Butterfly</code>。然后，去挑选一个你喜欢的域名绑定即可。</p>
+<p>​	注意：修改的时候，冒号后面一定要有空格，不然就会报错。</p>
+<p>​	如果你想让你的博客与众不同，你可以参考网上的修改教程，如果你恰好选择的是Next或者Butterfly，你可以参考如下链接：</p>
 <ul>
 <li>Next主题的修改可以参考第2部分mac系统下搭建hexo个人博客的链接。</li>
 <li>Butterfly主题的修改可以直接参考官方文档：<a href="https://jerryc.me/posts/21cfbf15/" target="_blank" rel="noopener">https://jerryc.me/posts/21cfbf15/</a></li>
 </ul>
-<h2 id="4-域名绑定"><a href="#4-域名绑定" class="headerlink" title="4.域名绑定"></a>4.域名绑定</h2><p>​    我是在阿里云上购买的域名，链接：<a href="https://www.aliyun.com/" target="_blank" rel="noopener">https://www.aliyun.com/</a></p>
+<h2 id="4域名绑定"><a class="markdownIt-Anchor" href="#4域名绑定"></a> 4.域名绑定</h2>
+<p>​	我是在阿里云上购买的域名，链接：<a href="https://www.aliyun.com/" target="_blank" rel="noopener">https://www.aliyun.com/</a></p>
 <ul>
-<li><p>注册</p>
+<li>
+<p>注册</p>
 </li>
-<li><p>在查域名里输入你想要购买的域名，查询是否被购买，我购买的后缀是.com</p>
+<li>
+<p>在查域名里输入你想要购买的域名，查询是否被购买，<a href="http://xn--ckqu0lovns4diwznuly9x.com" target="_blank" rel="noopener">我购买的后缀是.com</a></p>
 </li>
-<li><p>如果你喜欢的域名没有被购买，就加入购买清单，去结算</p>
+<li>
+<p>如果你喜欢的域名没有被购买，就加入购买清单，去结算</p>
 </li>
-<li><p>进入确定订单界面，选择购买年限，域名持有者</p>
+<li>
+<p>进入确定订单界面，选择购买年限，域名持有者</p>
 </li>
-<li><p>创建新的信息模板，填写必填的信息，完成购买</p>
+<li>
+<p>创建新的信息模板，填写必填的信息，完成购买</p>
 </li>
-<li><p>打开控制台，点击云解析DNS，点击解析设置，会出现几个需要填写的值：记录类型、主机记录、解析路线、记录值</p>
+<li>
+<p>打开控制台，点击云解析DNS，点击解析设置，会出现几个需要填写的值：记录类型、主机记录、解析路线、记录值</p>
 </li>
-<li><p>打开命令行，ping你的github.io的域名，如lesylin.github.io，得到一个IP</p>
+<li>
+<p>打开命令行，ping你的github.io的域名，<a href="http://xn--lesylin-i22m.github.io" target="_blank" rel="noopener">如lesylin.github.io</a>，得到一个IP</p>
 </li>
-<li><p>返回点击解析设置界面，点击添加记录。我的输入如下：</p>
+<li>
+<p>返回点击解析设置界面，点击添加记录。我的输入如下：</p>
 <ul>
-<li><table>
-<thead>
-<tr>
-<th>主机记录</th>
-<th>记录类型</th>
-<th>解析路线</th>
-<th>记录值</th>
-<th>TTL</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>www</td>
-<td>A</td>
-<td>默认</td>
-<td>IP</td>
-<td>10分钟</td>
-</tr>
-<tr>
-<td>@</td>
-<td>CNAME</td>
-<td>默认</td>
-<td>github.io的域名</td>
-<td>10分钟</td>
-</tr>
-</tbody></table>
-</li>
+<li>| 主机记录 | 记录类型 | 解析路线 | 记录值          | TTL    |<br>
+| -------- | -------- | -------- | --------------- | ------ |<br>
+| www      | A        | 默认     | IP              | 10分钟 |<br>
+| @        | CNAME    | 默认     | github.io的域名 | 10分钟 |</li>
 </ul>
 </li>
-<li><p>打开你的github的域名，点击Settings，在自定义域输入你购买的域名，点击保存</p>
+<li>
+<p>打开你的github的域名，点击Settings，在自定义域输入你购买的域名，点击保存</p>
 </li>
-<li><p>在仓库界面，点击Create new file，命名为CNAME，内容为你购买的域名，注意：不要包含https://和www</p>
+<li>
+<p>在仓库界面，点击Create new file，命名为CNAME，内容为你购买的域名，注意：不要包含https://和www</p>
 </li>
-<li><p>在本地站点source文件夹下新建一个无后缀名的CNAME文件，内容为你购买的域名，注意：不要包含https://和www，然后hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</p>
+<li>
+<p>在本地站点source文件夹下新建一个无后缀名的CNAME文件，内容为你购买的域名，注意：不要包含https://和www，然后hexo clean &amp;&amp; hexo g &amp;&amp; hexo d</p>
 </li>
-<li><p>在浏览器输入你购买的域名即可访问</p>
+<li>
+<p>在浏览器输入你购买的域名即可访问</p>
 </li>
 </ul>
-<h2 id="5-其他功能"><a href="#5-其他功能" class="headerlink" title="5.其他功能"></a>5.其他功能</h2><p>​    这里推荐几个插件，让你的博客功能更加完善。这里我简单说一下我使用的功能。</p>
-<h3 id="5-1评论功能"><a href="#5-1评论功能" class="headerlink" title="5.1评论功能"></a>5.1评论功能</h3><p>​    我的评论功能使用的是valine。以Butterfly主题为例，在主题配置文件butterfly.yml，打开valine。如下：</p>
+<h2 id="5其他功能"><a class="markdownIt-Anchor" href="#5其他功能"></a> 5.其他功能</h2>
+<p>​	这里推荐几个插件，让你的博客功能更加完善。这里我简单说一下我使用的功能。</p>
+<h3 id="51评论功能"><a class="markdownIt-Anchor" href="#51评论功能"></a> 5.1评论功能</h3>
+<p>​	我的评论功能使用的是valine。以Butterfly主题为例，在主题配置文件butterfly.yml，打开valine。如下：</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">valine:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span> </span><br><span class="line">  <span class="attr">appId:</span> </span><br><span class="line">  <span class="attr">appKey:</span> </span><br><span class="line">  <span class="attr">notify:</span> <span class="literal">false</span> </span><br><span class="line">  <span class="attr">verify:</span> <span class="literal">false</span> <span class="comment"># valine verify code (true/false)</span></span><br><span class="line">  <span class="attr">pageSize:</span> <span class="number">10</span> <span class="comment"># comment list page size</span></span><br><span class="line">  <span class="attr">avatar:</span> <span class="string">monsterid</span> <span class="comment"># gravatar style https://valine.js.org/#/avatar</span></span><br><span class="line">  <span class="attr">lang:</span> <span class="string">zh-cn</span> <span class="comment"># i18n: zh-cn/en</span></span><br><span class="line">  <span class="attr">placeholder:</span> <span class="string">请多指教</span> <span class="comment"># valine comment input placeholder</span></span><br><span class="line">  <span class="attr">guest_info:</span> <span class="string">nick,mail,link</span> <span class="comment">#valine comment header info</span></span><br><span class="line">  <span class="attr">bg:</span> <span class="string">/img/comment_bg.png</span> <span class="comment"># valine background</span></span><br></pre></td></tr></table></figure>
-
-<p>​    代码里的<code>appId</code>和<code>appKey</code>需要去Leancloud上注册，链接：<a href="https://www.leancloud.cn/。" target="_blank" rel="noopener">https://www.leancloud.cn/。</a></p>
+<p>​	代码里的<code>appId</code>和<code>appKey</code>需要去Leancloud上注册，链接：<a href="https://www.leancloud.cn/%E3%80%82" target="_blank" rel="noopener">https://www.leancloud.cn/。</a></p>
 <ul>
 <li>注册账号</li>
 <li>创建一个应用，名字随便起，选择开发版，点击创建</li>
@@ -317,92 +394,120 @@
 <li>进入创建好的应用，点击设定，点击应用键，就可以看到<code>appId</code>和<code>appKey</code></li>
 <li>复制<code>appID</code>和<code>appKey</code>到代码指定位置，保存即可</li>
 </ul>
-<h3 id="5-2本地搜索"><a href="#5-2本地搜索" class="headerlink" title="5.2本地搜索"></a>5.2本地搜索</h3><p>​    搜索系统有两种，一种是本地搜索，一种是Algolia。我选择的是本地搜索。以Butterfly主题为例，在主题配置文件butterfly.yml，打开local_search。如下：</p>
+<h3 id="52本地搜索"><a class="markdownIt-Anchor" href="#52本地搜索"></a> 5.2本地搜索</h3>
+<p>​	搜索系统有两种，一种是本地搜索，一种是Algolia。我选择的是本地搜索。以Butterfly主题为例，在主题配置文件butterfly.yml，打开local_search。如下：</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">local_search:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">labels:</span></span><br><span class="line">    <span class="attr">input_placeholder:</span> <span class="string">Search</span> <span class="string">for</span> <span class="string">Posts</span></span><br><span class="line">    <span class="attr">hits_empty:</span> <span class="string">"We didn't find any results for the search: $&#123;query&#125;"</span> <span class="comment"># if there are no result</span></span><br></pre></td></tr></table></figure>
-
 <ul>
-<li><p>打开命令行，输入<code>$ npm install hexo-generator-search --save</code></p>
+<li>
+<p>打开命令行，输入<code>$ npm install hexo-generator-search --save</code></p>
 </li>
-<li><p>打开站点下的配置文件_config.yml，添加如下代码：</p>
+<li>
+<p>打开站点下的配置文件_config.yml，添加如下代码：</p>
 <ul>
-<li><p></p>
+<li>
+<p></p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">search:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">search.xml</span></span><br><span class="line">  <span class="attr">field:</span> <span class="string">post</span></span><br><span class="line">  <span class="attr">content:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
 </li>
 </ul>
 </li>
-<li><p>保存重新部署即可</p>
+<li>
+<p>保存重新部署即可</p>
 </li>
-<li><p>参考链接：<a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener">https://github.com/wzpan/hexo-generator-search</a></p>
+<li>
+<p>参考链接：<a href="https://github.com/wzpan/hexo-generator-search" target="_blank" rel="noopener">https://github.com/wzpan/hexo-generator-search</a></p>
 </li>
-<li><p>btw：另一种搜索的使用，等我下次更换了再来更新，其实本地搜索感觉就够用了，添加方式也简单</p>
+<li>
+<p>btw：另一种搜索的使用，等我下次更换了再来更新，其实本地搜索感觉就够用了，添加方式也简单</p>
 </li>
 </ul>
-<h3 id="5-3网站验证"><a href="#5-3网站验证" class="headerlink" title="5.3网站验证"></a>5.3网站验证</h3><p>​    网站验证功能就是让搜索引擎收录你的博客。这里主要介绍百度和谷歌的收录步骤。</p>
+<h3 id="53网站验证"><a class="markdownIt-Anchor" href="#53网站验证"></a> 5.3网站验证</h3>
+<p>​	网站验证功能就是让搜索引擎收录你的博客。这里主要介绍百度和谷歌的收录步骤。</p>
 <ul>
 <li>在百度或者谷歌搜索，输入：<code>site:你的域名</code>，可以确定你的博客是否相应的搜索引擎收录</li>
 <li>百度和谷歌的收录步骤参考链接：<a href="https://www.jianshu.com/p/8c0707ce5da4" target="_blank" rel="noopener">https://www.jianshu.com/p/8c0707ce5da4</a></li>
 <li>btw：百度收录的速度很慢，对于新建站不满6个月的会让提交备案，加快收录速度，加快收录的方法可自行搜索；相比而言，谷歌收录的速度比较快，我提交sitemap后，一天就收录了</li>
 </ul>
-<h3 id="5-4分析统计"><a href="#5-4分析统计" class="headerlink" title="5.4分析统计"></a>5.4分析统计</h3><p>​    网站分析统计就是统计博客的访问情况，比如博客的历史访问量、搜索关键字、访问来源、访问地域等统计数据。添加分析统计，以Butterfly主题为例：</p>
+<h3 id="54分析统计"><a class="markdownIt-Anchor" href="#54分析统计"></a> 5.4分析统计</h3>
+<p>​	网站分析统计就是统计博客的访问情况，比如博客的历史访问量、搜索关键字、访问来源、访问地域等统计数据。添加分析统计，以Butterfly主题为例：</p>
 <ul>
-<li><p>打开百度统计，注册账号，链接：<a href="https://tongji.baidu.com/web/welcome/login?castk=LTE%3D" target="_blank" rel="noopener">https://tongji.baidu.com/web/welcome/login?castk=LTE%3D</a></p>
+<li>
+<p>打开百度统计，注册账号，链接：<a href="https://tongji.baidu.com/web/welcome/login?castk=LTE%3D" target="_blank" rel="noopener">https://tongji.baidu.com/web/welcome/login?castk=LTE%3D</a></p>
 </li>
-<li><p>管理界面，点击新增网站，输入网站域名和网站首页，点击确定</p>
+<li>
+<p>管理界面，点击新增网站，输入网站域名和网站首页，点击确定</p>
 </li>
-<li><p>获取统计代码，如下：</p>
+<li>
+<p>获取统计代码，如下：</p>
 <ul>
-<li><figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">var</span> _hmt = _hmt || [];</span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> hm = <span class="built_in">document</span>.createElement(<span class="string">"script"</span>);</span><br><span class="line">  hm.src = <span class="string">"https://hm.baidu.com/hm.js?————————————-"</span>;</span><br><span class="line">  <span class="keyword">var</span> s = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"script"</span>)[<span class="number">0</span>]; </span><br><span class="line">  s.parentNode.insertBefore(hm, s);</span><br><span class="line">&#125;)();</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+<li></li>
+</ul>
+  <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line">&lt;script&gt;</span><br><span class="line"><span class="keyword">var</span> _hmt = _hmt || [];</span><br><span class="line">(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> hm = <span class="built_in">document</span>.createElement(<span class="string">"script"</span>);</span><br><span class="line">  hm.src = <span class="string">"https://hm.baidu.com/hm.js?————————————-"</span>;</span><br><span class="line">  <span class="keyword">var</span> s = <span class="built_in">document</span>.getElementsByTagName(<span class="string">"script"</span>)[<span class="number">0</span>]; </span><br><span class="line">  s.parentNode.insertBefore(hm, s);</span><br><span class="line">&#125;)();</span><br><span class="line">&lt;<span class="regexp">/script&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>把代码js？后面的部分复制到主题配置文件butterfly.yml的<code>baidu_analytics:</code></p>
+</li>
+<li>
+<p>保存重新部署之后，进行代码安装检查，如果显示代码安装正确，就表示添加成功了</p>
+</li>
+<li>
+<p>打开谷歌统计，注册账号，链接：<a href="https://analytics.google.com/analytics/web/" target="_blank" rel="noopener">https://analytics.google.com/analytics/web/</a></p>
+</li>
+<li>
+<p>打开控制台，点击左下角的管理，点击创建媒体资源，点击跟踪信息，点击跟踪代码</p>
+</li>
+<li>
+<p>将跟踪ID：<code>UA-xxxx</code>，复制到主题配置文件butterfly.yml的<code>google_analytics:</code></p>
+</li>
+<li>
+<p>保存重新部署之后，等20分钟左右再次进去谷歌统计即可查看到统计的数据</p>
 </li>
 </ul>
-</li>
-<li><p>把代码js？后面的部分复制到主题配置文件butterfly.yml的<code>baidu_analytics:</code></p>
-</li>
-<li><p>保存重新部署之后，进行代码安装检查，如果显示代码安装正确，就表示添加成功了</p>
-</li>
-<li><p>打开谷歌统计，注册账号，链接：<a href="https://analytics.google.com/analytics/web/" target="_blank" rel="noopener">https://analytics.google.com/analytics/web/</a></p>
-</li>
-<li><p>打开控制台，点击左下角的管理，点击创建媒体资源，点击跟踪信息，点击跟踪代码</p>
-</li>
-<li><p>将跟踪ID：<code>UA-xxxx</code>，复制到主题配置文件butterfly.yml的<code>google_analytics:</code></p>
-</li>
-<li><p>保存重新部署之后，等20分钟左右再次进去谷歌统计即可查看到统计的数据</p>
-</li>
-</ul>
-<h3 id="5-5不蒜子访问统计"><a href="#5-5不蒜子访问统计" class="headerlink" title="5.5不蒜子访问统计"></a>5.5不蒜子访问统计</h3><p>​    不蒜子可以通过两行代码实现访问量统计。链接<a href="https://busuanzi.ibruce.info/，以Butterfly主题为例。" target="_blank" rel="noopener">https://busuanzi.ibruce.info/，以Butterfly主题为例。</a></p>
+<h3 id="55不蒜子访问统计"><a class="markdownIt-Anchor" href="#55不蒜子访问统计"></a> 5.5不蒜子访问统计</h3>
+<p>​	不蒜子可以通过两行代码实现访问量统计。链接https://busuanzi.ibruce.info/，以Butterfly主题为例。</p>
 <ul>
-<li><p>打开footer.pug文件，我的这个文件在<code>/Users/lesy/blog/themes/Butterfly/layout/includes</code></p>
+<li>
+<p>打开footer.pug文件，我的这个文件在<code>/Users/lesy/blog/themes/Butterfly/layout/includes</code></p>
 </li>
-<li><p>在末尾添加如下代码：</p>
+<li>
+<p>在末尾添加如下代码：</p>
 <ul>
-<li><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">script(async='',</span> <span class="string">src='//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js')</span></span><br><span class="line">  <span class="string">span#busuanzi_container_site_pv</span></span><br><span class="line">  <span class="string">|</span> <span class="string">本站总访问量</span></span><br><span class="line">  <span class="string">span#busuanzi_value_site_pv</span></span><br><span class="line">  <span class="string">|</span> <span class="string">次</span></span><br></pre></td></tr></table></figure>
+<li></li>
+</ul>
+  <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="string">script(async='',</span> <span class="string">src='//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js')</span></span><br><span class="line">  <span class="string">span#busuanzi_container_site_pv</span></span><br><span class="line">  <span class="string">|</span> <span class="string">本站总访问量</span></span><br><span class="line">  <span class="string">span#busuanzi_value_site_pv</span></span><br><span class="line">  <span class="string">|</span> <span class="string">次</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>保存重新部署后，就可以在footer看到总访问量统计，如果想要美化显示，可以修改文字和增加图标，也可以统计访客数，把<code>site_pv</code>改成<code>site_uv</code>即可</p>
 </li>
 </ul>
-</li>
-<li><p>保存重新部署后，就可以在footer看到总访问量统计，如果想要美化显示，可以修改文字和增加图标，也可以统计访客数，把<code>site_pv</code>改成<code>site_uv</code>即可</p>
-</li>
-</ul>
-<h3 id="5-6字数统计"><a href="#5-6字数统计" class="headerlink" title="5.6字数统计"></a>5.6字数统计</h3><p>​    可以实现对文章字数的统计，并可以根据字数多少估计阅读时间。以Butterfly主题为例：</p>
+<h3 id="56字数统计"><a class="markdownIt-Anchor" href="#56字数统计"></a> 5.6字数统计</h3>
+<p>​	可以实现对文章字数的统计，并可以根据字数多少估计阅读时间。以Butterfly主题为例：</p>
 <ul>
-<li><p>打开命令行，在站点目录下输入：<code>npm install hexo-wordcount --save</code></p>
+<li>
+<p>打开命令行，在站点目录下输入：<code>npm install hexo-wordcount --save</code></p>
 </li>
-<li><p>打开主题配置文件butterfly.yml，修改wordcount，如下：</p>
+<li>
+<p>打开主题配置文件butterfly.yml，修改wordcount，如下：</p>
 <ul>
-<li><figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">wordcount:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<li></li>
+</ul>
+  <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">wordcount:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+</li>
+<li>
+<p>保存重新部署即可</p>
 </li>
 </ul>
-</li>
-<li><p>保存重新部署即可</p>
-</li>
-</ul>
-<h3 id="5-7文章置顶"><a href="#5-7文章置顶" class="headerlink" title="5.7文章置顶"></a>5.7文章置顶</h3><ul>
+<h3 id="57文章置顶"><a class="markdownIt-Anchor" href="#57文章置顶"></a> 5.7文章置顶</h3>
+<ul>
 <li>打开命令行，在站点目录下输入：<code>npm uninstall hexo-generator-index --save</code></li>
 <li>然后，输入<code>npm install hexo-generator-index-pin-top --save</code></li>
 <li>在需要置顶的文章开头，加上<code>top: true</code>即可</li>
 </ul>
-<h3 id="5-8live2D卡通插件"><a href="#5-8live2D卡通插件" class="headerlink" title="5.8live2D卡通插件"></a>5.8live2D卡通插件</h3><p>​    详情参考:<a href="https://github.com/EYHN/hexo-helper-live2d" target="_blank" rel="noopener">https://github.com/EYHN/hexo-helper-live2d</a></p>
-<h2 id="6-小结"><a href="#6-小结" class="headerlink" title="6.小结"></a>6.小结</h2><p>​    上述是我搭博客的流程，期间也踩坑无数，好在都一一解决了。后续如果对博客有什么新的改进，会继续更新这篇文章。</p>
-<p>​    很开心迈出第一步搭好了博客，也很开心又迈出一步回头重新整理好了建站流程。</p>
-<p>​    我很喜欢在做完一件事之后，总结一下自己的感悟，给自己灌灌鸡汤：如果还在犹豫是否要去尝试一件事情，如果你恰好还可以挤出一些时间，那么就不要犹豫，去尝试就好了，麻烦的事情，麻烦了之后就少一个麻烦了。</p>
+<h3 id="58live2d卡通插件"><a class="markdownIt-Anchor" href="#58live2d卡通插件"></a> 5.8live2D卡通插件</h3>
+<p>​	详情参考:<a href="https://github.com/EYHN/hexo-helper-live2d" target="_blank" rel="noopener">https://github.com/EYHN/hexo-helper-live2d</a></p>
+<h2 id="6小结"><a class="markdownIt-Anchor" href="#6小结"></a> 6.小结</h2>
+<p>​	上述是我搭博客的流程，期间也踩坑无数，好在都一一解决了。后续如果对博客有什么新的改进，会继续更新这篇文章。</p>
+<p>​	很开心迈出第一步搭好了博客，也很开心又迈出一步回头重新整理好了建站流程。</p>
+<p>​	我很喜欢在做完一件事之后，总结一下自己的感悟，给自己灌灌鸡汤：如果还在犹豫是否要去尝试一件事情，如果你恰好还可以挤出一些时间，那么就不要犹豫，去尝试就好了，麻烦的事情，麻烦了之后就少一个麻烦了。</p>
 ]]></content>
       <categories>
         <category>hexo</category>
@@ -415,17 +520,18 @@
     <title>Hello World</title>
     <url>/2019/12/19/hello-world/</url>
     <content><![CDATA[<p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
+<h2 id="quick-start"><a class="markdownIt-Anchor" href="#quick-start"></a> Quick Start</h2>
+<h3 id="create-a-new-post"><a class="markdownIt-Anchor" href="#create-a-new-post"></a> Create a new post</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
+<h3 id="run-server"><a class="markdownIt-Anchor" href="#run-server"></a> Run server</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
+<h3 id="generate-static-files"><a class="markdownIt-Anchor" href="#generate-static-files"></a> Generate static files</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
+<h3 id="deploy-to-remote-sites"><a class="markdownIt-Anchor" href="#deploy-to-remote-sites"></a> Deploy to remote sites</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
 <p>More info: <a href="https://hexo.io/docs/one-command-deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 ]]></content>
   </entry>
