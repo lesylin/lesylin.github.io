@@ -1,6 +1,527 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>leetcode-排序</title>
+    <url>/2020/06/24/leetcode-%E6%8E%92%E5%BA%8F/</url>
+    <content><![CDATA[<h1 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h1>
+<p>回顾一下八大排序还有在leetcode中排序的经典题目。</p>
+<ul>
+<li>215-数组中的第k个最大元素</li>
+<li>347-前k个高频元素</li>
+<li>451-根据字符出现频率排序</li>
+<li>75-颜色分类</li>
+</ul>
+<p>根据在排序过程中待排序记录是否全部被放置在内存中，排序分为：内排序和外排序。</p>
+<p>内排序是在排序整个过程中，待排序的所有记录全部被放置在内存中。（八大排序）</p>
+<p>外排序是由于排序的记录个数太多，不能同时放置在内存，整个排序过程需要在内外存之间多次交换数据才能进行。</p>
+<h1 id="八大排序"><a class="markdownIt-Anchor" href="#八大排序"></a> 八大排序</h1>
+<ul>
+<li>插入排序
+<ul>
+<li>直接插入排序</li>
+<li>希尔排序</li>
+</ul>
+</li>
+<li>选择排序：
+<ul>
+<li>简单选择排序</li>
+<li>堆排序</li>
+</ul>
+</li>
+<li>交换排序：
+<ul>
+<li>冒泡排序</li>
+<li>快速排序</li>
+</ul>
+</li>
+<li>归并排序</li>
+<li>基数排序</li>
+</ul>
+<h2 id="直接插入排序"><a class="markdownIt-Anchor" href="#直接插入排序"></a> 直接插入排序</h2>
+<h3 id="基本思想"><a class="markdownIt-Anchor" href="#基本思想"></a> 基本思想</h3>
+<p> 把n个待排序的元素看成为一个有序表和一个无序表。开始时有序表中只包含1个元素，无序表中包含有n-1个元素，排序过程中每次从无序表中取出第一个元素，将它插入到有序表中的适当位置，使之成为新的有序表，重复n-1次可完成排序过程。</p>
+<h3 id="步骤"><a class="markdownIt-Anchor" href="#步骤"></a> 步骤</h3>
+<ol>
+<li>从第一个元素开始，该元素可以认为已经被排序</li>
+<li>取出下一个元素，在已经排序的元素序列中从后向前扫描</li>
+<li>如果该元素（已排序）大于新元素，将该元素移到下一位置</li>
+<li>重复步骤3，直到找到已排序的元素小于或者等于新元素的位置</li>
+<li>将新元素插入到该位置后</li>
+<li>重复步骤2~5</li>
+</ol>
+<h3 id="代码"><a class="markdownIt-Anchor" href="#代码"></a> 代码</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#直接插入排序</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insertionSort</span><span class="params">(arr)</span>:</span></span><br><span class="line">    n = len(arr)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, n):</span><br><span class="line">        key = arr[i]</span><br><span class="line">        j = i - <span class="number">1</span></span><br><span class="line">        <span class="keyword">while</span> j &gt;= <span class="number">0</span> <span class="keyword">and</span> key &lt; arr[j]:</span><br><span class="line">            arr[j + <span class="number">1</span>] = arr[j]</span><br><span class="line">            j -= <span class="number">1</span></span><br><span class="line">        arr[j + <span class="number">1</span>] = key</span><br><span class="line"></span><br><span class="line">arr1 = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">5</span>]</span><br><span class="line">insertionSort(arr1)</span><br><span class="line">print(arr1)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>时间复杂度</strong>：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></li>
+<li><strong>空间复杂度</strong>：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span></li>
+<li><strong>稳定性</strong>：稳定</li>
+</ul>
+<h2 id="希尔排序"><a class="markdownIt-Anchor" href="#希尔排序"></a> 希尔排序</h2>
+<h3 id="基本思想-2"><a class="markdownIt-Anchor" href="#基本思想-2"></a> 基本思想</h3>
+<p> 先将整个待排序的记录序列分割成为若干子序列分别进行直接插入排序，待整个序列中的记录&quot;基本有序&quot;时，再对全体记录进行依次直接插入排序。</p>
+<h3 id="步骤-2"><a class="markdownIt-Anchor" href="#步骤-2"></a> 步骤</h3>
+<ol>
+<li>选择一个增量序列<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>t</mi><mn>1</mn></msub><mo separator="true">,</mo><msub><mi>t</mi><mn>2</mn></msub><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msub><mi>t</mi><mi>k</mi></msub></mrow><annotation encoding="application/x-tex">t_1,t_2,...,t_k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.80952em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.30110799999999993em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，其中<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>t</mi><mi>i</mi></msub><mo>&gt;</mo><msub><mi>t</mi><mi>j</mi></msub><mo separator="true">,</mo><msub><mi>t</mi><mi>k</mi></msub><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">t_i &gt; t_j, t_k = 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.9011879999999999em;vertical-align:-0.286108em;"></span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.311664em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.286108em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.33610799999999996em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span></li>
+<li>按增量序列个数k，对序列进行k 趟排序；</li>
+<li>每趟排序，根据对应的增量<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>t</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">t_i</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76508em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault">t</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.31166399999999994em;"><span style="top:-2.5500000000000003em;margin-left:0em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>，将待排序列分割成若干长度为m 的子序列，分别对各子表进行直接插入排序。仅增量因子为1 时，整个序列作为一个表来处理，表长度即为整个序列的长度。</li>
+</ol>
+<p> 我们简单处理增量序列：增量序列$d = {n/2 ,n/4, n/8 …1} <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">，</mi></mrow><annotation encoding="application/x-tex">，</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0em;vertical-align:0em;"></span><span class="mord cjk_fallback">，</span></span></span></span>n<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">为</mi><mi mathvariant="normal">要</mi><mi mathvariant="normal">排</mi><mi mathvariant="normal">序</mi><mi mathvariant="normal">数</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">个</mi><mi mathvariant="normal">数</mi><mi mathvariant="normal">。</mi><mi mathvariant="normal">即</mi><mi mathvariant="normal">：</mi><mi mathvariant="normal">先</mi><mi mathvariant="normal">将</mi><mi mathvariant="normal">要</mi><mi mathvariant="normal">排</mi><mi mathvariant="normal">序</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">一</mi><mi mathvariant="normal">组</mi><mi mathvariant="normal">记</mi><mi mathvariant="normal">录</mi><mi mathvariant="normal">按</mi><mi mathvariant="normal">某</mi><mi mathvariant="normal">个</mi><mi mathvariant="normal">增</mi><mi mathvariant="normal">量</mi></mrow><annotation encoding="application/x-tex">为要排序数的个数。即：先将要排序的一组记录按某个增量</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0em;vertical-align:0em;"></span><span class="mord cjk_fallback">为</span><span class="mord cjk_fallback">要</span><span class="mord cjk_fallback">排</span><span class="mord cjk_fallback">序</span><span class="mord cjk_fallback">数</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">个</span><span class="mord cjk_fallback">数</span><span class="mord cjk_fallback">。</span><span class="mord cjk_fallback">即</span><span class="mord cjk_fallback">：</span><span class="mord cjk_fallback">先</span><span class="mord cjk_fallback">将</span><span class="mord cjk_fallback">要</span><span class="mord cjk_fallback">排</span><span class="mord cjk_fallback">序</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">一</span><span class="mord cjk_fallback">组</span><span class="mord cjk_fallback">记</span><span class="mord cjk_fallback">录</span><span class="mord cjk_fallback">按</span><span class="mord cjk_fallback">某</span><span class="mord cjk_fallback">个</span><span class="mord cjk_fallback">增</span><span class="mord cjk_fallback">量</span></span></span></span>d$（n/2,n为要排序数的个数）分成若干组子序列，每组中记录的下标相差d。</p>
+<p> 对每组中全部元素进行直接插入排序，然后再用一个较小的增量<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">（</mi><mi>d</mi><mi mathvariant="normal">/</mi><mn>2</mn><mi mathvariant="normal">）</mi></mrow><annotation encoding="application/x-tex">（d/2）</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord cjk_fallback">（</span><span class="mord mathdefault">d</span><span class="mord">/</span><span class="mord">2</span><span class="mord cjk_fallback">）</span></span></span></span>对它进行分组，在每组中再进行直接插入排序。继续不断缩小增量直至为<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>1</mn></mrow><annotation encoding="application/x-tex">1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>，最后使用直接插入排序完成排序。</p>
+<h3 id="代码-2"><a class="markdownIt-Anchor" href="#代码-2"></a> 代码</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#希尔排序</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shellSort</span><span class="params">(arr)</span>:</span></span><br><span class="line">    </span><br><span class="line">    n = len(arr)</span><br><span class="line">    gap = int(n/<span class="number">2</span>)</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> gap &gt; <span class="number">0</span>:</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(gap , n):</span><br><span class="line">            </span><br><span class="line">            temp = arr[i]</span><br><span class="line">            j = i</span><br><span class="line">            <span class="keyword">while</span> j &gt;= gap <span class="keyword">and</span> arr[j - gap] &gt; temp:</span><br><span class="line">                arr[j] = arr[j - gap]</span><br><span class="line">                j -= gap</span><br><span class="line">            arr[j] = temp</span><br><span class="line">        gap = int(gap/<span class="number">2</span>)</span><br><span class="line">    </span><br><span class="line">arr1 = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">5</span>]</span><br><span class="line">shellSort(arr1)</span><br><span class="line">print(arr1)</span><br></pre></td></tr></table></figure>
+<p> 希尔排序时效分析很难，关键码的比较次数与记录移动次数依赖于增量因子序列d的选取，特定情况下可以准确估算出关键码的比较次数和记录的移动次数。目前还没有人给出选取最好的增量因子序列的方法。增量因子序列可以有各种取法，有取奇数的，也有取质数的，但需要注意：增量因子中除1 外没有公因子，且最后一个增量因子必须为1。</p>
+<ul>
+<li>
+<p><strong>时间复杂度</strong>：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></p>
+</li>
+<li>
+<p><strong>空间复杂度</strong>：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span></p>
+</li>
+<li>
+<p><strong>稳定性</strong>：不稳定</p>
+</li>
+</ul>
+<h2 id="简单选择排序"><a class="markdownIt-Anchor" href="#简单选择排序"></a> 简单选择排序</h2>
+<h3 id="基本思想-3"><a class="markdownIt-Anchor" href="#基本思想-3"></a> 基本思想</h3>
+<p> 首先在未排序序列中找到最小（大）元素，存放到排序序列的起始位置，然后，再从剩余未排序元素中继续寻找最小（大）元素，然后放到已排序序列的末尾。以此类推，直到所有元素均排序完毕。</p>
+<h3 id="步骤-3"><a class="markdownIt-Anchor" href="#步骤-3"></a> 步骤</h3>
+<ol>
+<li>从第一个元素开始，该元素可以被认为已经排序</li>
+<li>从未排序的元素中，取出一个元素，与已排序的最后一个元素比较</li>
+<li>如果已排序的最后一个元素大于该元素，则交换位置</li>
+<li>直到排序完成</li>
+</ol>
+<h3 id="代码-3"><a class="markdownIt-Anchor" href="#代码-3"></a> 代码</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#简单选择排序</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">selectionSort</span><span class="params">(arr)</span>:</span></span><br><span class="line">    n = len(arr)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">        min_idx = i</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(i + <span class="number">1</span>, n):</span><br><span class="line">            <span class="keyword">if</span> arr[min_idx] &gt; arr[j]:</span><br><span class="line">                min_idx = j</span><br><span class="line">        arr[i], arr[min_idx] = arr[min_idx], arr[i]</span><br><span class="line"></span><br><span class="line">arr1 = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">5</span>]</span><br><span class="line">selectionSort(arr1)</span><br><span class="line">print(arr1)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>时间复杂度</strong>：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></li>
+<li><strong>空间复杂度</strong>：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span></li>
+<li><strong>稳定性</strong>：稳定</li>
+</ul>
+<h2 id="堆排序"><a class="markdownIt-Anchor" href="#堆排序"></a> 堆排序</h2>
+<h3 id="基本思想-4"><a class="markdownIt-Anchor" href="#基本思想-4"></a> 基本思想</h3>
+<ul>
+<li><strong>概念</strong>：堆排序(Heap Sort)是利用堆这种数据结构而设计的一种排序算法，是对直接选择排序的有效改进。</li>
+<li><strong>堆是具有以下性质的完全二叉树</strong>：每个结点的值都大于或等于其左右孩子结点的值，称为大顶堆；或者每个结点的值都小于或等于其左右孩子结点的值，称为小顶堆。</li>
+<li><strong>堆排序思想</strong>：将一个无序序列调整为一个堆，就能找出序列中的最大值（或最小值），然后将找出的这个元素与末尾元素交换，这样有序序列元素就增加一个，无序序列元素就减少一个，对新的无序序列重复操作，从而实现排序。</li>
+<li><strong>堆的应用</strong>：是实现优先队列首选的数据结构，解决 TopK 问题、堆排序等。</li>
+</ul>
+<h3 id="步骤-4"><a class="markdownIt-Anchor" href="#步骤-4"></a> 步骤</h3>
+<ol>
+<li>构造初始堆。将给定无序序列构造成一个大顶堆（一般升序采用大顶堆，降序采用小顶堆)；</li>
+<li>将堆顶元素与末尾元素进行交换，使末尾元素最大。然后继续调整堆，再将堆顶元素与末尾元素交换，得到第二大元素；</li>
+<li>重新调整结构，使其满足堆定义，然后继续交换堆顶元素与当前末尾元素；</li>
+<li>如此反复进行交换、重建、交换，直到整个序列有序。</li>
+</ol>
+<p> 从算法描述来看，**堆排序需要两个过程，一是建立堆，二是堆顶与堆的最后一个元素交换位置。**所以堆排序有两个函数组成。一是建堆的渗透函数，二是反复调用渗透函数实现排序的函数。</p>
+<h3 id="代码-4"><a class="markdownIt-Anchor" href="#代码-4"></a> 代码</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#堆排序-升序-大顶堆</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#调整堆</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">heapify</span><span class="params">(arr, n, i)</span>:</span>  </span><br><span class="line">    </span><br><span class="line">    largest = i</span><br><span class="line">    l = <span class="number">2</span> * i + <span class="number">1</span>     <span class="comment">#left = 2 * i + 1</span></span><br><span class="line">    r = <span class="number">2</span> * i + <span class="number">2</span>     <span class="comment">#right = 2 * i + 2</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> l &lt; n <span class="keyword">and</span> arr[i] &lt; arr[l]:   <span class="comment">#小顶堆：if l &lt; n and arr[i] &gt; arr[l]</span></span><br><span class="line">        largest = l</span><br><span class="line">    <span class="keyword">if</span> r &lt; n <span class="keyword">and</span> arr[largest] &lt; arr[r]:  <span class="comment">#小顶堆：if l &lt; n and arr[i] &gt; arr[l]</span></span><br><span class="line">        largest = r</span><br><span class="line">    <span class="keyword">if</span> largest != i:</span><br><span class="line">        arr[i], arr[largest] = arr[largest], arr[i]  <span class="comment">#change</span></span><br><span class="line">        </span><br><span class="line">        heapify(arr, n, largest)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">heapSort</span><span class="params">(arr)</span>:</span></span><br><span class="line">    n = len(arr)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#bulid a maxheap</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n, <span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line">        heapify(arr, n, i)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#一个个交换元素</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n - <span class="number">1</span>, <span class="number">0</span>, <span class="number">-1</span>):</span><br><span class="line">        arr[i], arr[<span class="number">0</span>] = arr[<span class="number">0</span>], arr[i]  <span class="comment">#change</span></span><br><span class="line">        heapify(arr, i, <span class="number">0</span>)</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line">arr1 = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">5</span>]</span><br><span class="line">heapSort(arr1)</span><br><span class="line">print(arr1)</span><br><span class="line"></span><br><span class="line"><span class="string">'''</span></span><br><span class="line"><span class="string">output:1,2,3,4,5</span></span><br><span class="line"><span class="string">'''</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#完善版</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Heap</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self,s)</span>:</span></span><br><span class="line">        self.heap = self.bulid_max_heap(s)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">max_heapify</span><span class="params">(self, heap, heap_size, root)</span>:</span></span><br><span class="line">        left = <span class="number">2</span> * root + <span class="number">1</span></span><br><span class="line">        right = <span class="number">2</span> * root + <span class="number">2</span></span><br><span class="line">        larger = root</span><br><span class="line">        <span class="comment">#如果小于 list 的长度则进行判断。</span></span><br><span class="line">        <span class="keyword">if</span> left &lt;= heap_size <span class="keyword">and</span> heap[larger] &lt; heap[left]:</span><br><span class="line">            larger = left</span><br><span class="line">        <span class="keyword">if</span> right &lt;= heap_size <span class="keyword">and</span> heap[larger] &lt; heap[right]:</span><br><span class="line">            larger = right</span><br><span class="line">        <span class="keyword">if</span> larger != root:</span><br><span class="line">            <span class="comment">#相当于如果交换就与最小的那个交换</span></span><br><span class="line">            heap[larger], heap[root] = heap[root], heap[larger]</span><br><span class="line">            self.max_heapify(heap, heap_size, larger)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">bulid_max_heap</span> <span class="params">(self, heap)</span>:</span></span><br><span class="line">        heap_size = len(heap) - <span class="number">1</span></span><br><span class="line">        <span class="comment">#即从最后一个非叶子结点进行对排序，一直到根结点，</span></span><br><span class="line">        <span class="comment">#确保每一个子堆都是大根堆</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range((heap_size - <span class="number">1</span>)//<span class="number">2</span>, <span class="number">-1</span>, <span class="number">-1</span>):</span><br><span class="line">            self.max_heapify(heap, heap_size,i)</span><br><span class="line">        <span class="keyword">return</span> heap</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">heap_sort</span><span class="params">(self)</span>:</span></span><br><span class="line">        heap = copy.copy(self.heap)</span><br><span class="line">        <span class="comment">#对大根堆进行排序，即把最大值放到最后,</span></span><br><span class="line">        <span class="comment">#再把最后一个值放到最前，然后进行堆排序，</span></span><br><span class="line">        <span class="comment">#循环，直到 list 从小到大排好序。</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(len(heap)<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">-1</span>):</span><br><span class="line">            heap[<span class="number">0</span>],heap[i] = heap[i],heap[<span class="number">0</span>]</span><br><span class="line">            self.max_heapify(heap, i - <span class="number">1</span>, <span class="number">0</span>)</span><br><span class="line">        <span class="keyword">return</span> heap</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">heap_insert</span><span class="params">(self, data)</span>:</span></span><br><span class="line">        heap = self.heap</span><br><span class="line">        heap.append(data)</span><br><span class="line"></span><br><span class="line">        heap_size = len(heap) - <span class="number">1</span></span><br><span class="line">        father = (heap_size - <span class="number">1</span>) // <span class="number">2</span></span><br><span class="line">        son = heap_size</span><br><span class="line">        <span class="keyword">while</span> father&gt;=<span class="number">0</span>:</span><br><span class="line">            <span class="keyword">if</span> heap[father] &lt; heap[son]:</span><br><span class="line">                heap[father],heap[son] = heap[son], heap[father]</span><br><span class="line">                son = father</span><br><span class="line">                father = (father <span class="number">-1</span>) // <span class="number">2</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">return</span> heap</span><br><span class="line">    </span><br><span class="line">a = [<span class="number">30</span>, <span class="number">50</span>, <span class="number">57</span>, <span class="number">77</span>, <span class="number">62</span>, <span class="number">78</span>, <span class="number">94</span>, <span class="number">80</span>, <span class="number">84</span>]</span><br><span class="line">heap = Heap(a)</span><br><span class="line">print(heap.heap)</span><br><span class="line"></span><br><span class="line">heap.heap_insert(<span class="number">100</span>)</span><br><span class="line">heap.heap_insert(<span class="number">1</span>)</span><br><span class="line">print(heap.heap)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>时间复杂度</strong>：O(nlogn)
+<ul>
+<li>初始化建堆过程时间：O(n)</li>
+<li>更改堆元素后重建堆时间：O(nlogn)，循环 n -1 次，每次都是从根节点往下循环查找，所以每一次时间是 logn，总时间：logn(n-1) = nlogn - logn ，所以复杂度是 O(nlogn)</li>
+</ul>
+</li>
+<li><strong>空间复杂度</strong>：O(1)</li>
+<li><strong>稳定性</strong>：不稳定</li>
+</ul>
+<h3 id="qa"><a class="markdownIt-Anchor" href="#qa"></a> Q&amp;A</h3>
+<p>Q1：如何把一棵完全二叉树构造成一个大顶堆？</p>
+<p>A1：一个很好的方法是遍历二叉树的非叶子节点<strong>自下往上</strong>的构造大顶堆，针对每个非叶子节点，都跟它的左右子节点比较，把最大的值换到这个子树的父节点。</p>
+<hr>
+<p>Q2：为什么要从非叶子节点开始，而不是从最后一个节点开始？</p>
+<p>A2：因为叶子节点下面没有子节点了，就没必要操作了。</p>
+<hr>
+<p>Q3：为什么要从下往上而不是从上往下遍历非叶子节点？</p>
+<p>A3：我们从下面开始遍历调整每个节点成为它左右节点的最大值，那么一直往上的话，最后根节点一定是最大的值；但是如果我们从上往下，上面满足了大顶堆，下面不满足，调整后，上面可能又不满足了，所以从下往上是最好的方案。</p>
+<hr>
+<p>Q4：海量数据中找出最大的100个数字？</p>
+<p>A4：使用高效的排序算法，如快排、堆排。</p>
+<hr>
+<p>Q5：如果数据量很大，一个机器的内存不足以一次读取那么多数据，就不能使用A4方法。该如何解决？</p>
+<p>A5：不使用分布式机器计算，使用一个机器也能找出TopK的经典算法就是使用堆排序了，具体方法是：</p>
+<ul>
+<li>维护一个大小为 K 的<strong>小顶堆</strong>，依次将数据放入堆中，当堆的大小满了的时候，只需要将堆顶元素与下一个数比较
+<ul>
+<li>如果小于堆顶元素，则直接忽略，比较下一个元素；</li>
+<li>如果大于堆顶元素，则将当前的堆顶元素抛弃，并将该元素插入堆中。遍历完全部数据，Top K 的元素也自然都在堆里面了。</li>
+</ul>
+</li>
+</ul>
+<h2 id="冒泡排序"><a class="markdownIt-Anchor" href="#冒泡排序"></a> 冒泡排序</h2>
+<h3 id="基本思想-5"><a class="markdownIt-Anchor" href="#基本思想-5"></a> 基本思想</h3>
+<p> 在要排序的一组数中，对当前还未排好序的范围内的全部数，自上而下对相邻的两个数依次进行比较和调整，让较大的数往下沉，较小的往上冒。即：每当两相邻的数比较后发现它们的排序与排序要求相反时，就将它们互换。</p>
+<h3 id="步骤-5"><a class="markdownIt-Anchor" href="#步骤-5"></a> 步骤</h3>
+<ol>
+<li>比较相邻的元素。如果第一个比第二个大，就交换他们两个。</li>
+<li>对每一对相邻元素作同样的工作，从开始第一对到结尾的最后一对。在这一点，最后的元素应该会是最大的数。</li>
+<li>针对所有的元素重复以上的步骤，除了最后一个。</li>
+<li>持续每次对越来越少的元素重复上面的步骤，直到没有任何一对数字需要比较。</li>
+</ol>
+<h3 id="代码-5"><a class="markdownIt-Anchor" href="#代码-5"></a> 代码</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#冒泡排序</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bubbleSort</span><span class="params">(arr)</span>:</span></span><br><span class="line">    n = len(arr)</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#遍历所有数组元素</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(n):</span><br><span class="line">        </span><br><span class="line">        <span class="comment">#Last i elements are already in place</span></span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>, n - i - <span class="number">1</span>):</span><br><span class="line">            </span><br><span class="line">            <span class="keyword">if</span> arr[j] &gt; arr[j + <span class="number">1</span>]:</span><br><span class="line">                arr[j], arr[j + <span class="number">1</span>] = arr[j + <span class="number">1</span>], arr[j]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">arr1 = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">5</span>]</span><br><span class="line">bubbleSort(arr1)</span><br><span class="line">print(arr1)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>时间复杂度</strong>：O(n^2)</li>
+<li><strong>空间复杂度</strong>：O(1)</li>
+<li><strong>稳定性</strong>：稳定</li>
+</ul>
+<h2 id="快速排序"><a class="markdownIt-Anchor" href="#快速排序"></a> 快速排序</h2>
+<h3 id="基本思想-6"><a class="markdownIt-Anchor" href="#基本思想-6"></a> 基本思想</h3>
+<p>快速排序使用分治法（Divide and conquer）策略来把一个序列（list）分为较小和较大的2个子序列，然后递归地排序两个子序列。</p>
+<h3 id="步骤-6"><a class="markdownIt-Anchor" href="#步骤-6"></a> 步骤</h3>
+<ol>
+<li>挑选基准值：从数列中挑出一个元素，称为&quot;基准&quot;（pivot）;</li>
+<li>分割：重新排序数列，所有比基准值小的元素摆放在基准前面，所有比基准值大的元素摆在基准后面（与基准值相等的数可以到任何一边）。在这个分割结束之后，对基准值的排序就已经完成;</li>
+<li>递归排序子序列：递归地将小于基准值元素的子序列和大于基准值元素的子序列排序。</li>
+</ol>
+<p>递归到最底部的判断条件是数列的大小是零或一，此时该数列显然已经有序。</p>
+<p>选取基准值有数种具体方法，此选取方法对排序的时间性能有决定性影响。</p>
+<h3 id="代码-6"><a class="markdownIt-Anchor" href="#代码-6"></a> 代码</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#快速排序-递归</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">partition</span><span class="params">(arr, low, high)</span>:</span></span><br><span class="line">    i = low - <span class="number">1</span>     <span class="comment">#最小元素索引</span></span><br><span class="line">    pivot = arr[high]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(low, high):</span><br><span class="line">        </span><br><span class="line">        <span class="comment">#当前元素小于或等于pivot</span></span><br><span class="line">        <span class="keyword">if</span> arr[j] &lt;= pivot:</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">            arr[i], arr[j] = arr[j], arr[i]</span><br><span class="line">            </span><br><span class="line">    arr[i + <span class="number">1</span>], arr[high] = arr[high], arr[i + <span class="number">1</span>]</span><br><span class="line">    <span class="keyword">return</span> i + <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># arr[] --&gt; 排序数组</span></span><br><span class="line"><span class="comment"># low --&gt; 起始索引</span></span><br><span class="line"><span class="comment"># high --&gt; 结束索引</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quickSort</span><span class="params">(arr, low, high)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> low &lt; high:</span><br><span class="line">        </span><br><span class="line">        pi = partition(arr, low, high)</span><br><span class="line">        </span><br><span class="line">        quickSort(arr, low, pi - <span class="number">1</span>)</span><br><span class="line">        quickSort(arr, pi + <span class="number">1</span>, high)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">arr1 = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">5</span>]</span><br><span class="line">quickSort(arr1, <span class="number">0</span>, len(arr1) - <span class="number">1</span>)</span><br><span class="line">print(arr1)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>任何递归的本质，实际上就是入栈出栈的过程。也就是说只要是递归的，都可以改成非递归，因此快排也可以通过栈来实现。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#快速排序-非递归</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">partition</span><span class="params">(arr, low, high)</span>:</span></span><br><span class="line">    i = low - <span class="number">1</span>     <span class="comment">#最小元素索引</span></span><br><span class="line">    pivot = arr[high]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(low, high):</span><br><span class="line">        </span><br><span class="line">        <span class="comment">#当前元素小于或等于pivot</span></span><br><span class="line">        <span class="keyword">if</span> arr[j] &lt;= pivot:</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">            arr[i], arr[j] = arr[j], arr[i]</span><br><span class="line">            </span><br><span class="line">    arr[i + <span class="number">1</span>], arr[high] = arr[high], arr[i + <span class="number">1</span>]</span><br><span class="line">    <span class="keyword">return</span> i + <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># arr[] --&gt; 排序数组</span></span><br><span class="line"><span class="comment"># low --&gt; 起始索引</span></span><br><span class="line"><span class="comment"># high --&gt; 结束索引</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quickSort</span><span class="params">(arr, low, high)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> len(arr) &lt; <span class="number">2</span>:</span><br><span class="line">        <span class="keyword">return</span> arr</span><br><span class="line">    stack = [len(arr) - <span class="number">1</span>, <span class="number">0</span>]</span><br><span class="line">    <span class="keyword">while</span> stack:</span><br><span class="line">        low = stack.pop()</span><br><span class="line">        high = stack.pop()</span><br><span class="line">        index = partition(arr, low, high)</span><br><span class="line">        <span class="keyword">if</span> low &lt; index - <span class="number">1</span>:</span><br><span class="line">            stack.append(index - <span class="number">1</span>)</span><br><span class="line">            stack.append(low)</span><br><span class="line">        <span class="keyword">if</span> high &gt; index + <span class="number">1</span>:</span><br><span class="line">            stack.append(index + <span class="number">1</span>)</span><br><span class="line">            stack.append(high)</span><br><span class="line"></span><br><span class="line">arr1 = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">5</span>]</span><br><span class="line">quickSort(arr1, <span class="number">0</span>, len(arr1) - <span class="number">1</span>)</span><br><span class="line">print(arr1)</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>时间复杂度</strong>：O(nlogn)~O(n^2)</li>
+<li><strong>空间复杂度</strong>：O(logn)~O(n)</li>
+<li><strong>稳定性</strong>：不稳定</li>
+</ul>
+<p> 快速排序是通常被认为在同数量级（O(nlog2n)）的排序方法中平均性能最好的。但<strong>若初始序列按关键码有序或基本有序时，快排序反而蜕化为冒泡排序</strong>。为改进之，通常以“三者取中法”来选取基准记录，即将排序区间的两个端点与中点三个记录关键码居中的调整为支点记录。快速排序是一个不稳定的排序方法。</p>
+<h2 id="归并排序"><a class="markdownIt-Anchor" href="#归并排序"></a> 归并排序</h2>
+<h3 id="基本思想-7"><a class="markdownIt-Anchor" href="#基本思想-7"></a> 基本思想</h3>
+<p> 归并（Merge）排序法是将两个（或两个以上）有序表合并成一个新的有序表，即把待排序序列分为若干个子序列，每个子序列是有序的。然后再把有序子序列合并为整体有序序列。该算法是采用分治法（Divide and Conquer）的一个非常典型的应用。</p>
+<h3 id="步骤-7"><a class="markdownIt-Anchor" href="#步骤-7"></a> 步骤</h3>
+<ul>
+<li>递归-有序数组的合并
+<ol>
+<li>设<code>arr[i…n]</code>由两个有序子表<code>arr[i…m]</code>和<code>arr[m+1…n]</code>组成，两个子表长度分别为<code>n-i +1</code>、<code>n-m</code>。</li>
+<li><code>j=m+1；k=i；i=i;</code> //置两个子表的起始下标及辅助数组的起始下标</li>
+<li>若<code>i&gt;m</code> 或<code>j&gt;n</code>，转4 //其中一个子表已合并完，比较选取结束</li>
+<li>//选取<code>arr[i]</code>和<code>arr[j]</code>较小的存入辅助数组<code>arrf</code><br>
+如果<code>arr[i]&lt;arr[j]，arrf[k]=arr[i]； i++； k++；</code> 转2<br>
+否则，<code>arrf[k]=arr[j]； j++； k++</code>； 转2</li>
+<li>//将尚未处理完的子表中元素存入arrf<br>
+如果<code>i&lt;=m</code>，将<code>arr[i…m]</code>存入<code>arrf[k…n]</code> //前一子表非空<br>
+如果<code>j&lt;=n</code> ,  将<code>arr[j…n]</code> 存入<code>arrf[k…n]</code> //后一子表非空</li>
+<li>合并结束。</li>
+</ol>
+</li>
+<li>非递归-不需要额外的空间。直接在原数组上进行切割合并</li>
+</ul>
+<h3 id="代码-7"><a class="markdownIt-Anchor" href="#代码-7"></a> 代码</h3>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#归并排序-递归（按步骤描述的代码）</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#归并排序</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge</span><span class="params">(arr, l, m, r)</span>:</span></span><br><span class="line">    n1 = m - l + <span class="number">1</span></span><br><span class="line">    n2 = r - m</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#创建临时数组</span></span><br><span class="line">    L = [<span class="number">0</span>] * n1</span><br><span class="line">    R = [<span class="number">0</span>] * n2</span><br><span class="line">    </span><br><span class="line">    <span class="comment">#拷贝数据到临时数组 arrays L[] 和 R[]</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>, n1):</span><br><span class="line">        L[i] = arr[l + i]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">0</span>, n2):</span><br><span class="line">        R[j] = arr[m + <span class="number">1</span> + j]</span><br><span class="line">        </span><br><span class="line">    <span class="comment">#归并临时数组到arr[l..r]</span></span><br><span class="line">    i = <span class="number">0</span>   <span class="comment">#初始化第一个子数组的索引</span></span><br><span class="line">    j = <span class="number">0</span>   <span class="comment">#初始化第二个子数组的索引</span></span><br><span class="line">    k = l   <span class="comment">#初始归并子数组的索引</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> i &lt; n1 <span class="keyword">and</span> j &lt; n2:</span><br><span class="line">        <span class="keyword">if</span> L[i] &lt;= R[j]:</span><br><span class="line">            arr[k] = L[i]</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            arr[k] = R[j]</span><br><span class="line">            j += <span class="number">1</span></span><br><span class="line">        k += <span class="number">1</span> </span><br><span class="line">  </span><br><span class="line">    <span class="comment"># 拷贝 L[] 的保留元素</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; n1: </span><br><span class="line">        arr[k] = L[i] </span><br><span class="line">        i += <span class="number">1</span></span><br><span class="line">        k += <span class="number">1</span></span><br><span class="line">  </span><br><span class="line">    <span class="comment"># 拷贝 R[] 的保留元素</span></span><br><span class="line">    <span class="keyword">while</span> j &lt; n2: </span><br><span class="line">        arr[k] = R[j] </span><br><span class="line">        j += <span class="number">1</span></span><br><span class="line">        k += <span class="number">1</span></span><br><span class="line">        </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mergeSort</span><span class="params">(arr,l,r)</span>:</span> </span><br><span class="line">    <span class="keyword">if</span> l &lt; r: </span><br><span class="line">  </span><br><span class="line">        </span><br><span class="line">        m = int((l+(r<span class="number">-1</span>))/<span class="number">2</span>)</span><br><span class="line">  </span><br><span class="line">       </span><br><span class="line">        mergeSort(arr, l, m) </span><br><span class="line">        mergeSort(arr, m+<span class="number">1</span>, r) </span><br><span class="line">        merge(arr, l, m, r) </span><br><span class="line">  </span><br><span class="line">  </span><br><span class="line">arr1 = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">5</span>]</span><br><span class="line">mergeSort(arr1, <span class="number">0</span>, len(arr1) - <span class="number">1</span>)</span><br><span class="line">print(arr1)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#归并排序-简化版递归！！</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge</span><span class="params">(left, right)</span>:</span></span><br><span class="line">    result = []</span><br><span class="line">    l = r = <span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> l &lt; len(left) <span class="keyword">and</span> r &lt; len(right):</span><br><span class="line">        <span class="keyword">if</span> left[l] &lt; right[r]:</span><br><span class="line">            result.append(left[l])</span><br><span class="line">            l += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            result.append(right[r])</span><br><span class="line">            r += <span class="number">1</span></span><br><span class="line">    result += left[l:]</span><br><span class="line">    result += right[r:]</span><br><span class="line">    <span class="keyword">return</span> result</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mergeSort</span><span class="params">(arr)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> len(arr) &lt;= <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> arr</span><br><span class="line">    mid = len(arr)//<span class="number">2</span></span><br><span class="line">    left = mergeSort(arr[:mid])</span><br><span class="line">    right = mergeSort(arr[mid:])</span><br><span class="line">    <span class="keyword">return</span> merge(left, right)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">arr = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">5</span>]</span><br><span class="line">print(mergeSort(arr))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment">#非递归</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge</span><span class="params">(arr, l, m, r)</span>:</span></span><br><span class="line">    left = arr[l: m]    <span class="comment">#切割数组</span></span><br><span class="line">    right = arr[m: r]</span><br><span class="line">    l = <span class="number">0</span> <span class="comment">#指向左边数组的索引 </span></span><br><span class="line">    r = <span class="number">0</span> <span class="comment">#指向右边数组的索引</span></span><br><span class="line">    result = []</span><br><span class="line">    <span class="keyword">while</span> l &lt; len(left) <span class="keyword">and</span> r &lt; len(right):</span><br><span class="line">        <span class="keyword">if</span> left[l] &lt;= right[r]:</span><br><span class="line">            result.append(left[l])</span><br><span class="line">            l += <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            result.append(right[r])</span><br><span class="line">            r += <span class="number">1</span></span><br><span class="line">    result += left[l:]</span><br><span class="line">    result += right[r:]</span><br><span class="line">    arr[l: r] = result</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">mergeSort</span><span class="params">(arr)</span>:</span></span><br><span class="line">    i = <span class="number">1</span> <span class="comment"># 初始时子数组元素个数是1</span></span><br><span class="line">    <span class="keyword">while</span> i &lt; len(arr):</span><br><span class="line">        low = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> low &lt; len(arr):</span><br><span class="line">            mid = low + i <span class="comment">#mid前后均为有序</span></span><br><span class="line">            right = min(low + <span class="number">2</span> * i, len(arr))</span><br><span class="line">            <span class="keyword">if</span> mid &lt; right: </span><br><span class="line">                merge(arr, low, mid, right)</span><br><span class="line">            low += <span class="number">2</span> * i</span><br><span class="line">        i *= <span class="number">2</span>  <span class="comment">#每次合并两个，子数组元素个数是以2的倍数增长</span></span><br><span class="line">        </span><br><span class="line">arr = [<span class="number">1</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">2</span>,<span class="number">5</span>]</span><br><span class="line">mergeSort(arr)</span><br><span class="line">print(mergeSort(arr))</span><br></pre></td></tr></table></figure>
+<ul>
+<li><strong>时间复杂度</strong>：O(nlogn)</li>
+<li><strong>空间复杂度</strong>：O(n)</li>
+<li><strong>稳定性</strong>：稳定</li>
+</ul>
+<h2 id="计数排序桶排序基数排序了解"><a class="markdownIt-Anchor" href="#计数排序桶排序基数排序了解"></a> 计数排序&amp;桶排序&amp;基数排序（了解）</h2>
+<p> 计数排序，基数排序，桶排序等<strong>非比较排序算法</strong>，<strong>平均时间复杂度都是O(n)</strong>。这些排序因为其待排序元素本身就<strong>含有了定位特征</strong>，因而不需要比较就可以确定其前后位置，从而可以突破比较排序算法时间复杂度O(nlgn)的理论下限。</p>
+<h3 id="计数排序"><a class="markdownIt-Anchor" href="#计数排序"></a> 计数排序</h3>
+<h4 id="介绍"><a class="markdownIt-Anchor" href="#介绍"></a> 介绍</h4>
+<p>计数排序是一种非基于元素比较的排序算法，而是将待排序数组元素转化为计数数组的索引值，从而间接使待排序数组具有顺序性。</p>
+<p>计数排序的实现一般有两种形式：基于辅助数组和基于桶排序。</p>
+<ul>
+<li>基于辅助数组
+<ul>
+<li>整个过程包含三个数组：待排序数组A、计数数组B和输出数组C。</li>
+<li>简单来说，就是通过统计待排序数组A中元素不同值的分布直方图，生成计数数组B，然后计算计数数组B的前缀和(此步操作可以看成计算待排序数组A中每个元素的位置信息)，最后通过逆序循环将元素对应赋值到输出数组C中，输出数组C即是最终排序结果。</li>
+</ul>
+</li>
+<li>基于桶排序
+<ul>
+<li>其实就是用桶排序来维护稳定性，因为在每个桶中的元素是以队列结构排序的，可以维护元素的顺序。</li>
+<li>主要步骤：
+<ol>
+<li>按元素的最大健值与最小健值之差来创建指定数量的桶，并在每个桶中创建一个队列。</li>
+<li>按顺序遍历待排序数组，将它们放到对应桶的队列中。</li>
+<li>按桶编号顺序进行遍历，将每个桶中队列按顺序输出回原数组中。</li>
+</ol>
+</li>
+<li>举例：
+<ul>
+<li>nums=[2, 1, 3, 1, 5] , 首先扫描一遍获取最小值和最大值。 maxValue = 5 , minValue = 1 ，于是开一个长度maxValue - minValue + 1长度的计数器数组 counter 。
+<ol>
+<li>分配：扫描一遍原始数组，以当前值 - minValue 作为下标，将该下标的计数器增1。即统计每个元素出现的频率，得到 counter = [2, 1, 1, 0, 1] ，例如 counter[0] 表示值 0 + minValue = 1 出现了2次。</li>
+<li>收集：扫描一遍计数器数组，按顺序把值收集起来。即counter[0] = 2 表示 1 出现了两次，那就向原始数组写入两个1， counter[1] = 1 表示 2 出现了1次，那就向原始数组写入一个2，依次类推，最终原始数组变为 [1,1,2,3,5] ，排序好了。</li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>计数排序本质上是一种特殊的桶排序，当桶的个数最大的时候，就是计数排序。</li>
+<li><strong>缺点</strong>：可以看到辅助数组的长度和桶的数量由最大值和最小值决定，假如两者之差很大，而待排序数组又很小，那么就会导致辅助数组或桶大量浪费。</li>
+<li><strong>应用</strong>：计数排序是用来排序0到100之间的数字的最好的算法，但是它不适合按字母顺序排序人名。但是，<strong>计数排序可以用在基数排序中的算法来排序数据范围很大的数组</strong>。当输入的元素是 n 个 0 到 k 之间的整数时，它的运行时间是 O(n+k)。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">假定输入是个数组A【1...n】， length【A】&#x3D;n。 另外还需要一个存放排序结果的数组B【1...n】，以及提供临时存储区的C【0...k】(k是所有元素中最大的一个)。算法伪代码：</span><br><span class="line"></span><br><span class="line">COUNTING-SORT(A, B, n, k)</span><br><span class="line">for i &lt;- 0 to k</span><br><span class="line">	do C[i] &lt;- 0</span><br><span class="line">for j &lt;- 1 to n</span><br><span class="line">	do C[A[j]] &lt;- C[A[j]] + 1</span><br><span class="line">for i &lt;- 1 to k</span><br><span class="line">	do C[i] &lt;- C[i] + C[i - 1]</span><br><span class="line">for j &lt;- n downto 1</span><br><span class="line">	do B[C[A[j]]] &lt;- A[j]</span><br><span class="line">		 C[A[j]] &lt;- C[A[j]] - 1</span><br><span class="line">		 </span><br><span class="line">1、找出待排序的数组中最大和最小的元素</span><br><span class="line">2、统计数组中每个值为t的元素出现的次数，存入数组C的第t项</span><br><span class="line">3、对所有的计数累加（从C中的第一个元素开始，每一项和前一项相加）</span><br><span class="line">4、反向填充目标数组：将每个元素t放在新数组的第C(t)项，每放一个元素就将C(t)减去1</span><br></pre></td></tr></table></figure>
+<h4 id="代码-8"><a class="markdownIt-Anchor" href="#代码-8"></a> 代码</h4>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">countSort</span><span class="params">(arr)</span>:</span> </span><br><span class="line">  </span><br><span class="line">    output = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">256</span>)] </span><br><span class="line">  </span><br><span class="line">    count = [<span class="number">0</span> <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">256</span>)] </span><br><span class="line">  </span><br><span class="line">    ans = [<span class="string">""</span> <span class="keyword">for</span> _ <span class="keyword">in</span> arr] </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> arr: </span><br><span class="line">        count[ord(i)] += <span class="number">1</span></span><br><span class="line">  </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">256</span>): </span><br><span class="line">        count[i] += count[i<span class="number">-1</span>] </span><br><span class="line">  </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(arr)): </span><br><span class="line">        output[count[ord(arr[i])]<span class="number">-1</span>] = arr[i] </span><br><span class="line">        count[ord(arr[i])] -= <span class="number">1</span></span><br><span class="line">  </span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(arr)): </span><br><span class="line">        ans[i] = output[i] </span><br><span class="line">    <span class="keyword">return</span> ans  </span><br><span class="line">  </span><br><span class="line">arr = <span class="string">"wwwrunoobcom"</span></span><br><span class="line">ans = countSort(arr) </span><br><span class="line"><span class="keyword">print</span> ( <span class="string">"字符数组排序 %s"</span>  %(<span class="string">""</span>.join(ans)) )</span><br></pre></td></tr></table></figure>
+<ul>
+<li>计数排序的核心在于将输入的数据值转化为键存储在额外开辟的数组空间中。作为一种线性时间复杂度的排序，计数排序要求输入的数据必须是有确定范围的整数。</li>
+</ul>
+<h3 id="基数排序"><a class="markdownIt-Anchor" href="#基数排序"></a> 基数排序</h3>
+<h4 id="介绍-2"><a class="markdownIt-Anchor" href="#介绍-2"></a> 介绍</h4>
+<ul>
+<li>基数排序改善了计数排序，简单来说，<strong>基数排序算法就是将整数或字符串切分成不同的数字或字符，然后按对应位置的数或字符分别进行比较，这样就能将辅助数组或桶的数量降低到一个较小的值，经过多轮排序后得到最终的排序结果</strong>。</li>
+<li>是按照低位先排序，然后收集；再按照高位排序，然后再收集；依次类推，直到最高位。有时候有些属性是有优先级顺序的，先按低优先级排序，再按高优先级排序。最后的次序就是高优先级高的在前，高优先级相同的低优先级高的在前。基数排序基于分别排序，分别收集，所以是稳定的。</li>
+</ul>
+<h4 id="两种多关键码排序方法"><a class="markdownIt-Anchor" href="#两种多关键码排序方法"></a> 两种多关键码排序方法</h4>
+<ul>
+<li>实例：扑克牌中52 张牌，可按花色和面值分成两个字段，其大小关系为：
+<ul>
+<li>花色：梅花&lt;方块&lt;红心&lt;黑心</li>
+<li>面值：2&lt;3&lt;4&lt;5&lt;6 &lt; 7 &lt; 8 &lt; 9 &lt; 10 &lt; J &lt; Q &lt; K &lt; A</li>
+</ul>
+</li>
+</ul>
+<p> 若对扑克牌按花色、面值进行升序排序，得到如下序列：梅花2&lt;梅花3&lt;…&lt;梅花A&lt;方块2&lt;方块3&lt;…&lt;方块A&lt;红心2&lt;红心3&lt;…&lt;红心A&lt;黑心2&lt;黑心3&lt;…&lt;黑心A。</p>
+<p> 即两张牌，若花色不同，不论面值怎样，花色低的那张牌小于花色高的，只有在同花色情况下，大小关系才由面值的大小确定。这就是多关键码排序。</p>
+<ul>
+<li>
+<p>为得到排序结果，我们讨论两种排序方法:</p>
+<ul>
+<li>
+<p>方法1：先对花色排序，将其分为4 个组，即梅花组、方块组、红心组、黑心组。再对每个组分别按面值进行排序，最后，将4 个组连接起来即可。</p>
+</li>
+<li>
+<p>方法2：先按13 个面值给出13 个编号组(2 号，3 号，…，A 号)，将牌按面值依次放入对应的编号组，分成13 堆。再按花色给出4 个编号组(梅花、方块、红心、黑心)，将2号组中牌取出分别放入对应花色组，再将3 号组中牌取出分别放入对应花色组，……，这样，4 个花色组中均按面值有序，然后，将4 个花色组依次连接起来即可。</p>
+</li>
+<li>
+<p>设n 个元素的待排序列包含d 个关键码{k1，k2，…，kd}，则称序列对关键码{k1，k2，…，kd}有序是指：对于序列中任两个记录r[i]和r<a href="1%E2%89%A4i%E2%89%A4j%E2%89%A4n">j</a>都满足下列有序关系：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><msubsup><mi>k</mi><mi>i</mi><mn>1</mn></msubsup><mo separator="true">,</mo><msubsup><mi>k</mi><mi>i</mi><mn>2</mn></msubsup><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msubsup><mi>k</mi><mi>i</mi><mi>d</mi></msubsup><mo stretchy="false">)</mo><mo>&lt;</mo><mo stretchy="false">(</mo><msubsup><mi>k</mi><mi>j</mi><mn>1</mn></msubsup><mo separator="true">,</mo><msubsup><mi>k</mi><mi>j</mi><mn>2</mn></msubsup><mo separator="true">,</mo><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mi mathvariant="normal">.</mi><mo separator="true">,</mo><msubsup><mi>k</mi><mi>j</mi><mi>d</mi></msubsup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(k^1_i,k^2_i,...,k^d_i) &lt; (k^1_j,k^2_j,...,k^d_j)
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1491079999999998em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-2.4530000000000003em;margin-left:-0.03148em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8641079999999999em;"><span style="top:-2.4530000000000003em;margin-left:-0.03148em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8991079999999998em;"><span style="top:-2.4530000000000003em;margin-left:-0.03148em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">i</span></span></span><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">d</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.247em;"><span></span></span></span></span></span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.282216em;vertical-align:-0.383108em;"></span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.864108em;"><span style="top:-2.4530000000000003em;margin-left:-0.03148em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span><span style="top:-3.1130000000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.383108em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.864108em;"><span style="top:-2.4530000000000003em;margin-left:-0.03148em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span><span style="top:-3.1130000000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.383108em;"><span></span></span></span></span></span></span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">.</span><span class="mord">.</span><span class="mord">.</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.899108em;"><span style="top:-2.4530000000000003em;margin-left:-0.03148em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05724em;">j</span></span></span><span style="top:-3.1130000000000004em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">d</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.383108em;"><span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></span></p>
+</li>
+</ul>
+</li>
+</ul>
+<p>其中，其中k1 称为最主位关键码，kd 称为最次位关键码 。</p>
+<ul>
+<li>多关键码排序按照从最主位关键码到最次位关键码或从最次位到最主位关键码的顺序逐次排序，分两种方法：
+<ul>
+<li>最高位优先(Most Significant Digit first)法，简称MSD 法：
+<ol>
+<li>先按k1 排序分组，将序列分成若干子序列，同一组序列的记录中，关键码k1 相等。</li>
+<li>再对各组按k2 排序分成子组，之后，对后面的关键码继续这样的排序分组，直到按最次位关键码kd 对各子组排序后。</li>
+<li>再将各组连接起来，便得到一个有序序列。扑克牌按花色、面值排序中介绍的方法一即是MSD 法。</li>
+</ol>
+</li>
+<li>最低位优先(Least Significant Digit first)法，简称LSD 法：
+<ol>
+<li>先从kd 开始排序，再对kd-1进行排序，依次重复，直到按k1排序分组分成最小的子序列后。</li>
+<li>最后将各个子序列连接起来，便可得到一个有序的序列, 扑克牌按花色、面值排序中介绍的方法二即是LSD 法。</li>
+</ol>
+</li>
+</ul>
+</li>
+<li>由于不需要分堆对每堆单独排序，LSD方法往往比MSD简单而开销小。</li>
+</ul>
+<h4 id="基于lsd方法的链式基数排序的基本思想"><a class="markdownIt-Anchor" href="#基于lsd方法的链式基数排序的基本思想"></a> 基于LSD方法的链式基数排序的基本思想</h4>
+<p> “多关键字排序”的思想实现“单关键字排序”。对数字型或字符型的单关键字，可以看作由多个数位或多个字符构成的多关键字，此时可以采用“分配-收集”的方法进行排序，这一过程称作基数排序法，其中每个数字或字符可能的取值个数称为基数。比如，扑克牌的花色基数为4，面值基数为13。在整理扑克牌时，既可以先按花色整理，也可以先按面值整理。按花色整理时，先按红、黑、方、花的顺序分成4摞（分配），再按此顺序再叠放在一起（收集），然后按面值的顺序分成13摞（分配），再按此顺序叠放在一起（收集），如此进行二次分配和收集即可将扑克牌排列有序。</p>
+<p> 基数排序的简单描述就是将数字拆分为个位十位百位，每个位依次排序。因为这对算法稳定要求高，所以我们对数位排序用到上一个排序方法计数排序。因为基数排序要经过d (数据长度)次排序， 每次使用计数排序， 计数排序的复杂度为 On), d 相当于常量和N无关，所以<strong>基数排序也是 O(n)。<strong>基数排序虽然是线性复杂度， 即对n个数字处理了n次，但是每一次代价都比较高， 而且</strong>使用计数排序的基数排序不能进行原地排序，需要更多的内存</strong>， 并且快速排序可能更好地利用硬件的缓存， 所以比较起来，像快速排序这些原地排序算法更可取**。对于一个位数有限的十进制数，我们可以把它看作一个多元组，从高位到低位关键字重要程度依次递减。可以使用基数排序对一些位数有限的十进制数排序。**</p>
+<h4 id="步骤-8"><a class="markdownIt-Anchor" href="#步骤-8"></a> 步骤</h4>
+<ol>
+<li>将所有待排序整数（注意，必须是非负整数）统一为位数相同的整数，位数较少的前面补零。一般用10进制，也可以用16进制甚至2进制。所以前提是能够找到最大值，得到最长的位数，设 k 进制下最长为位数为 d 。</li>
+<li>从最低位开始，依次进行一次稳定排序。这样从最低位一直到最高位排序完成以后，整个序列就变成了一个有序序列。<br>
+举个例子，有一个整数序列，0, 123, 45, 386, 106，下面是排序过程：</li>
+</ol>
+<ul>
+<li>第一次排序，个位，000 123 045 386 106，无任何变化</li>
+<li>第二次排序，十位，000 106 123 045 386</li>
+<li>第三次排序，百位，000 045 106 123 386</li>
+<li>最终结果，0, 45, 106, 123, 386, 排序完成。</li>
+</ul>
+<h4 id="qa-2"><a class="markdownIt-Anchor" href="#qa-2"></a> Q&amp;A</h4>
+<p> 为什么同一数位的排序子程序要用稳定排序？因为稳定排序能将上一次排序的成果保留下来。例如十位数的排序过程能保留个位数的排序成果，百位数的排序过程能保留十位数的排序成果。能不能用2进制？能，可以把待排序序列中的每个整数都看成是01组成的二进制数值。那这样的话，岂不是任意一个非负整数序列都可以用基数排序算法？理论上是的，假设待排序序列中最大整数为2 4 . 1，则最大位数 d=64 ，时间复杂度为 O(64n) 。可见任意一个非负整数序列都可以在线性时间内完成排序。</p>
+<p> 既然任意一个非负整数序列都可以在线性时间内完成排序，那么基于比较排序的算法有什么意义呢？基于比较的排序算法，时间复杂度是 O(nlogn) ，看起来比 O(64n) 慢，仔细一想，其实不是， O(nlogn) 只有当序列非常长，达到2 个元素的时候，才会与 O(64n) 相等，因此，64这个常数系数太大了，大部分时候， n 远远小于2 ，基于比较的排序算法还是比 O(64n) 快的。<br>
+当使用2进制时， k=2 最小，位数 d 最大，时间复杂度 O(nd) 会变大，空间复杂度 O(n+k) 会变小。当用最大值作为基数时， k=maxV 最大， d=1 最小，此时时间复杂度 O(nd) 变小，但是空间复杂度 O(n+k) 会急剧增大，此时基数排序退化成了计数排序。</p>
+<h4 id="代码-9"><a class="markdownIt-Anchor" href="#代码-9"></a> 代码</h4>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">radix_sort</span><span class="params">(lists, radix=<span class="number">10</span>)</span>:</span></span><br><span class="line">    k = int(math.ceil(math.log(max(lists), radix)))</span><br><span class="line">    bucket = [[] <span class="keyword">for</span> i <span class="keyword">in</span> range(radix)]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>, k+<span class="number">1</span>):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> lists:</span><br><span class="line">            bucket[j/(radix**(i<span class="number">-1</span>)) % (radix**i)].append(j)</span><br><span class="line">        <span class="keyword">del</span> lists[:]</span><br><span class="line">        <span class="keyword">for</span> z <span class="keyword">in</span> bucket:</span><br><span class="line">            lists += z</span><br><span class="line">            <span class="keyword">del</span> z[:]</span><br><span class="line">    <span class="keyword">return</span> lists</span><br></pre></td></tr></table></figure>
+<h3 id="桶排序"><a class="markdownIt-Anchor" href="#桶排序"></a> 桶排序</h3>
+<h4 id="介绍-3"><a class="markdownIt-Anchor" href="#介绍-3"></a> 介绍</h4>
+<p> 桶排序是改善计数排序的方法之一，其基本思想<strong>是将待排序数组分配到若干个桶内，然后每个桶内再各自进行排序，桶内的排序可以使用不同的算法，比如插入排序或快速排序，属于分治法。每个桶执行完排序后，最后依次将每个桶内的有序序列拿出来，即得到完整的排序结果。</strong></p>
+<h4 id="步骤-9"><a class="markdownIt-Anchor" href="#步骤-9"></a> 步骤</h4>
+<ol>
+<li>将待排序元素划分到不同的桶。先扫描一遍序列求出最大值 maxV 和最小值 minV ，设桶的个数为 k ，则把区间 [minV, maxV] <strong>均匀</strong>划分成 k 个区间，每个区间就是一个桶。将序列中的元素分配到各自的桶。</li>
+<li>对每个桶内的元素进行排序。可以选择任意一种排序算法。</li>
+<li>将各个桶中的元素合并成一个大的有序序列。</li>
+<li>假设数据是均匀分布的，则每个桶的元素平均个数为 n/k 。假设选择用快速排序对每个桶内的元素进行排序，那么每次排序的时间复杂度为 O(n/klog(n/k)) 。总的时间复杂度为 O(n)+O(m)O(n/klog(n/k)) = O(n+nlog(n/k)) = O(n+nlogn-nlogk) 。当 k 接近于 n 时，桶排序的时间复杂度就可以金斯认为是 O(n) 的。即桶越多，时间效率就越高，而桶越多，空间就越大。</li>
+</ol>
+<p>当然，以上复杂度的计算是基于输入的n个数字是平均分布这个假设的。这个假设是很强的 ，实际应用中效果并没有这么好。如果所有的数字都落在同一个桶中，那就退化成一般的排序了。</p>
+<h4 id="缺点"><a class="markdownIt-Anchor" href="#缺点"></a> 缺点</h4>
+<ol>
+<li>首先是空间复杂度比较高，需要的额外开销大。排序有两个数组的空间开销，一个存放待排序数组，一个就是所谓的桶，比如待排序值是从0到m-1，那就需要m个桶，这个桶数组就要至少m个空间。</li>
+<li>其次待排序的元素都要在一定的范围内等等。桶式排序是一种分配排序。分配排序的特定是不需要进行关键码的比较，但前提是要知道待排序列的一些具体情况。（<strong>分配排序的基本思想：说白了就是进行多次的桶式排序，基数排序过程无须比较关键字，而是通过“分配”和“收集”过程来实现排序。它们的时间复杂度可达到线性阶：O(n)</strong>）</li>
+</ol>
+<h2 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h2>
+<h3 id="前7种算法的各种指标对比"><a class="markdownIt-Anchor" href="#前7种算法的各种指标对比"></a> 前7种算法的各种指标对比</h3>
+<table>
+<thead>
+<tr>
+<th>排序算法</th>
+<th>平均情况</th>
+<th>最好情况</th>
+<th>最坏情况</th>
+<th>辅助空间</th>
+<th>稳定性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>冒泡排序</td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span></td>
+<td>稳定</td>
+</tr>
+<tr>
+<td>简单选择排序</td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span></td>
+<td>稳定</td>
+</tr>
+<tr>
+<td>直接插入排序</td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span></td>
+<td>稳定</td>
+</tr>
+<tr>
+<td>希尔排序</td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(nlogn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>~<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>1.3</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^{1.3})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span><span class="mord mtight">.</span><span class="mord mtight">3</span></span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(nlogn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></td>
+<td>O(1)</td>
+<td>不稳定</td>
+</tr>
+<tr>
+<td>堆排序</td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(nlogn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(nlogn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(nlogn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord">1</span><span class="mclose">)</span></span></span></span></td>
+<td>不稳定</td>
+</tr>
+<tr>
+<td>归并排序</td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(nlogn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(nlogn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(nlogn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></td>
+<td>稳定</td>
+</tr>
+<tr>
+<td>快速排序</td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(nlogn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(nlogn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><msup><mi>n</mi><mn>2</mn></msup><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n^2)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.064108em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord"><span class="mord mathdefault">n</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mclose">)</span></span></span></span></td>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>l</mi><mi>o</mi><mi>g</mi><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(logn)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span>~<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>n</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">O(n)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">O</span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mclose">)</span></span></span></span></td>
+<td>不稳定</td>
+</tr>
+</tbody>
+</table>
+<h3 id="后3种算法的各种指标对比"><a class="markdownIt-Anchor" href="#后3种算法的各种指标对比"></a> 后3种算法的各种指标对比</h3>
+<table>
+<thead>
+<tr>
+<th>排序算法</th>
+<th>时间复杂度</th>
+<th>空间复杂度</th>
+<th>适用场景</th>
+<th>稳定性</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>计数排序</td>
+<td>O(n + maxV- minV)</td>
+<td>O(maxV-minV)</td>
+<td>maxV和minV差距尽可能小</td>
+<td>稳定排序</td>
+</tr>
+<tr>
+<td>基数排序</td>
+<td>O(nd)</td>
+<td>O(n + k)</td>
+<td>1.非负整数；2.maxV和minV差距尽可能小</td>
+<td>稳定排序</td>
+</tr>
+<tr>
+<td>桶排序</td>
+<td>O(n + k)</td>
+<td>O(n + k)</td>
+<td>元素尽可能均匀分布</td>
+<td>稳定排序</td>
+</tr>
+</tbody>
+</table>
+<p>其中，d表示位数，k在基数排序中表示k进制，在桶排序中表示桶的个数，maxV和minV表示元素的最大值和最小值。</p>
+<h3 id="其它"><a class="markdownIt-Anchor" href="#其它"></a> 其它</h3>
+<ul>
+<li><strong>当原表有序或基本有序时</strong>，<strong>直接插入排序和冒泡排序</strong>将大大减少比较次数和移动记录的次数，时间复杂度可降至O（n）；</li>
+<li><strong>当原表基本有序时，快速排序将蜕化为冒泡排序</strong>，时间复杂度提高为O（n^2）；</li>
+<li>原表是否有序，对简单选择排序、堆排序、归并排序和基数排序的时间复杂度影响不大。</li>
+<li><strong>稳定排序的好处</strong>：排序算法如果是稳定的，那么从一个键上排序，然后再从另一个键上排序，第一个键排序的结果可以为第二个键排序所用。基数排序就是这样，先按低位排序，逐次按高位排序，低位相同的元素其顺序再高位也相同时是不会改变的。另外，如果排序算法稳定，可以避免多余的比较；</li>
+<li>首先，基数排序和计数排序都可以看作是桶排序。</li>
+<li>计数排序本质上是一种特殊的桶排序，当桶的个数取最大( maxV-minV+1 )的时候，就变成了计数排序。</li>
+<li>基数排序也是一种桶排序。桶排序是按值区间划分桶，基数排序是按数位来划分；基数排序可以看做是多轮桶排序，每个数位上都进行一轮桶排序。</li>
+<li>当用最大值作为基数时，基数排序就退化成了计数排序。</li>
+<li>当使用2进制时， k=2 最小，位数 d 最大，时间复杂度 O(nd) 会变大，空间复杂度 O(n+k) 会变小。当用最大值作为基数时， k=maxV 最大， d=1 最小，此时时间复杂度 O(nd) 变小，但是空间复杂度 O(n+k) 会急剧增大，此时基数排序退化成了计数排序。</li>
+</ul>
+<h3 id="如何选择排序算法"><a class="markdownIt-Anchor" href="#如何选择排序算法"></a> 如何选择排序算法？</h3>
+<p>影响排序的因素有很多，平均时间复杂度低的算法并不一定就是最优的。相反，有时平均时间复杂度高的算法可能更适合某些特殊情况。同时，选择算法时还得考虑它的可读性，以利于软件的维护。一般而言，需要考虑的因素有以下四点：</p>
+<p>1．待排序的记录数目n的大小；</p>
+<p>2．记录本身数据量的大小，也就是记录中除关键字外的其他信息量的大小；</p>
+<p>3．关键字的结构及其分布情况；</p>
+<p>4．对排序稳定性的要求。</p>
+<ul>
+<li><strong>设待排序元素的个数为n</strong>
+<ul>
+<li><strong>当n较大</strong>，则应采用时间复杂度为O(nlog2n)的排序方法：快速排序、堆排序或归并排序序。
+<ul>
+<li>快速排序：是目前基于比较的内部排序中被认为是最好的方法，当待排序的关键字是随机分布时，快速排序的平均时间最短；</li>
+<li>堆排序 ： 如果内存空间允许且要求稳定性</li>
+<li>归并排序：它有一定数量的数据移动，所以我们可能过与插入排序组合，先获得一定长度的序列，然后再合并，在效率上将有所提高。</li>
+</ul>
+</li>
+<li><strong>当n较大</strong>，内存空间允许，且要求稳定性 =》归并排序</li>
+<li><strong>当n较小</strong>，可采用直接插入或直接选择排序。
+<ul>
+<li>直接插入排序：当元素分布有序，直接插入排序将大大减少比较次数和移动记录的次数。</li>
+<li>直接选择排序 ：元素分布有序，如果不要求稳定性，选择直接选择排序</li>
+</ul>
+</li>
+<li>一般不使用或不直接使用传统的冒泡排序。</li>
+<li>基数排序
+<ul>
+<li>它是一种稳定的排序算法，但有一定的局限性：
+<ul>
+<li>关键字可分解。</li>
+<li>记录的关键字位数较少，如果密集更好</li>
+<li>如果是数字时，最好是无符号的，否则将增加相应的映射复杂度，可先将其正负分开排序。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+  </entry>
+  <entry>
     <title>leetcode-双指针</title>
     <url>/2020/06/24/leetcode-%E5%8F%8C%E6%8C%87%E9%92%88/</url>
     <content><![CDATA[<h1 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h1>
