@@ -1,6 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>leetcode-贪心</title>
+    <url>/2020/06/27/leetcode-%E8%B4%AA%E5%BF%83/</url>
+    <content><![CDATA[<h1 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h1>
+<p>简单回顾贪心算法思想，并完成leetcode中几道经典的贪心算法题。</p>
+<ul>
+<li>455-分发饼干</li>
+<li>435-无重叠区间</li>
+<li>452-用最少数量的箭引爆气球</li>
+<li>406-根据身高重建队列</li>
+<li>121-买卖股票的最佳时机</li>
+<li>122-买卖股票的最佳时机II</li>
+<li>605-种花问题</li>
+<li>392-判断子序列</li>
+<li>665-非递减数列</li>
+<li>53-最大子序和</li>
+<li>763-划分字母区间</li>
+</ul>
+<h1 id="贪心算法"><a class="markdownIt-Anchor" href="#贪心算法"></a> 贪心算法</h1>
+]]></content>
+      <categories>
+        <category>刷题</category>
+      </categories>
+  </entry>
+  <entry>
     <title>leetcode-排序1</title>
     <url>/2020/06/26/leetcode-%E6%8E%92%E5%BA%8F1/</url>
     <content><![CDATA[<h1 id="前言"><a class="markdownIt-Anchor" href="#前言"></a> 前言</h1>
@@ -1281,8 +1305,11 @@
 </ul>
 <h2 id="文本表示模型"><a class="markdownIt-Anchor" href="#文本表示模型"></a> 文本表示模型</h2>
 <h3 id="有哪些文本表示模型它们各有什么优缺点"><a class="markdownIt-Anchor" href="#有哪些文本表示模型它们各有什么优缺点"></a> 有哪些文本表示模型？它们各有什么优缺点？</h3>
+<h4 id="词袋模型"><a class="markdownIt-Anchor" href="#词袋模型"></a> 词袋模型</h4>
 <ul>
-<li><strong>词袋模型</strong>：最基础的文本表示模型，它将整段文本以词为单位且分开，然后每篇文章可以表示成一个长向量，向量中的每一维代表一个单词，而该维对应的<strong>权重</strong>则反映了这个词在原文章的重要程度。
+<li><strong>词袋模型</strong>：最基础的文本表示模型，它将整段文本以词为单位且分开，然后每篇文章可以表示成一个长向量，向量中的每一维代表一个单词，而该维对应的<strong>权重</strong>则反映了这个词在原文章的重要程度。</li>
+</ul>
+<h5 id="优缺点"><a class="markdownIt-Anchor" href="#优缺点"></a> 优缺点</h5>
 <ul>
 <li><strong>优点</strong>：
 <ol>
@@ -1298,8 +1325,6 @@
 </ol>
 </li>
 </ul>
-</li>
-</ul>
 <p><strong>常用TF-IDF计算权重</strong>，表示为，</p>
 <p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi><mi>F</mi><mo>−</mo><mi>I</mi><mi>D</mi><mi>F</mi><mo stretchy="false">(</mo><mi>t</mi><mo separator="true">,</mo><mi>d</mi><mo stretchy="false">)</mo><mo>=</mo><mi>T</mi><mi>F</mi><mo stretchy="false">(</mo><mi>t</mi><mo separator="true">,</mo><mi>d</mi><mo stretchy="false">)</mo><mo>∗</mo><mi>I</mi><mi>D</mi><mi>F</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">TF-IDF(t,d) = TF(t,d)*IDF(t)
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.76666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathdefault">t</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">d</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathdefault">t</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">d</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">∗</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathdefault">t</span><span class="mclose">)</span></span></span></span></span></p>
@@ -1307,8 +1332,11 @@
 <p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>I</mi><mi>D</mi><mi>F</mi><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo><mo>=</mo><mi>l</mi><mi>o</mi><mi>g</mi><mfrac><mrow><mi mathvariant="normal">文</mi><mi mathvariant="normal">章</mi><mi mathvariant="normal">总</mi><mi mathvariant="normal">数</mi></mrow><mrow><mi mathvariant="normal">包</mi><mi mathvariant="normal">含</mi><mi mathvariant="normal">单</mi><mi mathvariant="normal">词</mi><mi>t</mi><mi mathvariant="normal">的</mi><mi mathvariant="normal">文</mi><mi mathvariant="normal">章</mi><mi mathvariant="normal">总</mi><mi mathvariant="normal">数</mi><mo>+</mo><mn>1</mn></mrow></mfrac></mrow><annotation encoding="application/x-tex">IDF(t) = log\frac{文章总数}{包含单词t的文章总数+1}
 </annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord mathdefault" style="margin-right:0.13889em;">F</span><span class="mopen">(</span><span class="mord mathdefault">t</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.46377em;vertical-align:-0.7693300000000001em;"></span><span class="mord mathdefault" style="margin-right:0.01968em;">l</span><span class="mord mathdefault">o</span><span class="mord mathdefault" style="margin-right:0.03588em;">g</span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.677em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord cjk_fallback">包</span><span class="mord cjk_fallback">含</span><span class="mord cjk_fallback">单</span><span class="mord cjk_fallback">词</span><span class="mord mathdefault">t</span><span class="mord cjk_fallback">的</span><span class="mord cjk_fallback">文</span><span class="mord cjk_fallback">章</span><span class="mord cjk_fallback">总</span><span class="mord cjk_fallback">数</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mord">1</span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord cjk_fallback">文</span><span class="mord cjk_fallback">章</span><span class="mord cjk_fallback">总</span><span class="mord cjk_fallback">数</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.7693300000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
 <p>直观的解释是，如果一个单词在非常多的文章里面都出现，那么它可能是一个比较通用的词汇，对于区分某篇文章特殊语义的贡献较小，因此对权重做一定的惩罚。</p>
+<h4 id="n-gram模型"><a class="markdownIt-Anchor" href="#n-gram模型"></a> N-gram模型</h4>
 <ul>
-<li><strong>N-gram模型</strong>:通常可以<strong>将连续出现的n个词（<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>≤</mo><mi>N</mi></mrow><annotation encoding="application/x-tex">n≤N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span>）组成的词组（N-gram）也作为一个单独的特征放到向量表示中去，构成N-gram模型</strong>。另外，同一个词可能有多种词性变化，却具有相似的含义。在实际应用中，一般会对单词进行<strong>词干抽取</strong>（Word Stemming）处理，即<strong>将不同词性的单词统一成为同一词干的形式</strong>。
+<li><strong>N-gram模型：<strong>通常可以</strong>将连续出现的n个词（<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>≤</mo><mi>N</mi></mrow><annotation encoding="application/x-tex">n≤N</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7719400000000001em;vertical-align:-0.13597em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≤</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.10903em;">N</span></span></span></span>）组成的词组（N-gram）也作为一个单独的特征放到向量表示中去，构成N-gram模型</strong>。另外，同一个词可能有多种词性变化，却具有相似的含义。在实际应用中，一般会对单词进行<strong>词干抽取</strong>（Word Stemming）处理，即<strong>将不同词性的单词统一成为同一词干的形式</strong>。</li>
+</ul>
+<h5 id="优缺点-2"><a class="markdownIt-Anchor" href="#优缺点-2"></a> 优缺点</h5>
 <ul>
 <li><strong>优点</strong>:
 <ol>
@@ -1326,14 +1354,67 @@
 </ol>
 </li>
 </ul>
-</li>
-<li><strong>主题词模型</strong>：是一种<strong>特殊的概率图模型</strong>。假设有k个主题，我们就把任意文章表示成一个k维的主题向量，其中向量的每一维代表一个主题，权重代表这篇文章属于这个特定主题的概率。它可以<strong>从文本库中发现有代表性的主题（得到每个主题上面词的分布），并计算出每篇文章对应着哪些主题</strong>。
+<h4 id="主题词模型"><a class="markdownIt-Anchor" href="#主题词模型"></a> 主题词模型</h4>
 <ul>
-<li>常见的主题模型：<strong>LSA、pLSA、LDA</strong>。（第六章对三种模型的原理和三种模型之间的关系进行阐述）</li>
+<li>
+<p><strong>主题词模型</strong>：是一种<strong>特殊的概率图模型</strong>。假设有k个主题，我们就把任意文章表示成一个k维的主题向量，其中向量的每一维代表一个主题，权重代表这篇文章属于这个特定主题的概率。（它可以<strong>从文本库中发现有代表性的主题（得到每个主题上面词的分布），并计算出每篇文章对应着哪些主题</strong>。）</p>
+<ul>
+<li>
+<p>常见的主题模型：<strong>LSA、pLSA、LDA</strong>。</p>
+</li>
+<li>
+<blockquote>
+<p>三个模型的各自的应用、理论分析、优缺点参考：</p>
+<p><a href="https://blog.csdn.net/puqutogether/article/details/41696295%EF%BC%88LSA%EF%BC%89" target="_blank" rel="noopener">https://blog.csdn.net/puqutogether/article/details/41696295（LSA）</a></p>
+<p><a href="https://blog.csdn.net/puqutogether/article/details/41720073%EF%BC%88PLSA" target="_blank" rel="noopener">https://blog.csdn.net/puqutogether/article/details/41720073（PLSA</a>)</p>
+<p><a href="https://zhuanlan.zhihu.com/p/32658341%EF%BC%88LDA%E7%BA%BF%E6%80%A7%E5%88%A4%E5%88%AB%E5%88%86%E6%9E%90%EF%BC%89" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/32658341（LDA线性判别分析）</a></p>
+</blockquote>
+</li>
 </ul>
 </li>
-<li><strong>词嵌入模型</strong>：</li>
 </ul>
+<h5 id="优缺点-3"><a class="markdownIt-Anchor" href="#优缺点-3"></a> 优缺点</h5>
+<ul>
+<li>
+<p><strong>LSA</strong>:</p>
+<ul>
+<li><strong>优点</strong>：可以把原文本特征空间降维到一个低维语义空间；减轻一词多义和一义多词问题。</li>
+<li><strong>缺点</strong>：在SVD分解的时候，特别耗时，而且一般而言一个文本特征矩阵维数都会特别庞大，SVD此时就更加耗时；而且，LSA缺乏严谨的数理统计基础。</li>
+</ul>
+</li>
+<li>
+<p><strong>pLSA</strong>：</p>
+<ul>
+<li><strong>优点</strong>：PLSA可以解决了同义词和多义词的问题，利用了强化的期望最大化算法（EM）来训练隐含类（潜在类）。而且相对了LSA，有了坚实的统计学基础。</li>
+<li><strong>缺点</strong>：随着document和term 个数的增加，pLSA模型也线性增加，变得越来越庞大，也就是说PLSA中训练参数的值会随着文档的数目线性递增。还有，PLSA可以生成其所在数据集的的文档的模型，但却不能生成新文档的模型。</li>
+</ul>
+</li>
+<li>
+<p><strong>LDA</strong>：</p>
+<ul>
+<li><strong>优点</strong>：
+<ul>
+<li>在降维过程中可以使用类别的先验知识经验，而像PCA这样的无监督学习则无法使用类别先验知识。</li>
+<li>LDA在样本分类信息依赖均值而不是方差的时候，比PCA之类的算法较优。</li>
+</ul>
+</li>
+<li><strong>缺点</strong>：
+<ul>
+<li>LDA不适合对非高斯分布样本进行降维，PCA也有这个问题。</li>
+<li>LDA降维最多降到类别数k-1的维数，如果我们降维的维度大于k-1，则不能使用LDA。当然目前有一些LDA的进化版算法可以绕过这个问题。</li>
+<li>LDA在样本分类信息依赖方差而不是均值的时候，降维效果不好。</li>
+<li>LDA可能过度拟合数据。</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="词嵌入模型"><a class="markdownIt-Anchor" href="#词嵌入模型"></a> 词嵌入模型</h4>
+<ul>
+<li><strong>词嵌入模型</strong>：词嵌入是一类词向量化的模型的统称，核心思想是将每个词都映射成低维空间（通常K=50~300维）上的一个稠密向量（Dense Vector）。</li>
+</ul>
+<h5 id="优缺点-4"><a class="markdownIt-Anchor" href="#优缺点-4"></a> 优缺点</h5>
+<h2 id="word2vec"><a class="markdownIt-Anchor" href="#word2vec"></a> Word2Vec✨</h2>
 ]]></content>
       <categories>
         <category>百面机器学习</category>
