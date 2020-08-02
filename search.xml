@@ -1,6 +1,97 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>每日一刷2</title>
+    <url>/2020/08/02/%E6%AF%8F%E6%97%A5%E4%B8%80%E5%88%B72/</url>
+    <content><![CDATA[<h1 id="日常警醒"><a class="markdownIt-Anchor" href="#日常警醒"></a> 日常警醒</h1>
+<p>菜就要刷题，不要偷懒！</p>
+<h1 id="剑指offer04-二维数组中的查找"><a class="markdownIt-Anchor" href="#剑指offer04-二维数组中的查找"></a> 剑指offer04-二维数组中的查找</h1>
+<h2 id="题目"><a class="markdownIt-Anchor" href="#题目"></a> 题目</h2>
+<ul>
+<li>难度：简单</li>
+</ul>
+<p>在一个 n * m 的二维数组中，每一行都按照从左到右递增的顺序排序，每一列都按照从上到下递增的顺序排序。请完成一个函数，输入这样的一个二维数组和一个整数，判断数组中是否含有该整数。</p>
+<p>示例：</p>
+<p>现有矩阵 matrix 如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">[</span><br><span class="line">  [1,   4,  7, 11, 15],</span><br><span class="line">  [2,   5,  8, 12, 19],</span><br><span class="line">  [3,   6,  9, 16, 22],</span><br><span class="line">  [10, 13, 14, 17, 24],</span><br><span class="line">  [18, 21, 23, 26, 30]</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>给定 target = <code>5</code>，返回 <code>true</code>。</p>
+<p>给定 target = <code>20</code>，返回 <code>false</code>。</p>
+<p>限制：</p>
+<p>0 &lt;= n &lt;= 1000<br>
+0 &lt;= m &lt;= 1000</p>
+<h2 id="题解"><a class="markdownIt-Anchor" href="#题解"></a> 题解</h2>
+<ul>
+<li>根据题目数组的排序特点，可以从左下角或右上角开始搜索，</li>
+<li>如果从左下角开始搜索，如果当前元素大于target，就向上找，否则向右找。</li>
+<li>如果从右下角开始搜索，如果当前元素大于target，就向左找，否则向下找。</li>
+<li>时间复杂度：O(n + m)</li>
+<li>空间复杂度：O(1)</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findNumberIn2DArray</span><span class="params">(matrix, target)</span>:</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> matrix <span class="keyword">or</span> <span class="keyword">not</span> target:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">#左下角</span></span><br><span class="line">    i = len(matrix[<span class="number">0</span>]) - <span class="number">1</span></span><br><span class="line">    j = <span class="number">0</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> i &gt;= <span class="number">0</span> <span class="keyword">and</span> j &lt;= len(matrix) - <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">if</span> target == matrix[i][j]:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">elif</span> target &lt; matrix[i][j]:</span><br><span class="line">            i -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            j += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    matrix = [[<span class="number">1</span>, <span class="number">4</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">15</span>],[<span class="number">2</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">12</span>, <span class="number">19</span>],[<span class="number">3</span>, <span class="number">6</span>, <span class="number">9</span>, <span class="number">16</span>, <span class="number">22</span>],[<span class="number">10</span>, <span class="number">13</span>, <span class="number">14</span>, <span class="number">17</span>, <span class="number">24</span>],[<span class="number">18</span>, <span class="number">21</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">30</span>]]</span><br><span class="line">    target1 = <span class="number">5</span></span><br><span class="line">    target2 = <span class="number">20</span></span><br><span class="line">    print(findNumberIn2DArray(matrix, target1))</span><br><span class="line">    print(findNumberIn2DArray(matrix, target2))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">findNumberIn2DArray</span><span class="params">(matrix, target)</span>:</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> matrix <span class="keyword">or</span> <span class="keyword">not</span> target:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">#右上角</span></span><br><span class="line">    i = <span class="number">0</span></span><br><span class="line">    j = len(matrix) - <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> i &lt;= len(matrix[<span class="number">0</span>]) - <span class="number">1</span> <span class="keyword">and</span> j &gt;= <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">if</span> target == matrix[i][j]:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">        <span class="keyword">elif</span> target &lt; matrix[i][j]:</span><br><span class="line">            j -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            i += <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    matrix = [[<span class="number">1</span>, <span class="number">4</span>, <span class="number">7</span>, <span class="number">11</span>, <span class="number">15</span>],[<span class="number">2</span>, <span class="number">5</span>, <span class="number">8</span>, <span class="number">12</span>, <span class="number">19</span>],[<span class="number">3</span>, <span class="number">6</span>, <span class="number">9</span>, <span class="number">16</span>, <span class="number">22</span>],[<span class="number">10</span>, <span class="number">13</span>, <span class="number">14</span>, <span class="number">17</span>, <span class="number">24</span>],[<span class="number">18</span>, <span class="number">21</span>, <span class="number">23</span>, <span class="number">26</span>, <span class="number">30</span>]]</span><br><span class="line">    target1 = <span class="number">5</span></span><br><span class="line">    target2 = <span class="number">20</span></span><br><span class="line">    print(findNumberIn2DArray(matrix, target1))</span><br><span class="line">    print(findNumberIn2DArray(matrix, target2))</span><br></pre></td></tr></table></figure>
+<h1 id="剑指offer12-矩阵中的路径"><a class="markdownIt-Anchor" href="#剑指offer12-矩阵中的路径"></a> 剑指offer12-矩阵中的路径</h1>
+<h2 id="题目-2"><a class="markdownIt-Anchor" href="#题目-2"></a> 题目</h2>
+<ul>
+<li>难度：中等</li>
+</ul>
+<p>请设计一个函数，用来判断在一个矩阵中是否存在一条包含某字符串所有字符的路径。路径可以从矩阵中的任意一格开始，每一步可以在矩阵中向左、右、上、下移动一格。如果一条路径经过了矩阵的某一格，那么该路径不能再次进入该格子。例如，在下面的3×4的矩阵中包含一条字符串“bfce”的路径（路径中的字母用加粗标出）。</p>
+<p>[[“a”,“<strong>b</strong>”,“c”,“e”],<br>
+[“s”,“<strong>f</strong>”,“<strong>c</strong>”,“s”],<br>
+[“a”,“d”,“<strong>e</strong>”,“e”]]</p>
+<p>但矩阵中不包含字符串“abfb”的路径，因为字符串的第一个字符b占据了矩阵中的第一行第二个格子之后，路径不能再次进入这个格子。</p>
+<p>示例1：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：board &#x3D; [[&quot;A&quot;,&quot;B&quot;,&quot;C&quot;,&quot;E&quot;],[&quot;S&quot;,&quot;F&quot;,&quot;C&quot;,&quot;S&quot;],[&quot;A&quot;,&quot;D&quot;,&quot;E&quot;,&quot;E&quot;]], word &#x3D; &quot;ABCCED&quot;</span><br><span class="line">输出：true</span><br></pre></td></tr></table></figure>
+<p>示例2：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：board &#x3D; [[&quot;a&quot;,&quot;b&quot;],[&quot;c&quot;,&quot;d&quot;]], word &#x3D; &quot;abcd&quot;</span><br><span class="line">输出：false</span><br></pre></td></tr></table></figure>
+<p>提示：</p>
+<ul>
+<li><code>1 &lt;= board.length &lt;= 200</code></li>
+<li><code>1 &lt;= board[i].length &lt;= 200</code></li>
+</ul>
+<h2 id="题解-2"><a class="markdownIt-Anchor" href="#题解-2"></a> 题解</h2>
+<ul>
+<li>DFS</li>
+<li>边界条件
+<ul>
+<li>如果board为空，返回false</li>
+<li>DFS搜索时，如果word检查完毕，即len(word)==0，返回true</li>
+<li>DFS搜索时，如果边界超出或矩阵中的字符已访问或与目标字符不同，返回false</li>
+</ul>
+</li>
+<li>DFS搜索
+<ul>
+<li>标记当前元素，将矩阵当前元素暂存temp，并标记为‘0’，代表已经访问过，避免再次访问到</li>
+<li>搜索下一个单元格：向上下左右四个方向搜索，并将结果记录到res</li>
+<li>还原当前矩阵：将temp暂存值还原</li>
+</ul>
+</li>
+<li>回溯至返回res，代表是否搜到目标字符串</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">exist</span><span class="params">(board, word)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> board:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(len(board)):</span><br><span class="line">        <span class="keyword">for</span> j <span class="keyword">in</span> range(len(board[<span class="number">0</span>])):</span><br><span class="line">            <span class="keyword">if</span> dfs(i, j, board, word):</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">dfs</span><span class="params">(i, j, board, word)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> len(word) == <span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line">    <span class="keyword">if</span> i &lt; <span class="number">0</span> <span class="keyword">or</span> i &gt; len(board) - <span class="number">1</span> <span class="keyword">or</span> j &lt; <span class="number">0</span> <span class="keyword">or</span> j &gt; len(board[<span class="number">0</span>]) - <span class="number">1</span> <span class="keyword">or</span> word[<span class="number">0</span>] != board[i][j]:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">    </span><br><span class="line">    temp = board[i][j]</span><br><span class="line">    board[i][j] = <span class="string">'0'</span></span><br><span class="line">    res = dfs(i + <span class="number">1</span>, j, board, word[<span class="number">1</span>:]) <span class="keyword">or</span> dfs(i - <span class="number">1</span>, j, board, word[<span class="number">1</span>:]) <span class="keyword">or</span> dfs(i, j - <span class="number">1</span>, board, word[<span class="number">1</span>:]) <span class="keyword">or</span> dfs(i, j + <span class="number">1</span>, board, word[<span class="number">1</span>:])</span><br><span class="line">        </span><br><span class="line">    board[i][j] = temp</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    board = [[<span class="string">"A"</span>,<span class="string">"B"</span>,<span class="string">"C"</span>,<span class="string">"E"</span>],[<span class="string">"S"</span>,<span class="string">"F"</span>,<span class="string">"C"</span>,<span class="string">"S"</span>],[<span class="string">"A"</span>,<span class="string">"D"</span>,<span class="string">"E"</span>,<span class="string">"E"</span>]]</span><br><span class="line">    word = <span class="string">"ABCCED"</span></span><br><span class="line">    board1 = [[<span class="string">"a"</span>,<span class="string">"b"</span>],[<span class="string">"c"</span>,<span class="string">"d"</span>]]</span><br><span class="line">    word1 = <span class="string">"abcd"</span></span><br><span class="line">    print(exist(board, word))</span><br><span class="line">    print(exist(board1, word1))</span><br></pre></td></tr></table></figure>
+<h1 id="剑指offer05-替换空格"><a class="markdownIt-Anchor" href="#剑指offer05-替换空格"></a> 剑指offer05-替换空格</h1>
+<h2 id="题目-3"><a class="markdownIt-Anchor" href="#题目-3"></a> 题目</h2>
+<ul>
+<li>难度：简单</li>
+</ul>
+<p>请实现一个函数，把字符串 <code>s</code> 中的每个空格替换成&quot;%20&quot;。</p>
+<p>示例1：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：s &#x3D; &quot;We are happy.&quot;</span><br><span class="line">输出：&quot;We%20are%20happy.&quot;</span><br></pre></td></tr></table></figure>
+<p>限制：</p>
+<p>0 &lt;= s 的长度 &lt;= 10000</p>
+<h2 id="题解-3"><a class="markdownIt-Anchor" href="#题解-3"></a> 题解</h2>
+<ul>
+<li>初始化数组</li>
+<li>遍历字符串，当遍历到空格，就往数组里加%20，否则就把当前遍历的字符加进去</li>
+<li>把数组转字符串</li>
+<li>时间复杂：O(n)</li>
+<li>空间复杂度：O(n)</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">replaceSpace</span><span class="params">(s)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> s:</span><br><span class="line">        <span class="keyword">return</span> s</span><br><span class="line">    res = []</span><br><span class="line">    <span class="keyword">for</span> c <span class="keyword">in</span> s:</span><br><span class="line">        <span class="keyword">if</span> c == <span class="string">' '</span>:</span><br><span class="line">            res.append(<span class="string">'%20'</span>)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            res.append(c)</span><br><span class="line">    <span class="keyword">return</span> <span class="string">''</span>.join(res)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    s = <span class="string">"We are happy."</span></span><br><span class="line">    print(replaceSpace(s))</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>刷题打卡</category>
+      </categories>
+  </entry>
+  <entry>
     <title>每日一刷1</title>
     <url>/2020/08/01/%E6%AF%8F%E6%97%A5%E4%B8%80%E5%88%B71/</url>
     <content><![CDATA[<h1 id="日常警醒"><a class="markdownIt-Anchor" href="#日常警醒"></a> 日常警醒</h1>
