@@ -1,6 +1,195 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>每日一刷4</title>
+    <url>/2020/08/05/%E6%AF%8F%E6%97%A5%E4%B8%80%E5%88%B74/</url>
+    <content><![CDATA[<h1 id="日常警醒"><a class="markdownIt-Anchor" href="#日常警醒"></a> 日常警醒</h1>
+<p>菜就要刷题，不要偷懒！</p>
+<h1 id="剑指offer10-i斐波那契数列"><a class="markdownIt-Anchor" href="#剑指offer10-i斐波那契数列"></a> 剑指offer10-I.斐波那契数列</h1>
+<h2 id="题目"><a class="markdownIt-Anchor" href="#题目"></a> 题目</h2>
+<ul>
+<li>难度：简单</li>
+</ul>
+<p>写一个函数，输入 <code>n</code> ，求斐波那契（Fibonacci）数列的第 <code>n</code> 项。斐波那契数列的定义如下：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">F(0) &#x3D; 0,   F(1) &#x3D; 1</span><br><span class="line">F(N) &#x3D; F(N - 1) + F(N - 2), 其中 N &gt; 1.</span><br></pre></td></tr></table></figure>
+<p>斐波那契数列由 0 和 1 开始，之后的斐波那契数就是由之前的两数相加而得出。</p>
+<p>答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。</p>
+<p>示例1：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：n &#x3D; 2</span><br><span class="line">输出：1</span><br></pre></td></tr></table></figure>
+<p>示例2：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：n &#x3D; 5</span><br><span class="line">输出：5</span><br></pre></td></tr></table></figure>
+<p>提示：</p>
+<ul>
+<li>0 &lt;= n &lt;= 100</li>
+</ul>
+<h2 id="题解"><a class="markdownIt-Anchor" href="#题解"></a> 题解</h2>
+<ul>
+<li>动态规划
+<ul>
+<li>状态定义：设dp为一维数组，dp[i]代表斐波那契数列第i个数字</li>
+<li>转移方程：dp[i] = dp[i] + dp[i - 1]，对应斐波那契数列公式</li>
+<li>初始状态：dp[0] = 0， dp[1] = 1</li>
+<li>返回值dp[n]</li>
+</ul>
+</li>
+<li>空间优化
+<ul>
+<li>dp[i]只和dp[i-1]和dp[i-2]有关，因此，初始化三个整形变量sum, a, b，利用辅助变量 sum使 a, b 两数字交替前进即可</li>
+</ul>
+</li>
+<li>时间复杂度：O(n)</li>
+<li>空间复杂度：O(1)</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">fib</span><span class="params">(n)</span>:</span></span><br><span class="line">    a = <span class="number">0</span></span><br><span class="line">    b = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> range(n):</span><br><span class="line">        a, b = b, a+ b</span><br><span class="line">    <span class="keyword">return</span> a % <span class="number">1000000007</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    n = <span class="number">2</span></span><br><span class="line">    print(fib(n))</span><br></pre></td></tr></table></figure>
+<h1 id="剑指offer10-ii青蛙跳台阶问题"><a class="markdownIt-Anchor" href="#剑指offer10-ii青蛙跳台阶问题"></a> 剑指offer10-II.青蛙跳台阶问题</h1>
+<h2 id="题目-2"><a class="markdownIt-Anchor" href="#题目-2"></a> 题目</h2>
+<p>一只青蛙一次可以跳上1级台阶，也可以跳上2级台阶。求该青蛙跳上一个 <code>n</code> 级的台阶总共有多少种跳法。</p>
+<p>答案需要取模 1e9+7（1000000007），如计算初始结果为：1000000008，请返回 1。</p>
+<p>示例1：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：n &#x3D; 2</span><br><span class="line">输出：2</span><br></pre></td></tr></table></figure>
+<p>示例2：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：n &#x3D; 7</span><br><span class="line">输出：21</span><br></pre></td></tr></table></figure>
+<p>示例3：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：n &#x3D; 0</span><br><span class="line">输出：1</span><br></pre></td></tr></table></figure>
+<p>提示：</p>
+<ul>
+<li>0 &lt;= n &lt;= 100</li>
+</ul>
+<h2 id="题解-2"><a class="markdownIt-Anchor" href="#题解-2"></a> 题解</h2>
+<ul>
+<li>和上一道题目的思路是一样的</li>
+<li>动态规划
+<ul>
+<li>状态定义：设dp为一维数组，dp[i]代表青蛙上一个i级台阶总共有多少种跳法</li>
+<li>转移方程：dp[i] = dp[i - 1] + dp[i - 2]</li>
+<li>初始状态：dp[0] = dp[1] = 1</li>
+<li>返回值dp[n]</li>
+</ul>
+</li>
+<li>空间优化：
+<ul>
+<li>dp[i]只和dp[i-1]和dp[i-2]有关，因此，初始化三个整形变量sum, a, b，利用辅助变量 sum使 a, b 两数字交替前进即可</li>
+</ul>
+</li>
+<li>时间复杂度：O(n)</li>
+<li>空间复杂度：O(1)</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">numWays</span><span class="params">(n)</span>:</span></span><br><span class="line">    a = <span class="number">1</span></span><br><span class="line">    b = <span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> _ <span class="keyword">in</span> range(n):</span><br><span class="line">        a, b = b, a + b</span><br><span class="line">    <span class="keyword">return</span> a % <span class="number">1000000007</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    n = <span class="number">7</span></span><br><span class="line">    print(numWays(n))</span><br></pre></td></tr></table></figure>
+<h1 id="剑指offer11旋转数组的最小数字"><a class="markdownIt-Anchor" href="#剑指offer11旋转数组的最小数字"></a> 剑指offer11.旋转数组的最小数字</h1>
+<h2 id="题目-3"><a class="markdownIt-Anchor" href="#题目-3"></a> 题目</h2>
+<ul>
+<li>难度：简单</li>
+</ul>
+<p>把一个数组最开始的若干个元素搬到数组的末尾，我们称之为数组的旋转。输入一个递增排序的数组的一个旋转，输出旋转数组的最小元素。例如，数组 [3,4,5,1,2] 为 [1,2,3,4,5] 的一个旋转，该数组的最小值为1</p>
+<p>示例1：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：[3,4,5,1,2]</span><br><span class="line">输出：1</span><br></pre></td></tr></table></figure>
+<p>示例2：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：[2,2,2,0,1]</span><br><span class="line">输出：0</span><br></pre></td></tr></table></figure>
+<h2 id="题解-3"><a class="markdownIt-Anchor" href="#题解-3"></a> 题解</h2>
+<ul>
+<li>
+<p>这道题面新浪一面的时候，考过升级版有重复数字的（见下一题），这题是假设没有重复数字</p>
+</li>
+<li>
+<p>二分法</p>
+<ul>
+<li>未旋转情况：数组第一个数字比最后一个数字小</li>
+<li>旋转情况：
+<ul>
+<li>左排序数组任一数字一定大于等于右排序数组任一数字</li>
+</ul>
+</li>
+<li>二分查找：
+<ul>
+<li>取mid，与数组最后一个数字比较</li>
+<li>如果数组mid的数字大于数组最后一个数字，说明最小值在mid右侧</li>
+<li>如果数组mid的数字小于数组最后一个数字，说明最小值在mid左侧</li>
+<li>如果数组mid的数字等于数组最后一个数字，无法说明最小值的区间，直接缩小判断区间</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<p>时间复杂度：O(logn)</p>
+</li>
+<li>
+<p>空间复杂度：O(1)</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">minArray</span><span class="params">(nums)</span>:</span></span><br><span class="line">        </span><br><span class="line">    i, j = <span class="number">0</span>, len(nums) - <span class="number">1</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">if</span> nums[j] &gt; nums[i] <span class="keyword">or</span> len(nums) == <span class="number">1</span>:</span><br><span class="line">        <span class="keyword">return</span> nums[<span class="number">0</span>]</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">while</span> i &lt; j:</span><br><span class="line">        mid = (i + j) // <span class="number">2</span></span><br><span class="line">        <span class="keyword">if</span> nums[mid] &gt; nums[j]:</span><br><span class="line">            i = mid + <span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> nums[mid] &lt; nums[j]:</span><br><span class="line">            j = mid - <span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            j = j - <span class="number">1</span></span><br><span class="line">    <span class="keyword">return</span> nums[i]</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:</span><br><span class="line">    </span><br><span class="line">    nums = [<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">1</span>,<span class="number">2</span>]</span><br><span class="line">    print(minArray(nums))</span><br></pre></td></tr></table></figure>
+<h1 id="154寻找旋转排序数组中的最小值ii"><a class="markdownIt-Anchor" href="#154寻找旋转排序数组中的最小值ii"></a> 154.寻找旋转排序数组中的最小值II</h1>
+<h2 id="题目-4"><a class="markdownIt-Anchor" href="#题目-4"></a> 题目</h2>
+<ul>
+<li>难度：困难</li>
+</ul>
+<p>假设按照升序排序的数组在预先未知的某个点上进行了旋转。</p>
+<p>( 例如，数组 [0,1,2,4,5,6,7] 可能变为 [4,5,6,7,0,1,2] )。</p>
+<p>请找出其中最小的元素。</p>
+<p>注意数组中可能存在重复的元素。</p>
+<p>示例1：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: [1,3,5]</span><br><span class="line">输出: 1</span><br></pre></td></tr></table></figure>
+<p>示例2：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入: [2,2,2,0,1]</span><br><span class="line">输出: 0</span><br></pre></td></tr></table></figure>
+<p>说明：</p>
+<ul>
+<li>这道题是 <a href="https://leetcode-cn.com/problems/find-minimum-in-rotated-sorted-array/description/" target="_blank" rel="noopener">寻找旋转排序数组中的最小值</a> 的延伸题目。</li>
+<li>允许重复会影响算法的时间复杂度吗？会如何影响，为什么？</li>
+</ul>
+<h2 id="题解-4"><a class="markdownIt-Anchor" href="#题解-4"></a> 题解</h2>
+<ul>
+<li>
+<p>新浪一面的代码题</p>
+</li>
+<li>
+<p>和上一题不一样的地方就是有了重复数字，例如下面case在上一题的代码就找不到正确的最小的数字：</p>
+<ul>
+<li>[1,1,1,1,0,1,1]</li>
+<li>有重复数字时候，在判断nums[mid] &lt; nums[len(nums) - 1]时，nums[mid]可能就是最小的数字，缩小区间时候就不是right = mid - 1，而是right = mid</li>
+</ul>
+</li>
+<li>
+<p>case [1,1,1,1]情况，时间复杂度会变成O(n)，因为需要不断执行缩小空间，直到只剩一个元素返回</p>
+</li>
+<li>
+<p>时间复杂度：O(logn)</p>
+</li>
+<li>
+<p>空间复杂度：O(1)</p>
+</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">findMin</span><span class="params">(self, nums)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type nums: List[int]</span></span><br><span class="line"><span class="string">        :rtype: int</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line"></span><br><span class="line">        i, j = <span class="number">0</span>, len(nums) - <span class="number">1</span></span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span> nums[j] &gt; nums[i] <span class="keyword">or</span> len(nums) == <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> nums[<span class="number">0</span>]</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">while</span> i &lt; j:</span><br><span class="line">            mid = (i + j) // <span class="number">2</span></span><br><span class="line">            <span class="keyword">if</span> nums[mid] &gt; nums[j]:</span><br><span class="line">                i = mid + <span class="number">1</span></span><br><span class="line">            <span class="keyword">elif</span> nums[mid] &lt; nums[j]:</span><br><span class="line">                j = mid</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                j = j - <span class="number">1</span></span><br><span class="line">        <span class="keyword">return</span> nums[i]</span><br></pre></td></tr></table></figure>
+<h1 id="17电话号码数字组合"><a class="markdownIt-Anchor" href="#17电话号码数字组合"></a> 17.电话号码数字组合</h1>
+<h2 id="题目-5"><a class="markdownIt-Anchor" href="#题目-5"></a> 题目</h2>
+<ul>
+<li>难度：中等</li>
+</ul>
+<p>给定一个仅包含数字 <code>2-9</code> 的字符串，返回所有它能表示的字母组合。</p>
+<p>给出数字到字母的映射如下（与电话按键相同）。注意 1 不对应任何字母。</p>
+<p><img alt="九键" data-src="/2020/08/05/%E6%AF%8F%E6%97%A5%E4%B8%80%E5%88%B74/%E4%B9%9D%E9%94%AE.jpg" class="lazyload"></p>
+<p>示例：</p>
+<figure class="highlight plain"><table><tr><td class="code"><pre><span class="line">输入：&quot;23&quot;</span><br><span class="line">输出：[&quot;ad&quot;, &quot;ae&quot;, &quot;af&quot;, &quot;bd&quot;, &quot;be&quot;, &quot;bf&quot;, &quot;cd&quot;, &quot;ce&quot;, &quot;cf&quot;].</span><br></pre></td></tr></table></figure>
+<p><strong>说明:</strong><br>
+尽管上面的答案是按字典序排列的，但是你可以任意选择答案输出的顺序。</p>
+<h2 id="题解-5"><a class="markdownIt-Anchor" href="#题解-5"></a> 题解</h2>
+<ul>
+<li>触宝一面代码题，只不过改成26键，换了一个情景。（触宝有一款输入法面向海外用户，现有外国人要用26键打字，但是由于26键按键小，容易按错，按到本来想要按的键的相邻的键，现在外国人要输入hi，请输出他可能打出的所有情况）</li>
+<li>映射关系需要改变，面试里只要求我写hi这种情况。
+<ul>
+<li>h:[‘g’,‘h’,‘j’]</li>
+<li>i:[‘u’,‘i’,‘o’]</li>
+</ul>
+</li>
+<li>回溯法：一种通过穷举所有可能情况来找到所有解的算法，如果一个候选解最后被发现并不是可行解，回溯算法会舍弃它，并在前面的一些步骤做出一些修改，并重新尝试找到可行解。</li>
+<li>时间复杂度：O(3^N * 4 ^ M)，其中 N 是输入数字中对应 3 个字母的数目（比方说 2，3，4，5，6，8）， M 是输入数字中对应 4 个字母的数目（比方说 7，9），N+M 是输入数字的总数。</li>
+<li>空间复杂度：O(3^N * 4 ^ M)，需要保存这么多结果</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span><span class="params">(object)</span>:</span></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">letterCombinations</span><span class="params">(self, digits)</span>:</span></span><br><span class="line">        <span class="string">"""</span></span><br><span class="line"><span class="string">        :type digits: str</span></span><br><span class="line"><span class="string">        :rtype: List[str]</span></span><br><span class="line"><span class="string">        """</span></span><br><span class="line">        phone = &#123;<span class="string">'2'</span>:[<span class="string">'a'</span>,<span class="string">'b'</span>,<span class="string">'c'</span>],</span><br><span class="line">                 <span class="string">'3'</span>:[<span class="string">'d'</span>,<span class="string">'e'</span>,<span class="string">'f'</span>],</span><br><span class="line">                 <span class="string">'4'</span>:[<span class="string">'g'</span>,<span class="string">'h'</span>,<span class="string">'i'</span>],</span><br><span class="line">                 <span class="string">'5'</span>:[<span class="string">'j'</span>,<span class="string">'k'</span>,<span class="string">'l'</span>],</span><br><span class="line">                 <span class="string">'6'</span>:[<span class="string">'m'</span>,<span class="string">'n'</span>,<span class="string">'o'</span>],</span><br><span class="line">                 <span class="string">'7'</span>:[<span class="string">'p'</span>,<span class="string">'q'</span>,<span class="string">'r'</span>,<span class="string">'s'</span>],</span><br><span class="line">                 <span class="string">'8'</span>:[<span class="string">'t'</span>,<span class="string">'u'</span>,<span class="string">'v'</span>],</span><br><span class="line">                 <span class="string">'9'</span>:[<span class="string">'w'</span>,<span class="string">'x'</span>,<span class="string">'y'</span>,<span class="string">'z'</span>]&#125;</span><br><span class="line">        <span class="function"><span class="keyword">def</span> <span class="title">back</span><span class="params">(comb, next_digits)</span>:</span> <span class="comment">#next_digits下一次输入的字母，comb组合情况</span></span><br><span class="line">            <span class="comment">#如果没有新的输入，说明组合完成</span></span><br><span class="line">            <span class="keyword">if</span> len(next_digits) == <span class="number">0</span>:</span><br><span class="line">                <span class="keyword">return</span> output.append(comb)</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="comment">#遍历下一个输入的所有映射</span></span><br><span class="line">                <span class="keyword">for</span> i <span class="keyword">in</span> phone[next_digits[<span class="number">0</span>]]:</span><br><span class="line">                    <span class="comment">#将当前字母添加到组合最后(comb+i)，不断重复直到没有新的输入</span></span><br><span class="line">                    <span class="comment">#如果是i+comb就是加到前面</span></span><br><span class="line">                    back(comb + i, next_digits[<span class="number">1</span>:])</span><br><span class="line">        </span><br><span class="line">        output = []</span><br><span class="line">        <span class="keyword">if</span> digits:</span><br><span class="line">             back(<span class="string">""</span>,digits)</span><br><span class="line">        <span class="keyword">return</span> output</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>刷题打卡</category>
+      </categories>
+  </entry>
+  <entry>
     <title>每日一刷3</title>
     <url>/2020/08/03/%E6%AF%8F%E6%97%A5%E4%B8%80%E5%88%B73/</url>
     <content><![CDATA[<h1 id="日常警醒"><a class="markdownIt-Anchor" href="#日常警醒"></a> 日常警醒</h1>
